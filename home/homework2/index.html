@@ -18,25 +18,10 @@
 
         do {
             const name = prompt("Введите Ваше имя");
-
-            if ( isNaN(name) && typeof(name) != null) {
-            console.log(name);
-            cards.name = name;
-            } else {
-                i--;
-                console.log(i);
-            }
-            i++
-        }        
-        while (i < 1);
-
-        i= 0;
-
-        do {
             const age = prompt("Введите Ваш возраст");
 
-            if ( !isNaN(age) && typeof(age) != null && age < 99 && age >1) {
-            console.log(age);
+            if ( isNaN(name) && typeof(name) != null && !isNaN(age) && typeof(age) != null && age < 99 && age >1) {
+            cards.name = name;
             cards.age = parseInt(age);
             } else {
                 i--;
@@ -45,8 +30,6 @@
             i++
         }        
         while (i < 1);
-
-        i= 0;
 
         const gender = confirm("Ваш пол мужской?");
         confirm ? cards.gender = "Мужской" : cards.gender = "Женский";
