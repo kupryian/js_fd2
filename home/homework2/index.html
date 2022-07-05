@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let cards = {
+            name: "",
+            age: "",
+            gender: ""
+        };
+
+        let i = 0;
+
+        do {
+            const name = prompt("Введите Ваше имя");
+
+            if ( isNaN(name) && typeof(name) != null) {
+            console.log(name);
+            cards.name = name;
+            } else {
+                i--;
+                console.log(i);
+            }
+            i++
+        }        
+        while (i < 1);
+
+        i= 0;
+
+        do {
+            const age = prompt("Введите Ваш возраст");
+
+            if ( !isNaN(age) && typeof(age) != null && age < 99 && age >1) {
+            console.log(age);
+            cards.age = parseInt(age);
+            } else {
+                i--;
+                console.log(i);
+            }
+            i++
+        }        
+        while (i < 1);
+
+        i= 0;
+
+        const gender = confirm("Ваш пол мужской?");
+        confirm ? cards.gender = "Мужской" : cards.gender = "Женский";
+
+        let pensioner;
+
+        if (cards.gender == true && cards.age > 65) {
+            pensioner = "да";
+        } else if (cards.gender == false && cards.age > 58){
+            pensioner = "да";
+        } else {
+            pensioner = "нет";
+        }
+
+        alert(`
+Ваше имя: ${cards.name}
+Ваш возраст: ${cards.age}
+Ваш возраст в днях: ${cards.age*365}
+Через 5 лет вам будет: ${cards.age+5}
+Ваш пол: ${cards.gender}
+Вы на пенсии: ${pensioner}
+`);
+
+</script>
+</body>
+</html>
