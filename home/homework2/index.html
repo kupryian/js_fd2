@@ -21,21 +21,21 @@
             console.log(nameUser);
             cards.name = nameUser;
         }
-        while ( !isNaN(cards.name) || cards.name.lenght < 50 || cards.name.lenght > 1);
+        while ( !isNaN(cards.name) || cards.name.lenght < 50 || cards.name.length < 1);
 
         do {
             const surName = prompt("Введите Вашу фамилию");
             console.log(surName);
             cards.surname = surName;
         }
-        while ( !isNaN(cards.surname) || cards.surname.lenght < 50 || cards.surname.lenght > 1);
+        while ( !isNaN(cards.surname) || cards.surname.lenght < 50 || cards.surname.length < 1);
 
         do {
             const fatherName = prompt("Введите Ваше Отчетсво");
             console.log(fatherName);
             cards.fathername = fatherName;
         }
-        while ( !isNaN(cards.fathername) || cards.fathername.lenght < 50 || cards.fathername.lenght > 1);
+        while ( !isNaN(cards.fathername) || cards.fathername.lenght < 50 || cards.fathername.length < 1);
 
         do {
             let age = prompt("Введите Ваш возраст в годах");
