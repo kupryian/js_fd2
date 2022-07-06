@@ -11,6 +11,7 @@
         let cards = {
             name: "",
             surname: "",
+            fathername: "",
             age: "",
             gender: ""
         };
@@ -25,9 +26,16 @@
         do {
             const surName = prompt("Введите Вашу фамилию");
             console.log(surName);
-            cards.name = surName;
+            cards.surname = surName;
         }
-        while ( !isNaN(cards.name) || cards.name.lenght < 50 || cards.name.lenght > 1);
+        while ( !isNaN(cards.surname) || cards.surname.lenght < 50 || cards.surname.lenght > 1);
+
+        do {
+            const fatherName = prompt("Введите Ваше Отчетсво");
+            console.log(fatherName);
+            cards.fathername = fatherName;
+        }
+        while ( !isNaN(cards.fathername) || cards.fathername.lenght < 50 || cards.fathername.lenght > 1);
 
         do {
             let age = prompt("Введите Ваш возраст в годах");
@@ -50,8 +58,7 @@
         }
 
         alert(`
-Ваше имя: ${cards.name}
-Ваша фамилия: ${cards.surname}
+Ваше ФИО: ${cards.surname} ${cards.name} ${cards.fathername}
 Ваш возраст: ${cards.age}
 Ваш возраст в днях: ${cards.age*365}
 Через 5 лет вам будет: ${cards.age+5}
