@@ -21,28 +21,28 @@
             console.log(nameUser);
             cards.name = nameUser;
         }
-        while ( !isNaN(cards.name) || cards.name.lenght < 50 || cards.name.length < 1);
+        while ( !isNaN(cards.name) || cards.name.length > 50 );
 
         do {
             const surName = prompt("Введите Вашу фамилию");
             console.log(surName);
             cards.surname = surName;
         }
-        while ( !isNaN(cards.surname) || cards.surname.lenght < 50 || cards.surname.length < 1);
+        while ( !isNaN(cards.surname) || cards.surname.length > 50 || cards.surname.length < 1);
 
         do {
             const fatherName = prompt("Введите Ваше Отчетсво");
             console.log(fatherName);
             cards.fathername = fatherName;
         }
-        while ( !isNaN(cards.fathername) || cards.fathername.lenght < 50 || cards.fathername.length < 1);
+        while ( !isNaN(cards.fathername) || cards.fathername.length > 50 || cards.fathername.length < 1);
 
         do {
             let age = prompt("Введите Ваш возраст в годах");
-            console.log(age);
+            console.log("возраст "+age);
             cards.age = age;
         }
-        while ( isNaN(cards.age) || cards.age == "" || cards.age == null || cards.age > 99 || cards.age < 2);
+        while ( isNaN(cards.age) || cards.age > 100 || cards.age < 2);
 
         const gender = confirm("Ваш пол мужской?");
         gender ? cards.gender = "Мужской" : cards.gender = "Женский";
