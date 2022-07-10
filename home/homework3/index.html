@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let test = [ 5, 7, 
+        [ 4, [2], 8, [1,3], 2 ], 
+        [ 9, [] ], 
+        1, 8
+      ];
+
+    let summa = 0;
+
+    function getSumInArr (massive) {
+        for (let i = 0; i < massive.length; i++) {
+            if (typeof(massive[i]) == "object") {
+                console.log("найден объект");
+                getSumInArr(massive[i]);
+            } else {
+                summa += massive[i];
+                console.log(summa);
+            }
+        }
+    }
+    getSumInArr(test);
+
+    </script>
+</body>
+</html>
