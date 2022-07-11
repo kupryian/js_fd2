@@ -18,7 +18,7 @@
     let summa = 0;
 
     function getSumInArr (massive) {
-        for (let i = 0; i < massive.length; i++) {
+        for (let i in massive) {
             if (typeof(massive[i]) == "object") {
                 console.log("найден объект");
                 getSumInArr(massive[i]);
