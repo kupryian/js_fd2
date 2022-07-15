@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let cards = {
+            name: "",
+            surname: "",
+            fathername: "",
+            age: "",
+            gender: ""
+        };
+
+        do {
+            const nameUser = prompt("Введите Ваше имя");
+            console.log(nameUser);
+            cards.name = nameUser;
+        }
+        while ( !isNaN(cards.name) || cards.name.length > 50 );
+
+        do {
+            const surName = prompt("Введите Вашу фамилию");
+            console.log(surName);
+            cards.surname = surName;
+        }
+        while ( !isNaN(cards.surname) || cards.surname.length > 50 || cards.surname.length < 1);
+
+        do {
+            const fatherName = prompt("Введите Ваше Отчетсво");
+            console.log(fatherName);
+            cards.fathername = fatherName;
+        }
+        while ( !isNaN(cards.fathername) || cards.fathername.length > 50 || cards.fathername.length < 1);
+
+        do {
+            let age = prompt("Введите Ваш возраст в годах");
+            console.log("возраст "+age);
+            cards.age = age;
+        }
+        while ( isNaN(cards.age) || cards.age > 100 || cards.age < 2);
+
+        const gender = confirm("Ваш пол мужской?");
+        gender ? cards.gender = "Мужской" : cards.gender = "Женский";
+
+        let pensioner;
+
+        if (cards.gender == "Мужской" && cards.age > 65) {
+            pensioner = "да";
+        } else if (cards.gender == "Женский" && cards.age > 58){
+            pensioner = "да";
+        } else {
+            pensioner = "нет";
+        }
+
+        alert(`
+Ваше ФИО: ${cards.surname} ${cards.name} ${cards.fathername}
+Ваш возраст: ${cards.age}
+Ваш возраст в днях: ${cards.age*365}
+Через 5 лет вам будет: ${cards.age+5}
+Ваш пол: ${cards.gender}
+Вы на пенсии: ${pensioner}
+`);
+
+
+</script>
+</body>
+</html>
