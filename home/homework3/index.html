@@ -18,13 +18,11 @@
     let summa = 0;
 
     function getSumInArr (massive) {
-        for (let i in massive) {
-            if (typeof(massive[i]) == "object") {
-                console.log("найден объект");
+        for (let i =0; i < massive.length; i++) {
+            if (Array.isArray(massive[i])) {
                 getSumInArr(massive[i]);
             } else {
                 summa += massive[i];
-                console.log(summa);
             }
         }
     }
