@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lesson4</title>
+</head>
+<body>
+        <!-- <script>
+
+function disemvowel(str) {
+            
+            const glas = ["a","e","i","o","u","A","E","I","O","U"];
+
+            let str2 = "";
+            
+        for (let i = 0; i < str.length; i++) {
+            if (glas.includes(str[i])) {
+                continue;
+            } else {
+               str2 += str[i];
+            }
+        };
+        // console.log(str2);
+        return str2;
+        }
+        </script> -->
+        <script>
+            // let s = ("aBcd"); //-> "A-Bb-Ccc-Dddd" метод репит tolowercase
+            // let char = [];
+            // let charStr;
+            // let lowRegistr;
+
+            // function accum(s) {
+            // for (let i = 0; i < s.length; i++) {
+            //     lowRegistr = s[i].toLowerCase();
+            //     char[i] = s[i].charAt(0).toUpperCase()+s[i].repeat(i).toLowerCase();
+            // }
+            // charStr = char[0];
+            // for (let i = 1; i < char.length; i++) { 
+            //     charStr +="-"+char[i];
+            // }
+            // return charStr;
+            // }
+
+            // accum(s);
+
+            // console.log(char);   
+            // console.log(charStr);
+             
+            // function accum(s) {
+            // var result = [];
+            // var strLow = s.toLowerCase();
+            //     for (i=0; i<strLow.length; i++) {
+            //     var str = strLow[i].toUpperCase();
+            //         for (j=0; j<i; j++) {
+            //         str += strLow[i];
+            //         }
+            //     result.push(str)
+            //     }
+            //     console.log(result);
+            //     console.log(result.join("-"))
+            
+            // }
+            // accum('qWeR')
+
+        </script>
+        <script>
+
+            
+            // let ne = ("8 3 -5 42 -1 0 0 -9 4 7 4 -4")
+            // function highAndLow(numbers) {
+            // let n = numbers.split(' ');
+            // console.log(n)
+            
+            // let num = +n[0];
+            // let numMax = +n[0];
+            // let numMin = +n[0];
+            // let result = "";
+           
+            // for(let i = 0; i < n.length; i++){
+            //     n[i] = +n[i];
+            //     if(n[i] > numMax){
+            //     numMax = n[i];
+            //     }
+            // for(let i = 0; i < n.length; i++)   
+            //     n[i] = +n[i];
+            //     if(n[i] < numMin){
+            //         numMin = n[i];
+            //     }
+            // }
+            // console.log(numMin);
+            // console.log(numMax);
+            // result = numMax+" "+numMin;
+            // return result;
+            // }
+            // highAndLow(ne);
+    
+        </script>
+        <!-- <SCRipt>
+            let text = "isIsogram";
+            let text1 = "мышь";
+            let text3 = "";
+
+            function isIsogram(str){
+            let ob = {};
+            let newStr = str.toLowerCase();
+            let result ;
+
+            for( let i = 0; i < newStr.length; i++) {
+                let key = newStr[i];
+                ob[key] = newStr[i];
+
+            }
+            let count = 0;
+                for (k in ob) {
+                if (k) {
+                    count++;
+                    }
+                }
+            if (count == newStr.length) {
+                result = true;
+            } else {
+                result = false;
+            }
+            console.log(result);
+            return result;
+            }
+            isIsogram(text);
+        </SCRipt> -->
+        <!-- <script> 
+            let tex = "isIsogram";
+            function isIsogram(str){
+                const set1 = new Set(str.toUpperCase()).size;
+                if (set1 == str.length) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            isIsogram(tex);
+        </script> -->
+
+        <script>
+            let str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            function calc(x){
+            let total1 ="";
+            let total2 ="";
+            let re = /7/gi;
+            let total1Res = 0;
+            let total2Res = 0;
+            let test = [];
+            let test2 = [];
+
+            for (let i =0; i < x.length; i++) {
+                total1 += x.charCodeAt(i);
+            }
+
+            total2 = total1.replace(re, 1);
+
+            for (let i =0; i < total1.length; i++) {
+                test[i] = +total1[i];
+                test2[i] = +total2[i];
+                total1Res += test[i];
+                total2Res += test2[i];
+            }
+            return total1Res = total1Res-total2Res;     
+            console.log(total1Res);  
+            }
+            calc(str);
+        </script>
+        
+</body>
+</html>
