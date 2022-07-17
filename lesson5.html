@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    1. ссылки
+    2. когда присваиваешь переменной массив- это всегда ссылка на массив. например ключ в обхекте, в котором массив - это ссылка на него
+        let arr = [1,2,3,[4,5]] - arr[3] - ссылка на массив
+    3. исключения (обработка ошибки) try -catch
+    <script>
+        try {
+            colsole.log(test);
+        } catch (err) {
+            console.log("что то пошло не так",err );
+        }
+    </script>
+        если что то пойдет не так в try, тогда будет cath и прога не ляжет
+        throw { name: "my error", message: "что то пошло не так"} -своя ошибка. генерация в try
+        вывести её можно в catch - console.error("текст какой то "+имя кеткч.name)
+        есть еще finaly. он отработает вссе равно будет трай или кетч
+    4. вынесение жс скрипта во внешний файл defer async
+    defer грузит скрипты последоватально
+    async как агрузится так и загрузится
+    5. убрать дубли из массива. создать обхект и через цикл по условия (если (ключ i в объекте) то пропустить, если фолс то записать)
+    
+</body>
+</html>
