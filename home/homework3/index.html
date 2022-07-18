@@ -15,20 +15,21 @@
         1, 8
       ];
 
-      let summa =0; // закинуть в функцию и подуумать как это сделть чтобы не обнуляло и функция выводила 50
+       
 
     function getSumInArr (massive) {
-        
+        let summa =0;
         for (let i =0; i < massive.length; i++) {
             if (Array.isArray(massive[i])) {
-                getSumInArr(massive[i]);
+                summa += getSumInArr(massive[i]);
             } else {
                 summa += massive[i];
             }
         }
-        console.log(summa);
+        return summa;
     }
-    
+    console.log(getSumInArr(test));
+
     getSumInArr(test);
 
     </script>
