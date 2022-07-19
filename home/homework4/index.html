@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function numChar (){
+        const songChar = ["а","А","У","у","О","о","Ы","ы","И","и","Э","э","я","Я","Ю","ю","ё","Ё","е","Е"];
+        const getStrFromUser = prompt("Введите любой текст на русском языке");
+        let count = 0;
+
+        for (let i =0; i<getStrFromUser.length; i++) {
+            for (let k = 0; k<songChar.length; k++) {
+                if (getStrFromUser[i] == songChar[k]) {
+                    count ++
+                }
+                
+            }
+        }    
+        alert("Колличестве гласных букв:  "+count);
+        }
+        numChar ();
+    </script>
+</body>
+</html>
