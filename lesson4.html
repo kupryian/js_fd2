@@ -171,27 +171,94 @@ function disemvowel(str) {
             calc(str);
         </script> -->
         <script>
-            const num = 2;
-            const num2 = 5;
+            // const num = 2;
+            // const num2 = 5;
 
-            // math.pow(7,2) // возведение в степень
-            function test (x,y){
-                arr = [];
-                nums = x;
-                for (let i = 0; i < y; i++) {
-                    if (i==0) {
-                        arr.push(Math.pow(nums,1));
-                    nums = arr[i];
-                    } else {
-                        arr.push(Math.pow(nums,2));
-                    nums = arr[i];
-                    }
-                }
-                return arr;
-            }
-            test(num,num2);
-            console.log(test(num,num2));
+            // // math.pow(7,2) // возведение в степень
+            // function test (x,y){
+            //     arr = [];
+            //     nums = x;
+            //     for (let i = 0; i < y; i++) {
+            //         if (i==0) {
+            //             arr.push(Math.pow(nums,1));
+            //         nums = arr[i];
+            //         } else {
+            //             arr.push(Math.pow(nums,2));
+            //         nums = arr[i];
+            //         }
+            //     }
+            //     return arr;
+            // }
+            // test(num,num2);
+            // console.log(test(num,num2));
         </script>
+        <script>
+            var map=
+`.C.......
+.........
+......m..`
+            function catMouse(map,moves){
+
+            const catPlace =[];  // позиция мышки [место в строке, ряд]
+            const mousePlace= []; // позиция кота
+            const arrMap = []; //тупо массив куда строку главную положу
+            let items = 0; // число элементов в переменной мап, за минусом переноса строк
+            let charPerRow; // число в строке
+            let chisloPerenosov = 0; //число переносов 
+            let row =1; // число рядов
+            const escaped = "Escaped!"; //для результата
+            const caught = "Caught!";
+            const oneAnimal = "boring without two animals";
+
+            for (let i = 0; i<map.length; i++) { // кладу строку в массив
+                arrMap[i] = map[i];
+            }
+
+            for (let i = 0; i<arrMap.length; i++) { 
+                if (arrMap[i] == "C") { //ессли нашло кота, его номер + 1 (потому что в массиве все с нуля)
+                    catPlace[0] = i+1;
+                    catPlace[1] = chisloPerenosov+1; // заодно смотрит число перносов, если их нет, то значит в первом ряду
+                } else if (arrMap[i] == "m") {
+                    mousePlace[0] = i+1;
+                    mousePlace[1] = chisloPerenosov+1;
+                } else if (arrMap[i] == '\n') { //если нашло перенос, увеличивает количество рядов, уменьшает колличество общее элементов
+                    row ++;   
+                    items --;
+                    chisloPerenosov ++;
+                }
+            }
+            
+            items +=arrMap.length;   // получается всего символов = отнимает символы переноса( см выше) + длинна всего массива
+            charPerRow = items/row; // число элементов в ряду
+
+                if (typeof(catPlace[0]) == "undefined" || typeof(mousePlace[0]) == "undefined") {   // проверка если нет животного 1 сразу нахуй
+                    console.log("boring without two animals");
+                    return oneAnimal;
+                }
+                
+                function finderNumberPlaceInRow (x) {  //считает нормальное место животного в ряду
+                    x[0] = x[0]-((x[1]-1)*charPerRow)-(x[1]-1);
+                }
+                finderNumberPlaceInRow (mousePlace);
+                finderNumberPlaceInRow (catPlace);
+                
+                // console.log((catPlace[1]-1)*charPerRow);
+                // console.log(catPlace);
+                // console.log(mousePlace);
+
+                if (Math.abs(catPlace[0]-mousePlace[0])+Math.abs(catPlace[1]-mousePlace[1]) <=moves) {  
+                    console.log("Caught!");
+                    return caught;
+                } else {
+                    // console.log("Escaped!");
+                    return escaped;
+                }
+            }
+
+            catMouse(map,5);
+            console.log("результат " + catMouse(map,5));
+             
         
+        </script>
 </body>
 </html>
