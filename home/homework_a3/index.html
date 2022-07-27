@@ -8,30 +8,25 @@
 </head>
 <body>
     <script>
-        const str = "Д,е     д!";
+        const str = "*де    Д,е    *% д!!!!";
         console.log("Оригинал: "+str);
 
         function getPoli (x) {
-            let str2 = x,
-                str3 = "",
-                result;
-
-                do {
-                str3 = str2;
-                str2 = str2.toLocaleLowerCase().replace("ё", "е").replace("ъь", "").replace(/[^A-Za-zА-Яа-я]+/, "");
-                } while (str2 !== str3);
+            let str2 = x.toLocaleLowerCase().replace(/ё/g, "е").replace(/ъь/g, "").replace(/[^A-Za-zА-Яа-я0-9]/g, ""),
+                str3;
 
             console.log("Чистая:   "+str2);
 
             str3 = str2.split('').reverse().join('');
 
                 if (str2 == str3) {
-                    return result = "Полиндром";
+                    return "Полиндром";
                 } else {
-                    return result = "Не полиндром";   
+                    return "Не полиндром";   
                 }
         }
         console.log(getPoli (str));
+
     </script>
 </body>
 </html>
