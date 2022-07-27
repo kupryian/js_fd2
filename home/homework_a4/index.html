@@ -8,7 +8,7 @@
 </head>
 <body>
     <script>
-        const str = "!! Де!д      е!1д1&!  !!!";
+        const str = "!! Дё!д      ё!1д1&!  !!!";
         console.log("Оригинал: "+str);
 
         function getPoli (x) {
@@ -17,11 +17,11 @@
                 result;
 
                 str3 = str2;
-                str2 = str2.replace("ё", "е").replace("ъь", "").replace(/[^A-Za-zА-Яа-я]+/, "");
-                
+                str2 = str2.replace(/ё/g, "е").replace(/ъь/g, "").replace(/[^A-Za-zА-Яа-я]/g, "");          
 
                 if (str2 !== str3) {
-                    return getPoli (str2);  
+                    return getPoli (str2);
+                    
                 } else {
                     str3 = str2.split('').reverse().join('');
 
@@ -33,6 +33,8 @@
                 }
         }
         console.log("результат: "+getPoli (str));
+        
+
     </script>
 </body>
 </html>
