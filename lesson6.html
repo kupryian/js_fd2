@@ -19,13 +19,14 @@
         FilterString("aa1bb2cc3dd");
     </script> -->
     <script>
-        const str = " erw abc  ";
-function probelBegin (x) {
-        const str2 = x.replace(/\s*/, "&").split('').reverse().join('').replace(/\s*/, "&").split('').reverse().join('');
-        console.log(str2);
-        return str2;
+
+function schet(){
+const vvod = prompt("");
+
+return (vvod.length)-(vvod.replace(/[ауоыиэяюёе]/gi, "").length);
+
 }
-    probelBegin (str);
+console.log(schet());
 
     </script>
 
