@@ -259,5 +259,136 @@ function disemvowel(str) {
         
         </script> -->
 
+        <!-- <script> // непонятно как делать эту хуйню со скобками
+            let str = "asadffdvRWfgrkkk";
+            let obj = {};
+            let strFinal;
+
+            let strNew = str.toLowerCase().split("");
+
+            for (let i = 0; i < strNew.length; i++) {
+                if (obj[strNew[i]] == undefined) {
+                    obj[strNew[i]] = 0;
+                } else {
+                    obj[strNew[i]] += 1;
+                }
+            }
+
+            for (let k in obj) {
+                
+                let re = /k/g;
+                console.log(re);
+                if (obj[k] > 0) {
+                    str.replace(re, ")");
+                    console.log(str.strFinal);
+                } else {
+                    strFinal = str.replace(re, "(");
+                }
+            }
+
+            // re = /f/g;
+
+            // strFinal = str.replace(re, ")");
+            
+            console.log(strFinal);
+
+
+        </script> -->
+<!-- 
+        <script>
+            
+            let nums = 123456789;
+            // function descendingOrder(n){
+            //     return bigNum = parseInt(n.toString().split("").sort().reverse().join(""));
+            // }
+            let descendingOrder = (n) => parseInt(n.toString().split("").sort().reverse().join(""))
+            console.log(descendingOrder(nums));
+
+
+        </script> -->
+<!-- 
+        <script>
+
+
+            function duplicateCount(text){
+                const   obj = {},
+                        newStr = text.toLowerCase().split("");
+                let count = 0;
+                for (let i =0; i < text.length; i++ ) {
+                    if (obj[newStr[i]] == undefined) {
+                        obj[newStr[i]] = 1;
+                    } else {
+                        obj[newStr[i]] += 1;
+                    }
+                }
+                for (let k in obj) {
+                    if ( obj[k] > 1) {
+                        count += 1;
+                    }
+                }
+                console.log(count);
+                return count;
+            }
+
+
+
+        </script> -->
+<!-- 
+        <script>
+
+            const str = "";
+
+            function getCount(str) {
+                return (str.match(/[aeiou]/g) || []).length;
+            }
+
+            console.log(getCount(str));
+
+        </script> -->
+
+        <!-- <script>
+
+            const arr = [-26893027,123774819,55714577,-138236985,37986759,-62502536];
+
+            function findOutlier(integers){
+                if (Math.abs(integers[0]%2)+Math.abs(integers[1]%2)+Math.abs(integers[2]%2) >1) {
+                    for (let i =0; i<integers.length; i ++) {
+                            if (integers[i]%2 == 0) {
+                            console.log("------Четный возврат "+integers[i]);
+                            return integers[i];
+                            } else {
+                                continue;
+                            }
+                    }
+                } else {
+                    for (let i =0; i<integers.length; i ++) {
+                            if (integers[i]%2 !== 0) {
+                                console.log("------нечетный возврат "+integers[i]);
+                                return integers[i];
+                        } else {
+                                continue;
+                        }
+                    }
+                }
+            }
+            console.log(findOutlier(arr));
+        </script> -->
+
+        <script>
+            let obj = {"a":5, "b":1}
+            let str = "ab b";
+            let str1 = str.split(" ").forEach(function (item) {
+                console.log(item);
+                
+                for (let i = 0; i < item.length; i ++) {
+                    let a = obj[i];
+                    let b = /a/g;
+                    let newStr = item.replace(b, obj[item[i]]);
+                    return newStr;
+                }
+            })
+            console.log(str1);
+        </script>
+
 </body>
 </html>
