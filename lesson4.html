@@ -374,20 +374,191 @@ function disemvowel(str) {
             console.log(findOutlier(arr));
         </script> -->
 
-        <script>
-            let obj = {"a":5, "b":1}
-            let str = "ab b";
-            let str1 = str.split(" ").forEach(function (item) {
-                console.log(item);
-                
-                for (let i = 0; i < item.length; i ++) {
-                    let a = obj[i];
-                    let b = /a/g;
-                    let newStr = item.replace(b, obj[item[i]]);
-                    return newStr;
+        <!-- <script> //https://www.codewars.com/kata/who-is-the-killer-1
+
+            let suspectInfo = {'James': ['Jacob', 'Bill', 'Lucas'],
+                            'Johnny': ['David', 'Kyle', 'Lucas'],
+                            'Peter': ['Lucy', 'Kyle']
+                        },
+                dead = ['Lucas', 'Bill'];
+
+
+
+            // function killer(suspectInfo, dead) {
+            //     for (let key in suspectInfo) {
+            //         for (let i = 0; i<dead.length; i++) {
+            //             let x1 = suspectInfo[key].includes(dead[i]);
+            //         }
+            //         console.log("ответы кто----"+suspectInfo[key].includes(dead[0])); 
+            //     }
+ 
+
+            //     console.log(array.some(even));
+            // }
+
+            function killer(suspectInfo, dead) {
+                console.log (Object.keys(suspectInfo).find(x=> dead.every(y=> suspectInfo[x].includes(y))))
+                return Object.keys(suspectInfo).find(x=> dead.every(y=> suspectInfo[x].includes(y)))
+            }
+
+
+
+
+
+
+
+            // function killer(suspectInfo, dead) {
+            //     //your code here...
+            //     for (let name in suspectInfo) {
+            //         if (dead.every(deadPerson => suspectInfo[name].includes(deadPerson))) {
+            //         return name;
+            //         }
+            //     }
+            // }
+
+            killer(suspectInfo, dead);
+        </script> -->
+
+        <!-- <script> //https://www.codewars.com/kata/5208f99aee097e6552000148/javascript
+
+
+        </script> -->
+
+        <!-- <script> //https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/javascript
+            const numbers = [2, 2, 3],
+                target = 4;
+
+            function twoSum(numbers, target) {
+            let newArr = [];
+            // let arr = numbers.findIndex( (x,plaseX) => {
+            //     numbers.findIndex( (y, placeY) => {
+            //         if ( (x+y) == target) {
+            //             newArr.push(plaseX,placeY);
+            //             console.log(newArr);
+            //             return newArr;
+            //         }
+            //     } ) ;
+            // } );
+                for (let i = 0; i<numbers.length; i ++) {
+                    for(let k = 0; k<numbers.length; k ++) {
+                        if ( (numbers[i]+numbers[k]) == target && i !==k)  {
+                            newArr.push(i,k);
+                            // console.log (newArr);
+                            return newArr;
+                        }
+                    }
                 }
-            })
-            console.log(str1);
+            }
+            console.log (twoSum(numbers, target) );
+
+        </script> -->
+<!-- 
+        <script> //https://www.codewars.com/kata/52597aa56021e91c93000cb0/javascript
+
+            const arr =[false,1,0,1,2,0,1,3,"a"];
+            // function moveZeros(arr) {
+            //     let newArr = arr.filter( n => n !== 0);
+            //     let score = arr.length-newArr.length;
+            //     // let coolArr = newArr;
+            //     // console.log("----"+ coolArr)
+            //     // console.log ( newArr);
+            //     for (let i =0; i < (score); i ++ ) {
+            //         newArr.push(0);
+            //     }
+            //     return newArr;
+            // }
+
+
+            function moveZeros(arr) {
+                return arr.filter( x => x !== 0).concat(arr.filter( y => y === 0))
+            }
+
+            console.log (moveZeros(arr) );
+        </script> -->
+        <!-- <script> //https://www.codewars.com/kata/541c8630095125aba6000c00/javascript
+            
+            const n = 222;
+
+            function digitalRoot(n) {
+                let newN = n;
+                if (n>9) {
+                newN = (n+"").split("").reduce( (x, y) => (+x)+(+y));
+                return ( digitalRoot(newN) )
+                } else {
+                    return newN
+                }
+            //  console.log(newN)
+            }
+
+            console.log( digitalRoot(n));
+        </script> -->
+        <!-- <script> //https://www.codewars.com/kata/54521e9ec8e60bc4de000d6c/train/javascript
+
+            var maxSequence = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+
+            function max (arr){
+                let newArr =[];
+                let newArr2 =[];
+
+                for (let i= 0; i<arr.length; i++) {
+                    newArr.push(arr.slice(i).reduce( (x,y) => {newArr2.push(x+y); return x+y } ));
+                console.log(newArr2);
+                }
+                return Math.max.apply(null, newArr2);
+               
+            }
+
+            console.log ( max(maxSequence) );
+
+            var maxSequence = function(arr){
+  // ...let newArr =[];
+  let newArr2 =[];
+
+for (let i= 0; i<arr.length; i++) {
+    newArr.push(arr.slice(i).reduce( (x,y) => {newArr2.push(x+y); return x+y } ));
+console.log(newArr2);
+}
+return Math.max.apply(null, newArr2);
+            }
+
+
+        </script> -->
+        <!-- <script> //https://www.codewars.com/kata/5569b10074fe4a6715000054/train/javascript
+            const array =['a', 'a', 'b', 'b', 'b'];
+
+            function count(array){
+            let obj = {};
+                
+            array.forEach( (x,y) => {
+                    obj[x] !== undefined ? obj[x] += 1 : obj[x] = 1;   
+                })
+
+            return obj;
+            }
+
+            console.log (count(array));
+        </script> -->
+
+        <script> //https://www.codewars.com/kata/55c45be3b2079eccff00010f/train/javascript
+
+            const words = "is2 Thi1s T4est 3a";
+
+            function order(words){
+                let arr = [];
+                words.split(" ").forEach(x => {
+                    for( let i = 0; i < x.length; i ++) {
+                        if (+(x[i]) > 0 && +(x[i]) < 9 ) {
+                            arr.push(x[i]);
+                        } else {
+                            console.log("hui")
+                        }
+                    }
+                })
+
+            }
+            
+            order(words);
+
         </script>
 
 </body>
