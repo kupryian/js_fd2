@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15.08</title>
+</head>
+<body>
+    <div id="wrap" class="wrap">
+        <ul id="first">
+            <li><input type="text" placeholder="H1" id="H1" name="inputH1"><button style="margin-left: 20px;" onclick="Create('H1')">Create H1</button></li>
+            <li><input type="text" placeholder="P" id="p"><button style="margin-left: 20px;" onclick="Create('p')">Create P</button></li>
+            <li><input type="text" placeholder="Span" id="Span"><button style="margin-left: 20px;" onclick="Create('Span')">Create Span</button></li>
+        </ul>
+    </div>
+    <script>
+        const divWrap = document.getElementById("wrap");
+        const first = document.getElementById("first");
+        const Create = (x) => {
+            let element = document.createTextNode(document.getElementById(x).value);
+            console.log(typeof(element));
+            const tag = document.createElement(x);
+            tag.appendChild(element);
+            divWrap.appendChild(tag);
+            console.log(tag);
+        }
+    </script>
+</body>
+</html>

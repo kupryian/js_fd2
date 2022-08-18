@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ват для ксюши</title>
+    <style>
+        span {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Рассчет VAT 23%</h1>
+    <input type="text" placeholder="Введи сумму Брутто" id="brutto"><button style="margin-left: 20px;" onclick="calc()">Рассчитать</button>
+    <ul>
+        <li>Вернётся ват <span id="vat"></span></li>
+        <li>Суммма Нетто <span id="netto"></span></li>
+    </ul>
+    <script>
+        
+    function calc () { 
+        let brutto = document.getElementById("brutto").value;
+        let vat = (brutto-(brutto/1.23)).toFixed(2);
+        let netto = brutto-vat;
+        console.log(vat);
+        console.log(netto);
+        let vatOut = document.getElementById("vat");
+        let nettoOut = document.getElementById("netto");
+        vatOut.innerHTML = vat;
+        nettoOut.innerHTML = netto;
+    } 
+    </script>
+</body>
+</html>

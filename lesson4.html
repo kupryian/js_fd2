@@ -539,7 +539,7 @@ return Math.max.apply(null, newArr2);
             console.log (count(array));
         </script> -->
 
-        <script> //https://www.codewars.com/kata/55c45be3b2079eccff00010f/train/javascript
+        <!-- <script> //https://www.codewars.com/kata/55c45be3b2079eccff00010f/train/javascript
 
             const words = "is2 Thi1s T4est 3a";
 
@@ -559,6 +559,108 @@ return Math.max.apply(null, newArr2);
             
             order(words);
 
+        </script> -->
+<!-- 
+        <script>
+                 let suspectInfo = {'James': ['Jacob', 'Bill', 'Lucas'],
+                            'Johnny': ['David', 'Kyle', 'Lucas'],
+                            'Peter': ['Lucy', 'Kyle']
+                        },
+                dead = ['Lucas', 'Bill'];
+
+                function killer(suspectInfo, dead) {
+                    return Object.keys(suspectInfo).find( x => dead.every( y => suspectInfo[x].includes(y) ) ) ;
+                    return object.keys(suspectInfo).find( y => dead.every( x => suspectInfo[y].includes(x)))
+                    
+                }
+                console.log (killer(suspectInfo, dead) );
+        </script> -->
+<!-- 
+        <script>
+            function towerBuilder(nFloors) {
+                let tover= [];
+
+                for (i=0; i<nFloors; i++) {
+                    tover.push(" ".repeat(nFloors-i-1)+
+                    "*".repeat( (i*2) +1)+
+                    " ".repeat(nFloors-i-1))
+                }
+                console.log(tover);
+                return tover;
+            }
+            towerBuilder(6)
+        </script> -->
+
+        <!-- <script> //https://www.codewars.com/kata/523f5d21c841566fde000009/train/javascript
+            const a = [10,-16,16,-11,1,17,-17,1,2,-15,-4,-4,-17,0,-10,-3,11,-11,-7,-9],
+                b= [10,-16,16,-11,1,17,-17,1,2];
+            function arrayDiff(a, b) {
+                let clearArr = a.filter( x => {
+                    if (b.includes(x) == false) 
+                    return true;
+                })
+                return clearArr;
+                //return a.filter(e => !b.includes(e));
+            }
+            console.log (arrayDiff(a, b) );
+        </script> -->
+
+        <!-- <script> //https://www.codewars.com/kata/525f50e3b73515a6db000b83/train/javascript
+
+            const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]; 
+
+            function createPhoneNumber(numbers){
+                // return `(${numbers[0]}${numbers[1]}${numbers[2]}) ${numbers[3]}${numbers[4]}${numbers[5]}-${numbers[6]}${numbers[7]}${numbers[8]}${numbers[9]}`
+                let format = "(xxx) xxx-xxxx";
+
+                for (let i =0; i< numbers.length; i++){
+                    format =  format.replace("x", numbers[i])
+                }
+
+                return format
+            }
+
+            console.log (createPhoneNumber(numbers) );
+        </script> -->
+        <!-- <script> //https://www.codewars.com/kata/520b9d2ad5c005041100000f/train/javascript
+            
+            let str= 'Pig latin is cool' //),'igPay atinlay siay oolcay')
+            
+            function pigIt(str){
+                return str.replace(/(\w)(\w*)(\s|$)/g, "\$2\$1ay\$3");
+                // return str.replace(/(\w)(\w*)(\s|$)/g, "\$2\$1ay\$3")
+            }   
+            console.log(pigIt(str) );
+        </script> -->
+<!-- 
+        <script> //https://www.codewars.com/kata/57cebe1dc6fdc20c57000ac9/train/javascript минимальное значение
+
+
+                function findShort(s){ 
+                return Math.min.apply( Math, s.split(" ").map ( x => x.length) );
+                }
+                console.log(findShort("bitcoin take over the world maybe who knows perhaps"))
+        </script> -->
+
+        <script> ///https://www.codewars.com/kata/54da5a58ea159efa38000836/train/javascript
+            function findOdd(A) {
+                const obj = {};
+                A.forEach( x => {
+                    if (obj[x]) {
+                        obj[x] +=1;
+                    } else {
+                        obj[x] = 1;
+                    }
+                });
+                console.log (obj);
+                for (let k in obj) {
+                    if ( (obj[k])%2 == 1) {
+                        return +k;
+                     }
+                    
+                }
+            }
+            console.log ( findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]) );
         </script>
 
 </body>
