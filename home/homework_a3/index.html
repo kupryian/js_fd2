@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const str = "*де    Д,е    *% д!!!!";
+        console.log("Оригинал: "+str);
+
+        function getPoli (x) {
+            let str2 = x.toLocaleLowerCase().replace(/ё/g, "е").replace(/ъь/g, "").replace(/[^A-Za-zА-Яа-я0-9]/g, ""),
+                str3;
+
+            console.log("Чистая:   "+str2);
+
+            str3 = str2.split('').reverse().join('');
+
+                if (str2 == str3) {
+                    return "Полиндром";
+                } else {
+                    return "Не полиндром";   
+                }
+        }
+        console.log(getPoli (str));
+
+    </script>
+</body>
+</html>
