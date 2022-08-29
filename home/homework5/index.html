@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="wrap" class="wrap">
+        <button onclick="showBase()">Посмотреть всю базу напитков</button><button onclick="newDrink()">Добавить новый
+            рецепт</button><button onclick="getShow()">Посмотреть рецепт</button><button onclick="getDel()">Удалить
+            рецепт</button>
+        <div id="show" style="margin-top: 20px"></div>
+        <div id="out"></div>
+    </div>
+
+    <Script>
+
+        const drinkStore = new HashStorageFunc();
+        const out = document.getElementById("out");
+        const show = document.getElementById("show");
+
+        function showBase() {
+            show.innerHTML = `${drinkStore.getKeys().join(' , ')}`;
+            out.style.display = "none";
+        }
+
+        function getShow() {
+            show.innerHTML = `<input type="text" placeholder="Введите название напитка" id="name" name="alcoName"><button onclick="getDrinkFunc()">Ок</button>`
+        }
+        function getDel() {
+            show.innerHTML = `<input type="text" placeholder="Введите название напитка" id="name" name="alcoName"><button onclick="deleteDrinkFunc()">Ок</button`
+        }
+
+        function newDrink() {
+            show.innerHTML = `
+            <ul id="first">
+            <li><input type="text" placeholder="Название" id="name" name="alcoName"></li>
+            <li>Алкогольный <input type="checkbox" name="alcoCheck"></li> 
+            <li><textarea type="text" placeholder="Рецепт" id="recipe" name="alcoRecipe"></textarea></li>
+        </ul>
+        <button onclick="addDrink()">Добавить в базу</button>
+            `;
+        }
+
+        function addDrink() {
+            const addDrincVal = document.querySelector('[name="alcoName"]').value;
+            const isAlco = document.querySelector('[name="alcoCheck"]').checked;
+            const ingridients = document.querySelector('[name="alcoRecipe"]').value;
+
+            drinkStore.addValue(addDrincVal, { 'isAlco': isAlco, 'ingridients': ingridients });
+        }
+
+        function getDrinkFunc() {
+            const drincVal = document.querySelector('[name="alcoName"]').value;
+            out.style.display = "block";
+
+
+            if ("нет такого напитка" === drinkStore.getValue(drincVal)) {
+                out.innerHTML = "напиток не найден";
+            }
+            else {
+                out.innerHTML =
+                    `<p>напиток <strong>${drincVal}</strong></p>
+              <p>алкогольный: <strong>${drinkStore.getValue(drincVal).isAlco === true ? "да" : "нет"}</strong> </p>
+              <p>рецепт приготовления: </p>
+              </p>${drinkStore.getValue(drincVal).ingridients}</p>
+              `}
+        }
+
+        function deleteDrinkFunc() {
+            const addDrincVal = document.querySelector('[name="alcoName"]').value;
+            drinkStore.deleteValue(addDrincVal);
+        }
+
+
+
+
+
+        function HashStorageFunc() {
+            const privateHash = {
+                'b-52': {
+                    isAlco: true,
+                    ingridients: "Смешать воду лимон и ром",
+                },
+                'moxito': {
+                    isAlco: false,
+                    ingridients: "смешать спрайт, бокарди, добавить лёд",
+                },
+            };
+
+            this.addValue = function (key, value) {
+                privateHash[key] = value;
+            }
+
+            this.getValue = function (key) {
+                if (key in privateHash) { return privateHash[key] }
+                else { return 'нет такого напитка' }
+            }
+
+              this.deleteValue = function (key) {
+                delete privateHash[key];
+                console.log(privateHash)
+              }
+
+            this.getKeys = function () {
+                let arr = [];
+                for (key in privateHash) {
+                    arr.push(key);
+                }
+                return arr;
+            }
+
+        }
+    </Script>
+
+</body>
+
+</html>
