@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="background: rgb(218, 187, 187); width: 500px; height: 500px; position: relative;">
+        <div id="box" style="width: 10px; height: 10px; position: absolute; top: 20px; left: 20px; background: red"></div>
+    </div>
+    <script>
+        window.addEventListener("keydown", e => {
+            console.log("Код кнопки",e.key,e.keyCode);
+
+            switch (e.keyCode) {
+                    case 37 : Horizontal < 10 ? Horizontal : Horizontal -=10; break;
+                    case 38 : Vertical < 10 ? Vertical : Vertical -=10; break;
+                    case 39 : Horizontal > 480 ? Horizontal : Horizontal +=10; break;
+                    case 40 : Vertical > 480 ? Vertical : Vertical+=10; break;
+            }
+
+            console.log(box.style.left = Horizontal+ "px");
+            box.style.top = Vertical+ "px";
+        })
+        
+        const box = document.getElementById("box");
+        let Horizontal = +box.style.left.replace("px","");
+        console.log(Horizontal)
+        let Vertical = +box.style.top.replace("px","");
+
+
+    </script>
+</body>
+</html>
