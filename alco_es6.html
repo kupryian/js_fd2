@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Coctails {
+            constructor () {
+                this.Base = {
+                    "b-52" : {
+                    isAlco: true,
+                    ingridients: "вода лимон лёд",
+                    },
+                    'moxito' : {
+                    isAlco: false,
+                    ingridients: "спрайт вода лёд",
+                    },
+                };
+            }
+        
+            addDrink (key,alco,recipe) {
+                this.Base[key].isAlco = alco;
+                this.Base[key].ingridients = recipe;
+            }
+
+            getValue (key) {
+            if (key in this.Base) 
+            {return this.Base[key]}
+            else {return 'нет такого напитка'}
+      
+            }
+        }
+
+        addDrink ("test", true, "рцепт");
+        console.log ()
+
+    </script>
+</body>
+</html>
