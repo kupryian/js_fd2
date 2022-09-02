@@ -98,7 +98,7 @@
             switch (field.kind) { //устанавливаем условие по параметру кинд
 
                 case "longtext" : 
-                createInput("input", "label", field.label, "text",field.name,false,field.variants); //передаем в функцию кучу параметров
+                createInput("input", "label", field.label, "text",field.name,false,field.variants); //передаем в функцию кучу параметров (1.тег создаваемого,2.тег обертки 3.текст слева перед вводом 4.тип ввода 5.имя поля ввода 6.проверка если нужно ограничение символов 6. дополнительныеатрибуты для радиокнопок)
                 break;
 
                 case "number" : 
