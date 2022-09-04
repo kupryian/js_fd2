@@ -12,6 +12,8 @@
     <input type="text" name="phoneTitle"><br>
     img
     <input type="text" name="phoneImg"><br>
+    артикул
+    <input type="text" name="articul"><br>
     description
     <textarea type="text" name="phoneDescription"></textarea><br>
     <button onclick="addBtn()">ADD</button> <button onclick="render()">RENDER</button>
@@ -23,11 +25,13 @@
         const addBtn = () => {
             const title = document.querySelector("[name=phoneTitle]").value,
                 img = document.querySelector("[name=phoneImg]").value,
-                description = document.querySelector("[name=phoneDescription]").value;
+                description = document.querySelector("[name=phoneDescription]").value,
+                articul = document.querySelector("[name=articul]").value,
                 obj = {
                 title,
                 img,
-                description
+                description,
+                articul
                 };
             
             item.push(obj);
@@ -36,7 +40,7 @@
         const render = () => {
             
             let cardHtml = item.reduce( (acc,it) => {
-               return  `${acc}<div class="card" style="width: 18rem;">
+               return  `${acc}<div class="card" id="${it.articul}" style="width: 18rem;">
   <img class="card-img-top" src="${it.img}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">${it.title}</h5>
