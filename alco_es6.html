@@ -4,39 +4,102 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
     <title>Document</title>
 </head>
 <body>
+    <button id="base" onclick="showAll()">Посмотреть всю базу коктелей</button>
+    <button id="get" onclick="show()">Подробный рецепт</button>
+    <button id="add" onclick="addNew()">Добавить в базу</button>
+    <button id="delete" onclick="deleteFromBase()">Удалить из базы</button><br>
+    <div id="input">
+        <span>Название напитка</span><input type="text" id="nameOfDrink"><br>
+        <span>Рецепт</span><input type="text" id="recipeOfDrink"><br>
+        <span>Алкоголь</span><input type="checkbox" id="alcoOfDrink">
+    </div>
+    <div id="output"></div>
+
+
+
     <script>
         class Coctails {
             constructor () {
-                this.Base = {
-                    "b-52" : {
-                    isAlco: true,
-                    ingridients: "вода лимон лёд",
-                    },
-                    'moxito' : {
-                    isAlco: false,
-                    ingridients: "спрайт вода лёд",
-                    },
+                this.coctailBase = {
+                    "Виски-кола": ["алкогольный", "в рокс стакан лупануть льда, писят вискаря, лёд и колы до верху "],
+                    "Мохито": ["алкогольный", "в коктейльный стакан набить колотым льдом, писят белого рома, 15 сахарного сиропа, лайм, мта, содовая до верха"]
                 };
-            }
-        
-            addDrink (key,alco,recipe) {
-                this.Base[key].isAlco = alco;
-                this.Base[key].ingridients = recipe;
+            };
+
+            add (name,alco,recipe) {
+                this.coctailBase[name] = [alco,recipe];
             }
 
-            getValue (key) {
-            if (key in this.Base) 
-            {return this.Base[key]}
-            else {return 'нет такого напитка'}
-      
+            showBase () {
+                let out ="";
+
+                for(let i=0; i<Object.keys(this.coctailBase).length; i++) {
+                out +=  (i+1)+". "+Object.keys(this.coctailBase)[i]+"<br>";
+                } 
+                
+                return out;
+            }
+
+            delete (name) {
+                if (name in this.coctailBase) {
+                    delete this.coctailBase[name];
+                        return alert("Напиток удален");
+                    } else {
+                        return alert("Напиток не найден");
+                }
+            }
+
+            showRecipe (name) {
+                if (name in this.coctailBase) {
+                        return this.coctailBase[name].join("<br>");
+                    } else {
+                        return alert("Напиток не найден");
+                }
             }
         }
 
-        addDrink ("test", true, "рцепт");
-        console.log ()
+        const drink = new Coctails();
+        // const shortInput = `
+        // <input type="text" id="nameOfDrink">`;
+        // const longInput = `
+        // <input type="text" id="nameOfDrink" placeholder="Введите название напитка"><br>
+        // <input type="checkbox" id="alcoOfDrink"><br>
+        // <input type="text" id="recipeOfDrink">
+        // `
+        const output = document.getElementById("output");
+
+
+        function addNew () {
+            
+            const drinkName = document.getElementById("nameOfDrink").value;
+            const recipe = document.getElementById("recipeOfDrink").value;
+            const isAlco = document.getElementById("alcoOfDrink").checked ? "Алкогольный" : "Безалкогольный";
+
+            drink.add (drinkName, isAlco, recipe);
+
+        }
+        
+        function showAll () {
+            // output.style.dis
+            
+            output.innerHTML = drink.showBase();
+        }
+
+        function deleteFromBase () {
+            const drinkName = document.getElementById("nameOfDrink").value;
+            drink.delete(drinkName);  
+        }
+
+        function show () {
+            const drinkName = document.getElementById("nameOfDrink").value;
+            output.innerHTML = drink.showRecipe(drinkName);  
+        }
 
     </script>
 </body>
