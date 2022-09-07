@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {box-sizing: border-box;}
+    </style>
+</head>
+<body>
+    <div style="width: 300px; height: 300px; position: relative; border: 1px solid black;" id="field">
+    <div style="position: absolute; top:200px; left: 100px; width: 20px; height: 20px; background: red; border: red 5px solid" id="box"></div>
+    </div>
+
+    <script>
+        const box = document.getElementById("box");
+        let leftPos = box.style.left.split("").map(x => {if (+x < 9) {return x} }).join("");
+        let topPos = box.style.top.split("").map(x => {if (+x < 9) {return x} }).join("");
+        let timer;
+
+        function theEnd () {
+            if (box.style.borderLeft == '5px solid black'  && box.style.borderTop == '5px solid black' && box.style.borderBottom == '5px solid black' && box.style.borderRight == '5px solid black') {
+            const konec = document.getElementById("field");
+            konec.innerHTML = `<h1 style="margin-top: 100px; text-align: center">Ты всё сломал</h1>`
+            }
+        }
+
+        function bum () {
+            const bumtext = document.createTextNode("БУМ");
+            const bumTag = document.createElement("h1");
+            bumTag.appendChild(bumtext);
+            field.appendChild(bumTag);
+            bumTag.style.position = "absolute";
+            bumTag.style.left = 100+"px";
+            bumTag.style.top = 120+"px";
+            bumTag.style.display = "block";
+            setTimeout( () => { bumTag.style.display = "none" } ,200);
+
+
+        }
+
+        window.addEventListener("keydown", e => {
+
+            switch (e.keyCode) {
+
+            case 37: clearInterval(timer);
+            timer=setInterval(moveLeft,10);
+            function moveLeft () {
+                leftPos -= 1;
+                box.style.left = leftPos+"px";
+                if (leftPos < 0) {
+                    clearInterval(timer);
+                    box.style.borderLeft = '5px solid black';
+                    theEnd();
+                    bum();
+                
+                }
+            }; break;
+
+            case 38: clearInterval(timer);
+            timer=setInterval(moveUp,10);
+            function moveUp () {
+                topPos -= 1;
+                box.style.top = topPos+"px";
+                if (topPos < 0) {
+                    clearInterval(timer);
+                    box.style.borderTop = '5px solid black';
+                    theEnd();
+                    bum();
+                }
+            }; break;
+
+            case 39: clearInterval(timer);
+            timer=setInterval(moveRigth,10);
+            function moveRigth () {
+                leftPos = (+leftPos)+1;
+                box.style.left = leftPos+"px";
+                if (leftPos > 280) {
+                    clearInterval(timer);
+                    box.style.borderRight = '5px solid black';
+                    theEnd();
+                    bum();
+                }
+            }; break;
+
+            case 40: clearInterval(timer);
+            timer=setInterval(moveDown,10);
+            function moveDown () {
+                topPos = (+topPos)+1;
+                box.style.top = topPos+"px";
+                if (topPos > 280) {
+                    clearInterval(timer);
+                    box.style.borderBottom = '5px solid black';
+                    theEnd();
+                    bum();
+                }
+            }; break;
+
+            }
+        
+            
+        } );
+        // console.log(key);
+        //     switch (e.keycode) {
+        //     case 37: console.log("dsfsdf"); break;
+        //     // clearInterval(timer);
+        //     // timer=setInterval(move,1000);
+        //     // function move = {
+        //     //     box.document.style.top ++
+        //     // }
+        // }
+        // })
+
+
+//         setInterval(updateTime,1000);
+
+// function updateTime() {
+//     console.log("date");
+// }
+
+
+    </script>
+</body>
+</html>
