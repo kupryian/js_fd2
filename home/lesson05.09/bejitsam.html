@@ -23,8 +23,10 @@
         function theEnd () {
             if (box.style.borderLeft == '5px solid black'  && box.style.borderTop == '5px solid black' && box.style.borderBottom == '5px solid black' && box.style.borderRight == '5px solid black') {
             const konec = document.getElementById("field");
-            konec.innerHTML = `<h1 style="margin-top: 100px; text-align: center">Ты всё сломал</h1>`
+            konec.innerHTML = `<h1 style="margin-top: 100px; text-align: center">Ты всё сломал</h1>`;
+            window.removeEventListener("keydown");
             }
+            
         }
 
         function bum () {
@@ -102,24 +104,6 @@
         
             
         } );
-        // console.log(key);
-        //     switch (e.keycode) {
-        //     case 37: console.log("dsfsdf"); break;
-        //     // clearInterval(timer);
-        //     // timer=setInterval(move,1000);
-        //     // function move = {
-        //     //     box.document.style.top ++
-        //     // }
-        // }
-        // })
-
-
-//         setInterval(updateTime,1000);
-
-// function updateTime() {
-//     console.log("date");
-// }
-
 
     </script>
 </body>
