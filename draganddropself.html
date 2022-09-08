@@ -4,49 +4,134 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      #box div {
+        display: none;
+      }
+      *{
+        box-sizing: border-box;
+      }
+      .wrap {
+        display: flex;
+        height: 100vh;
+      }
+      .shop {
+        width: 800px;
+        background-color:aqua;
+        padding: 10px;
+        display: flex;
+      }
+      .card {
+        width: 200px;
+        height: 350px;
+        padding: 10px;
+        margin: 5px;
+        background-color:antiquewhite;
+        text-align: center;
+      }
+      .card img {
+        width: 150px;
+      }
+      .cart {
+        text-align: center;
+        background-color:cornflowerblue;
+        width: 400px;
+      }
+      h1 {
+        margin-top: 44%;
+      }
+      #modale_cart {
+        display:none;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgb(109, 88, 88);
+        padding: 10px;
+      }
+      .cartValue {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .valueNum {
+        font-size: 36px;
+        color: red;
+      }
+
+    </style>
     <title>Document</title>
 </head>
 <body>
-    <div class="wrap" style="position: relative; height: 500px; width: 500px; border: 1px solid black">
-    <div id="ball" style="height: 30px; width: 30px; background-color:red; border-radius: 15px; position: absolute; top:10px; left: 10px"></div>
+  <div id="modale_cart">
+  
+  </div>
+  <div class="wrap">
+    <div class="shop">
+      <div class="card" id="card1" draggable="true">
+        <img src="https://megamoll.by/upload/iblock/37b/37b075c0a32d7cdc45df76c7b984b9bc.jpg" alt="">
+        <p>красивый мячик который вам точно нужен</p>
+        <button>Заказать</button>
+      </div>
+      <div class="card" id="card2" draggable="true">
+        <img src="https://media.oki.by/img/catalog/236000/236834_865503.jpg" alt="">
+        <p>красивый мячик который вам точно нужен</p>
+        <button>Заказать</button>
+      </div>
     </div>
+    <div id="cart" class="cart">
+      <h1>Корзина</h1>
+      <div class="cartValue">
+        <p>Товаров</p><p class="valueNum" id="valueNum">0</p>
+      </div>
+    </div>
+  </div> 
 
-    <script>
-        const ball = document.getElementById("ball");
+<script>
 
-        ball.onmousedown = function(event) { // (1) отследить нажатие
+  const dropZone = document.getElementById("cart");
+  const modale_cart = document.getElementById("modale_cart");
+  const card = document.getElementsByClassName("card");
+  let cardsInCart = modale_cart.getElementsByClassName("card").length;
+  const valueNum = document.getElementById("valueNum");
+  
+  for (let key of card) {
+    key.addEventListener("dragstart", eo => {
+      eo.dataTransfer.setData('text/plain', eo.target.id);
+    })
+  }
+      
+  dropZone.addEventListener("dragenter", eo => {
+    dropZone.style.border = "5px dotted red"
+  })
 
-// (2) подготовить к перемещению:
-// разместить поверх остального содержимого и в абсолютных координатах
-// ball.style.position = 'absolute';
-// ball.style.zIndex = 1000;
-// переместим в body, чтобы мяч был точно не внутри position:relative
-// document.body.append(ball);
-// и установим абсолютно спозиционированный мяч под курсор
+  dropZone.addEventListener("dragleave", eo => {
+    dropZone.style.border = "none"
+  })
 
-moveAt(event.pageX, event.pageY);
+  dropZone.addEventListener("drop", eo => {
+    const id = eo.dataTransfer.getData('text');
+    const draggableElement = document.getElementById(id);
+    modale_cart.appendChild(draggableElement);
+    dropZone.style.border = "none"
+    eo.dataTransfer.clearData();
+    const cardsInCart = modale_cart.getElementsByClassName("card").length;
+    const valueNum = document.getElementById("valueNum");
+    valueNum.innerHTML = cardsInCart;
+  })
 
-// передвинуть мяч под координаты курсора
-// и сдвинуть на половину ширины/высоты для центрирования
-function moveAt(pageX, pageY) {
-  ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
-  ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
-}
+  dropZone.addEventListener("dragover", eo => {
+    eo.preventDefault();
+  })
 
-function onMouseMove(event) {
-  moveAt(event.pageX, event.pageY);
-}
+  dropZone.addEventListener("click", eo => {
+    modale_cart.style.display = "flex"
+  })
 
-// (3) перемещать по экрану
-document.addEventListener('mousemove', onMouseMove);
+  modale_cart.addEventListener("click", eo => {
+    modale_cart.style.display = "none"
+  })
 
-// (4) положить мяч, удалить более ненужные обработчики событий
-ball.onmouseup = function() {
-  document.removeEventListener('mousemove', onMouseMove);
-  ball.onmouseup = null;
-};
+</script>
 
-};
-    </script>
 </body>
 </html>
