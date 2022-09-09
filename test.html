@@ -1,122 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>listener</title>
 </head>
+  <style>
+    .red {
+      width: 600px;
+      height: 600px;
+      background-color: red;
+      position: relative;
+    }
 
+    .lightgreen {
+      width: 50px;
+      height: 50px;
+      background-color: lightgreen;
+      position: absolute;
+    }
+
+
+  </style>
 <body>
-    <div id="wrap" class="wrap">
-        <button onclick="showBase()">Посмотреть всю базу напитков</button><button onclick="newDrink()">Добавить новый
-            рецепт</button><button onclick="getShow()">Посмотреть рецепт</button><button onclick="getDel()">Удалить
-            рецепт</button>
-        <div id="show" style="margin-top: 20px"></div>
-        <div id="out"></div>
-    </div>
+  <div class="red"><div class="lightgreen"></div>  </div>
+  
 
-    <Script>
+  <script>
 
-        const drinkStore = new HashStorageFunc();
-        const out = document.getElementById("out");
-        const show = document.getElementById("show");
+    const lightgreen = document.getElementsByClassName('lightgreen');
 
-        function showBase() {
-            show.innerHTML = `${drinkStore.getKeys().join(' , ')}`;
-            out.style.display = "none";
-        }
+    let leftCoordinate = 0;
+    let topCoordinate = 0;
 
-        function getShow() {
-            show.innerHTML = `<input type="text" placeholder="Введите название напитка" id="name" name="alcoName"><button onclick="getDrinkFunc()">Ок</button>`
-        }
-        function getDel() {
-            show.innerHTML = `<input type="text" placeholder="Введите название напитка" id="name" name="alcoName"><button onclick="deleteDrinkFunc()">Ок</button`
-        }
+    let timer = 0;
 
-        function newDrink() {
-            show.innerHTML = `
-            <ul id="first">
-            <li><input type="text" placeholder="Название" id="name" name="alcoName"></li>
-            <li>Алкогольный <input type="checkbox" name="alcoCheck"></li> 
-            <li><textarea type="text" placeholder="Рецепт" id="recipe" name="alcoRecipe"></textarea></li>
-        </ul>
-        <button onclick="addDrink()">Добавить в базу</button>
-            `;
-        }
-
-        function addDrink() {
-            const addDrincVal = document.querySelector('[name="alcoName"]').value;
-            const isAlco = document.querySelector('[name="alcoCheck"]').checked;
-            const ingridients = document.querySelector('[name="alcoRecipe"]').value;
-
-            drinkStore.addValue(addDrincVal, { 'isAlco': isAlco, 'ingridients': ingridients });
-        }
-
-        function getDrinkFunc() {
-            const drincVal = document.querySelector('[name="alcoName"]').value;
-            out.style.display = "block";
+  
 
 
-            if ("нет такого напитка" === drinkStore.getValue(drincVal)) {
-                out.innerHTML = "напиток не найден";
-            }
-            else {
-                out.innerHTML =
-                    `<p>напиток <strong>${drincVal}</strong></p>
-              <p>алкогольный: <strong>${drinkStore.getValue(drincVal).isAlco === true ? "да" : "нет"}</strong> </p>
-              <p>рецепт приготовления: </p>
-              </p>${drinkStore.getValue(drincVal).ingridients}</p>
-              `}
-        }
+    window.addEventListener('keydown', (e) => {
+      // 
+      switch(e.keyCode){
+        case 39: clearInterval(timer);
+          timer = setInterval(() => { 
 
-        function deleteDrinkFunc() {
-            const addDrincVal = document.querySelector('[name="alcoName"]').value;
-            drinkStore.deleteValue(addDrincVal);
-        }
+          lightgreen[0].style.marginLeft = `${leftCoordinate}px`;
+          leftCoordinate = leftCoordinate + 10;
+
+          if (leftCoordinate > 560) {leftCoordinate = 0; 
+            lightgreen[0].style.marginLeft = "0px";
+            lightgreen[0].style.left = leftCoordinate + 'px'}
+
+          }, 50);    
+         break;
+        case 37: clearInterval(timer);
+          timer = setInterval(() => { 
+
+          lightgreen[0].style.marginLeft = `${leftCoordinate}px`;
+          leftCoordinate = leftCoordinate - 10;
+
+          if (leftCoordinate < 0) {leftCoordinate = 560; 
+            lightgreen[0].style.marginLeft = "0px";
+            lightgreen[0].style.Right = leftCoordinate + 'px'}
+
+          }, 50);     
+        break;
+        
+        
+        case 40: clearInterval(timer);
+          timer = setInterval(() => { 
+
+          lightgreen[0].style.marginTop = `${topCoordinate}px`;
+          topCoordinate = topCoordinate + 10;
+
+          if (topCoordinate > 560) {topCoordinate = 0; 
+            lightgreen[0].style.marginTop = "0px"
+            lightgreen[0].style.top = topCoordinate + 'px'}
+
+          }, 50);     
+        
+        
+        break;
+        case 38: clearInterval(timer);
+          timer = setInterval(() => { 
+
+          lightgreen[0].style.marginTop = `${topCoordinate}px`;
+          topCoordinate = topCoordinate - 10;
+
+          if (topCoordinate < 0) {topCoordinate = 560; 
+            lightgreen[0].style.marginTop = "0px";
+            lightgreen[0].style.Bottom = topCoordinate + 'px'}
+
+          }, 50);   
+        break;
+
+      }
+      
+    })
 
 
-
-
-
-        function HashStorageFunc() {
-            const privateHash = {
-                'b-52': {
-                    isAlco: true,
-                    ingridients: "Смешать воду лимон и ром",
-                },
-                'moxito': {
-                    isAlco: false,
-                    ingridients: "смешать спрайт, бокарди, добавить лёд",
-                },
-            };
-
-            this.addValue = function (key, value) {
-                privateHash[key] = value;
-            }
-
-            this.getValue = function (key) {
-                if (key in privateHash) { return privateHash[key] }
-                else { return 'нет такого напитка' }
-            }
-
-              this.deleteValue = function (key) {
-                delete privateHash[key];
-                console.log(privateHash)
-              }
-
-            this.getKeys = function () {
-                let arr = [];
-                for (key in privateHash) {
-                    arr.push(key);
-                }
-                return arr;
-            }
-
-        }
-    </Script>
-
+  </script>
 </body>
-
 </html>

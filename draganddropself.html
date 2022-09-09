@@ -13,13 +13,13 @@
       }
       .wrap {
         display: flex;
-        height: 100vh;
       }
       .shop {
-        width: 800px;
+        width: 860px;
         background-color:aqua;
         padding: 10px;
         display: flex;
+        flex-wrap: wrap;
       }
       .card {
         width: 200px;
@@ -28,6 +28,9 @@
         margin: 5px;
         background-color:antiquewhite;
         text-align: center;
+      }
+      .card p {
+        margin: 0px;
       }
       .card img {
         width: 150px;
@@ -66,7 +69,16 @@
   
   </div>
   <div class="wrap">
-    <div class="shop">
+    <div class="shop" id="shop">
+      <div class="card" >
+        <p>Ссылка на картинку</p>
+         <input type="text" id="urlCard" value="https://avatars.mds.yandex.net/get-mpic/4119563/img_id6817250779139302857.jpeg/orig"><br>
+         <p>Номенклатура</p>
+         <input type="text" id="idCard" ><br>
+        <p>Описание</p>
+          <textarea name="" id="descrCard" width="100%" rows="10">еще один красивый мячик который вам точно нужен</textarea>
+        <button id="addCard">Добавить</button>
+      </div>
       <div class="card" id="card1" draggable="true">
         <img src="https://megamoll.by/upload/iblock/37b/37b075c0a32d7cdc45df76c7b984b9bc.jpg" alt="">
         <p>красивый мячик который вам точно нужен</p>
@@ -88,47 +100,82 @@
 
 <script>
 
-  const dropZone = document.getElementById("cart");
-  const modale_cart = document.getElementById("modale_cart");
-  const card = document.getElementsByClassName("card");
-  let cardsInCart = modale_cart.getElementsByClassName("card").length;
-  const valueNum = document.getElementById("valueNum");
+  const dropZone = document.getElementById("cart");   //див куда будут кидать и что то будет происходить, зона сброса
+  const modale_cart = document.getElementById("modale_cart"); // див, куда будут добавлять карточки, которые дропнут в зону сброса
+  const card = document.getElementsByClassName("card"); // див с карточкой(карточка сама) которую будешь тянуть в зону сброса
+  let cardsInCart = modale_cart.getElementsByClassName("card").length; // будет число, сколько карточек  корзине, чтобы вывести на экран
+  const valueNum = document.getElementById("valueNum"); // куда выводится число карточек в корзине
   
-  for (let key of card) {
-    key.addEventListener("dragstart", eo => {
-      eo.dataTransfer.setData('text/plain', eo.target.id);
-    })
-  }
-      
-  dropZone.addEventListener("dragenter", eo => {
-    dropZone.style.border = "5px dotted red"
+  let updateCard = () => {  //лютая фигня,сам придумал, типо функция чтобы обновить сколько карточек в магазине
+    for (let key of card) { //перебираем массив дивов с классом card 
+      key.addEventListener("dragstart", eo => { //автоматом на каждое вешаем событие когда его поднимут (начнут перемещать) - ео - будет объект собития, сам див
+        eo.dataTransfer.setData('text/plain', eo.target.id); //хуй пойми. надо почитать .dataTransfer.setData, но я так понял она куа то в текст записывает айдишник того, что ты перетаскиваешь. Это надо для того, чтобы было понятно что ты кидаешь. ниже будет
+      })
+    }
+  }  
+  updateCard(); //сразу запускаем эту функцию
+
+  dropZone.addEventListener("dragenter", eo => { //на зону сброса вешаем собитие, когда перетаскиваемый элемент входит в нее.
+    dropZone.style.border = "5px dotted red" //меняем рамку зоне по факту
   })
 
-  dropZone.addEventListener("dragleave", eo => {
-    dropZone.style.border = "none"
+  dropZone.addEventListener("dragleave", eo => { ////на зону сброса вешаем собитие, когда перетаскиваемый элемент ВЫходит в нее.
+    dropZone.style.border = "none" //убираем рамку як было
   })
 
-  dropZone.addEventListener("drop", eo => {
-    const id = eo.dataTransfer.getData('text');
-    const draggableElement = document.getElementById(id);
-    modale_cart.appendChild(draggableElement);
-    dropZone.style.border = "none"
-    eo.dataTransfer.clearData();
-    const cardsInCart = modale_cart.getElementsByClassName("card").length;
-    const valueNum = document.getElementById("valueNum");
-    valueNum.innerHTML = cardsInCart;
+  dropZone.addEventListener("drop", eo => { //на зону сброса вешаем событие падение, когда перетащат и отпустят
+    const id = eo.dataTransfer.getData('text'); //вот для чего нужна эта сраная дата трансфер. мы достаем из неё айдишник перетягиваемого элемента
+    const draggableElement = document.getElementById(id); //и теперь мы знаем какой элемент мы тянули
+    modale_cart.appendChild(draggableElement); //этот элемент закидываем в скрытый див корзине
+    dropZone.style.border = "none" // убираем рамку, потому что она не отменилась. а применилась когда элемент ашел. но он не вышел из зоны, его тут кинули
+    eo.dataTransfer.clearData(); // очищаем дата трансфер для новой операции
+    const cardsInCart = modale_cart.getElementsByClassName("card").length; //смотрим сколько карточек в скрытом диве корзины
+    valueNum.innerHTML = cardsInCart; //выводим в корзину скока там товаров внутри
   })
 
-  dropZone.addEventListener("dragover", eo => {
-    eo.preventDefault();
+  dropZone.addEventListener("dragover", eo => { //когда перетягиваемый объект двигается по зоне сброса
+    eo.preventDefault(); //надо отменить типо обработку браузером, это надо сделать чтобы в див можно было бросать. где то прочитал в слайдах
   })
 
-  dropZone.addEventListener("click", eo => {
+  dropZone.addEventListener("click", eo => { //клик по корзине тупо открывает скрытый див (он же содержимое корзины)
     modale_cart.style.display = "flex"
   })
 
-  modale_cart.addEventListener("click", eo => {
+  modale_cart.addEventListener("click", eo => { //это чтобы закрыть корзину, тупо клик по свободному месту
     modale_cart.style.display = "none"
+  })
+
+  // добавление новой карточки
+
+  const addCard = document.getElementById("addCard"); //кнопка добавить карточку
+
+  addCard.addEventListener("click", eo => { //вешаем слушатель на кнопку эту по клику
+    const urlCard = document.getElementById("urlCard").value; //забираем ссылку
+    const idCard = document.getElementById("idCard").value; //забираем номенклатуру (будет как айдишник)
+    const descrCard = document.getElementById("descrCard").value; //забираем описание
+
+    const newCard = document.createElement("div"); //создаем див для новой карточки
+    newCard.className = "card"; //добавляем ей класс как и остальным
+    newCard.id = idCard; //добавляем айди
+    newCard.draggable="true"; //добавляем хуйню, чтобы можно было пееретаскивать элемент див (у других карточек он тоже есть. картинки и ссылки по умолчанию его имеют)
+
+    const imgCard = document.createElement("img"); //создаем картинку для карточки
+    imgCard.src = urlCard; //прописываем ай адрес
+
+    const textCard = document.createElement("p"); //создаем описание
+    textCard.appendChild(document.createTextNode(descrCard) ); //добавляем в тег Р текстовую ноду, значение которой мы взяли из текст ареа
+
+    const bntCard = document.createElement("button"); //добавляем кнопку
+    const btnText = document.createTextNode("Заказать"); //и текст для кнопки
+
+    const shop = document.getElementById("shop"); //выбираем наш магаз
+
+    bntCard.appendChild(btnText); //одбавили текст в кнопку
+    newCard.appendChild(imgCard); //картинку в карточку
+    newCard.appendChild(textCard); //текст в карточку
+    newCard.appendChild(bntCard); //кнопку в карточку
+    shop.appendChild(newCard); //карточку в магазин
+    updateCard(); //обновили число карточек в магазине (см строку 109 )
   })
 
 </script>
