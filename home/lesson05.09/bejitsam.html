@@ -39,9 +39,10 @@
             bumTag.style.top = 120+"px";
             bumTag.style.display = "block";
             setTimeout( () => { bumTag.style.display = "none" } ,200);
-
-
         }
+
+        let speed = 1;
+        let speedFucn = (x) => {speed = speed+x}
 
         window.addEventListener("keydown", e => {
 
@@ -50,11 +51,12 @@
             case 37: clearInterval(timer);
             timer=setInterval(moveLeft,10);
             function moveLeft () {
-                leftPos -= 1;
+                leftPos -= speed;
                 box.style.left = leftPos+"px";
                 if (leftPos < 0) {
                     clearInterval(timer);
                     box.style.borderLeft = '5px solid black';
+                    speedFucn(2);
                     theEnd();
                     bum();
                 }
@@ -63,11 +65,12 @@
             case 38: clearInterval(timer);
             timer=setInterval(moveUp,10);
             function moveUp () {
-                topPos -= 1;
+                topPos -= speed;
                 box.style.top = topPos+"px";
                 if (topPos < 0) {
                     clearInterval(timer);
                     box.style.borderTop = '5px solid black';
+                    speedFucn(2);
                     theEnd();
                     bum();
                 }
@@ -76,11 +79,12 @@
             case 39: clearInterval(timer);
             timer=setInterval(moveRigth,10);
             function moveRigth () {
-                leftPos = (+leftPos)+1;
+                leftPos = (+leftPos)+speed;
                 box.style.left = leftPos+"px";
                 if (leftPos > 280) {
                     clearInterval(timer);
                     box.style.borderRight = '5px solid black';
+                    speedFucn(2);
                     theEnd();
                     bum();
                 }
@@ -89,11 +93,12 @@
             case 40: clearInterval(timer);
             timer=setInterval(moveDown,10);
             function moveDown () {
-                topPos = (+topPos)+1;
+                topPos = (+topPos)+speed;
                 box.style.top = topPos+"px";
                 if (topPos > 280) {
                     clearInterval(timer);
                     box.style.borderBottom = '5px solid black';
+                    speedFucn(2);
                     theEnd();
                     bum();
                 }
