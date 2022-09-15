@@ -78,6 +78,16 @@
                   })
     }
 
+    //=== нажатие на мобильном (смена стиля)
+    function mobilePres(whatBtn) {
+        whatBtn.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        window.navigator.vibrate(20)
+    }
+    function mobileUnPres(whatBtn) {
+        whatBtn.style.backgroundColor = "";
+    }
+
+
     //калибровка
     function showCalibr() {
         testZone.style.display = "block"
@@ -189,25 +199,31 @@
 
     btnRigth.addEventListener("pointerdown", e => {
        keyPres(tapBoxRight);
-       btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
-       window.navigator.vibrate(20)
+       mobilePres(btnRigth);
+    //    btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+    //    window.navigator.vibrate(20)
     } );
     btnCenter.addEventListener("pointerdown", e => {
         keyPres(tapBoxCenter);
-        btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
-        window.navigator.vibrate(20)
+        mobilePres(btnCenter);
+        // btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        // window.navigator.vibrate(20)
      } );
      btnLeft.addEventListener("pointerdown", e => {
         keyPres(tapBoxLeft);
-        btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
-        window.navigator.vibrate(20)
+        mobilePres(btnLeft);
+        // btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        // window.navigator.vibrate(20)
      } );
      btnRigth.addEventListener("pointerup", e => {
-        btnRigth.style.backgroundColor = "";
+        // btnRigth.style.backgroundColor = "";
+        mobileUnPres(btnRigth);
      } );
      btnCenter.addEventListener("pointerup", e => {
-        btnCenter.style.backgroundColor = "";
+        // btnCenter.style.backgroundColor = "";
+        mobileUnPres(btnCenter);
      } );
      btnLeft.addEventListener("pointerup", e => {
-        btnLeft.style.backgroundColor = "";
+        // btnLeft.style.backgroundColor = "";
+        mobileUnPres(btnLeft);
      } );
