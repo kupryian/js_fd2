@@ -14,6 +14,14 @@
     const btnCenter = document.querySelector('[class="btnCenter"]');
     const btnRigth = document.querySelector('[class="btnRigth"]');
 
+    const minus1 = document.getElementById("minus1");
+    const plus1 = document.getElementById("plus1");
+    const plus3 = document.getElementById("plus3");
+    const plus7 = document.getElementById("plus7");
+    const howMuchScore = document.getElementById("howMuchScore");
+
+    const zoneScore = document.getElementById("zoneScore");
+
     let score = 0;
     let comboScore = 0;
 
@@ -33,24 +41,41 @@
         for (let i = 0; i< tapBoxSide.length; i++) {
             tapBoxSide[i].style.top = parseInt(tapBoxSide[i].style.top.split("px").join("")) +3 +"px";
 
-            if ((+tapBoxSide[i].style.top.split("px").join("") ) == 540 && tapBoxSide[i].style.backgroundColor !== "green"  ) {
+            if ((+tapBoxSide[i].style.top.split("px").join("") ) == 540 && tapBoxSide[i].style.backgroundColor !== "rgb(83 216 132)"  ) {
                 score -= 1;
+                animateScore(minus1);
                 comboScore = 0;
             }
             
             if (comboScore == 3 ) {
                 soundCombo.play();
-                tapBoxSide[i].style.boxShadow = 'rgb(255, 193, 7) 0px 0px 14px 6px';
+                tapBoxSide[i].classList.remove("combo0");
+                tapBoxSide[i].classList.add("combo3");
+                
             } else if (comboScore == 7 ) {
                 soundCombo.play();
-                tapBoxSide[i].style.boxShadow = 'rgb(255, 106, 7) 0px 0px 14px 6px';
+                tapBoxSide[i].classList.remove("combo3");
+                tapBoxSide[i].classList.add("combo7")
 
             } else if (comboScore == 0 ) {
-                tapBoxSide[i].style.boxShadow = "none";
+                tapBoxSide[i].classList.remove("combo7");
+                tapBoxSide[i].classList.remove("combo3");
+                tapBoxSide[i].classList.add("combo0");
 
             } else {}
         }
     }
+    //=== анимация очков
+    function animateScore(whatScore) {
+        whatScore.animate([
+                    { transform: "scale(1.5, 1.5)" },
+                    { transform: "scale(1, 1)" }
+                  ], {
+                    duration: 200,
+                    iterations: 1
+                  })
+    }
+
     //калибровка
     function showCalibr() {
         testZone.style.display = "block"
@@ -90,8 +115,7 @@
         function moveBox () {
 
             audio.play();
-
-            // console.log(score);
+            howMuchScore.innerHTML = score;
 
             boxChangeCoor (tapBoxLeft);
             boxChangeCoor (tapBoxCenter);
@@ -110,28 +134,42 @@
         for (let i =0; i< tapBoxSide.length; i++) {
 
             if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 450 && (+tapBoxSide[i].style.top.split("px").join("") ) <470 ) {     
-                tapBoxSide[i].style.backgroundColor = "green";
+                tapBoxSide[i].style.backgroundColor = "rgb(83 216 132)";
+                // const imgDone = document.createElement("div");
+                // imgDone.classList.add("done")
+                // tapBoxSide[i].innerHTML = "";
+                // tapBoxSide[i].appendChild(imgDone);
 
                 if (comboScore >=7 ) {
-                    score += 7;  
+                    score += 7;
+                    animateScore(plus7);  
                 } else if (comboScore >= 3) {
                     score += 3;
+                    animateScore(plus3);
                 } else {
                     score += 1;
+                    animateScore(plus1);
                 }
                 
                 comboScore += 1;
                    
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 410 && (+tapBoxSide[i].style.top.split("px").join("") ) <449 ) {     
-                tapBoxSide[i].style.backgroundColor = "red";
+                // const imgUndone = document.createElement("div");
+                // imgUndone.classList.add("undone")
+                // tapBoxSide[i].innerHTML = "";
+                // tapBoxSide[i].appendChild(imgUndone);
+                tapBoxSide[i].style.backgroundColor = "FF0909";
                 comboScore = 0;
                 score -= 1;
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 471 && (+tapBoxSide[i].style.top.split("px").join("") ) <510 ) {     
-                tapBoxSide[i].style.backgroundColor = "red";
+                // const imgUndone = document.createElement("div");
+                // imgUndone.classList.add("undone")
+                // tapBoxSide[i].innerHTML = "";
+                // tapBoxSide[i].appendChild(imgUndone);
+                tapBoxSide[i].style.backgroundColor = "FF0909";
                 comboScore = 0;
                 score -= 1;
             };
-
         };
     }
 
