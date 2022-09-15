@@ -10,14 +10,14 @@
     </style>
 </head>
 <body>
-    <div style="width: 300px; height: 300px; position: relative; border: 1px solid black;" id="field">
+    <div style="width: 300px; height: 300px; position: relative; background: rgb(243, 226, 226)" id="field">
     <div style="position: absolute; top:200px; left: 100px; width: 20px; height: 20px; background: red; border: red 5px solid" id="box"></div>
     </div>
 
     <script>
         const box = document.getElementById("box");
-        let leftPos = box.style.left.split("").map(x => {if (+x < 9) {return x} }).join("");
-        let topPos = box.style.top.split("").map(x => {if (+x < 9) {return x} }).join("");
+        let leftPos = box.style.left.split("px").join(""); //короткий путь убрать "px"
+        let topPos = box.style.top.split("").map(x => {if (+x < 9) {return x} }).join(""); // длинный путь
         let timer;
 
         function theEnd () {
@@ -41,19 +41,49 @@
             setTimeout( () => { bumTag.style.display = "none" } ,200);
         }
 
-        let speed = 1;
-        let speedFucn = (x) => {speed = speed+x}
+        let speed = 20;
+        let speedFucn = (x) => {
+            // speed = speed+x
+            
+        }
+
+        const telo = [];
+        
+        function bod () {
+
+            for (let i = 0; i < telo.length-1; i++) {
+                const hvost = document.createElement("div");
+                hvost.style.position = "absolute";
+                hvost.style.width = "20px";
+                hvost.style.height = "20px";
+                hvost.style.backgroundColor = "blue";
+                hvost.style.left = telo[i].leftPos+"px";
+                hvost.style.top = telo[i].topPos+"px";
+                console.log(hvost.style.width)
+                field.appendChild(hvost);
+                if ( (telo[i].leftPos+"px") == box.style.left && (telo[i].topPos+"px") == box.style.top) {
+                    const konec = document.getElementById("field");
+                    konec.innerHTML = `<h1 style="margin-top: 100px; text-align: center">Ты всё сломал</h1>`;
+                    window.removeEventListener("keydown");
+                }
+            }
+
+        }
+        
 
         window.addEventListener("keydown", e => {
 
             switch (e.keyCode) {
 
             case 37: clearInterval(timer);
-            timer=setInterval(moveLeft,10);
+            timer=setInterval(moveLeft,300);
             function moveLeft () {
                 leftPos -= speed;
                 box.style.left = leftPos+"px";
-                if (leftPos < 0) {
+                const test = "asdas";
+                telo.push( {leftPos:leftPos, topPos: topPos  } );
+                bod ();
+                if (leftPos <= 0) {
                     clearInterval(timer);
                     box.style.borderLeft = '5px solid black';
                     speedFucn(2);
@@ -63,11 +93,13 @@
             }; break;
 
             case 38: clearInterval(timer);
-            timer=setInterval(moveUp,10);
+            timer=setInterval(moveUp,300);
             function moveUp () {
                 topPos -= speed;
                 box.style.top = topPos+"px";
-                if (topPos < 0) {
+                telo.push( {leftPos:leftPos, topPos: topPos  } );
+                bod ();
+                if (topPos <= 0) {
                     clearInterval(timer);
                     box.style.borderTop = '5px solid black';
                     speedFucn(2);
@@ -77,11 +109,13 @@
             }; break;
 
             case 39: clearInterval(timer);
-            timer=setInterval(moveRigth,10);
+            timer=setInterval(moveRigth,300);
             function moveRigth () {
                 leftPos = (+leftPos)+speed;
                 box.style.left = leftPos+"px";
-                if (leftPos > 280) {
+                telo.push( {leftPos:leftPos, topPos: topPos  } );
+                bod ();
+                if (leftPos >= 280) {
                     clearInterval(timer);
                     box.style.borderRight = '5px solid black';
                     speedFucn(2);
@@ -91,11 +125,13 @@
             }; break;
 
             case 40: clearInterval(timer);
-            timer=setInterval(moveDown,10);
+            timer=setInterval(moveDown,300);
             function moveDown () {
                 topPos = (+topPos)+speed;
                 box.style.top = topPos+"px";
-                if (topPos > 280) {
+                telo.push( {leftPos:leftPos, topPos: topPos  } );
+                bod ();
+                if (topPos >= 280) {
                     clearInterval(timer);
                     box.style.borderBottom = '5px solid black';
                     speedFucn(2);

@@ -1,105 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>listener</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-  <style>
-    .red {
-      width: 600px;
-      height: 600px;
-      background-color: red;
-      position: relative;
-    }
-
-    .lightgreen {
-      width: 50px;
-      height: 50px;
-      background-color: lightgreen;
-      position: absolute;
-    }
-
-
-  </style>
 <body>
-  <div class="red"><div class="lightgreen"></div>  </div>
-  
+    <form action="">
+    <input type="number" id="widthWatch" min="200" max="800">
+    </form>
+    <div style="width: 200px; height: 2px; background:black; transform-origin: 30px 1px; position: absolute; top: 200px; left: 200px"></div>
+    <div style="width: 200px; height: 200px; border-radius: 100px; background: red" draggable="true" position="absolute" ></div>
+    <div style="width: 800px; height: 800px; border-radius: 400px; background: rgb(69, 85, 71)"></div>
 
-  <script>
-
-    const lightgreen = document.getElementsByClassName('lightgreen');
-
-    let leftCoordinate = 0;
-    let topCoordinate = 0;
-
-    let timer = 0;
-
-  
+    <script>
+        let bigWatch = document.getElementById("widthWatch");
+        let widthSmall = bigWatch/8;
+        function pos( ) {
 
 
-    window.addEventListener('keydown', (e) => {
-      // 
-      switch(e.keyCode){
-        case 39: clearInterval(timer);
-          timer = setInterval(() => { 
-
-          lightgreen[0].style.marginLeft = `${leftCoordinate}px`;
-          leftCoordinate = leftCoordinate + 10;
-
-          if (leftCoordinate > 560) {leftCoordinate = 0; 
-            lightgreen[0].style.marginLeft = "0px";
-            lightgreen[0].style.left = leftCoordinate + 'px'}
-
-          }, 50);    
-         break;
-        case 37: clearInterval(timer);
-          timer = setInterval(() => { 
-
-          lightgreen[0].style.marginLeft = `${leftCoordinate}px`;
-          leftCoordinate = leftCoordinate - 10;
-
-          if (leftCoordinate < 0) {leftCoordinate = 560; 
-            lightgreen[0].style.marginLeft = "0px";
-            lightgreen[0].style.Right = leftCoordinate + 'px'}
-
-          }, 50);     
-        break;
-        
-        
-        case 40: clearInterval(timer);
-          timer = setInterval(() => { 
-
-          lightgreen[0].style.marginTop = `${topCoordinate}px`;
-          topCoordinate = topCoordinate + 10;
-
-          if (topCoordinate > 560) {topCoordinate = 0; 
-            lightgreen[0].style.marginTop = "0px"
-            lightgreen[0].style.top = topCoordinate + 'px'}
-
-          }, 50);     
-        
-        
-        break;
-        case 38: clearInterval(timer);
-          timer = setInterval(() => { 
-
-          lightgreen[0].style.marginTop = `${topCoordinate}px`;
-          topCoordinate = topCoordinate - 10;
-
-          if (topCoordinate < 0) {topCoordinate = 560; 
-            lightgreen[0].style.marginTop = "0px";
-            lightgreen[0].style.Bottom = topCoordinate + 'px'}
-
-          }, 50);   
-        break;
-
-      }
-      
-    })
-
-
-  </script>
+            const form=document.forms.FPos;
+            const radius=parseFloat(form.elements.Radius.value);
+            const angle=parseFloat(form.elements.Angle.value)/180*Math.PI;
+    
+            const redCenterX=red.offsetLeft+red.offsetWidth/2;
+            const redCenterY=red.offsetTop+red.offsetHeight/2;
+    
+            const greenCenterX=redCenterX+radius*Math.sin(angle);
+            const greenCenterY=redCenterY-radius*Math.cos(angle);
+    
+            green.style.left=
+                Math.round(greenCenterX-green.offsetWidth/2)+'px';
+            green.style.top=
+                Math.round(greenCenterY-green.offsetHeight/2)+'px';
+        }
+    
+        pos();
+    
+    </script>
 </body>
 </html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: aquamarine;
+      position: relative;
+      border-top: 0.1px solid black;
+    }
+    #play1 {
+      position: absolute;
+      height: 50px;
+      top:100px;
+      left:100px;
+      /* background-color:beige; */
+      width: 20000px;
+      display: flex;
+      z-index: 20;
+    }
+    .klav {
+      height: 50px;
+      width: 50px;
+      background-color:brown;
+      /* margin-left: 20px; */
+      position: absolute;
+      top: 100px;
+    }
+    #zone {
+      width: 70px;
+      height: 200px;
+      background-color: blue;
+      position: absolute;
+      left: 40px;
+      top: 0px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">
+    <div id="play1"></div>
+    <div id="zone"></div>
+    <!-- <div class="klav" style="left:100px">100</div>
+<div class="klav" style="left:150px">150</div>
+<div class="klav" style="left:200px">200</div>
+<div class="klav" style="left:250px">250</div>
+<div class="klav" style="left:300px">300</div>
+<div class="klav" style="left:350px">350</div>
+<div class="klav" style="left:400px">400</div>
+<div class="klav" style="left:450px">450</div>
+<div class="klav" style="left:500px">500</div>
+<div class="klav" style="left:550px">550</div>
+<div class="klav" style="left:600px">600</div> -->
+<div class="klav" style="left:650px">650</div>
+<!-- <div class="klav" style="left:700px">700</div>
+<div class="klav" style="left:750px">750</div> -->
+<div class="klav" style="left:800px">800</div>
+<!-- <div class="klav" style="left:850px">850</div>
+<div class="klav" style="left:900px">900</div> -->
+<div class="klav" style="left:950px">950</div>
+<!-- <div class="klav" style="left:1000px">1000</div> -->
+<div class="klav" style="left:1050px">1050</div>
+<div class="klav" style="left:1100px">1100</div>
+<!-- <div class="klav" style="left:1150px">1150</div> -->
+<div class="klav" style="left:1200px">1200</div>
+<!-- <div class="klav" style="left:1250px">1250</div> -->
+<div class="klav" style="left:1300px">1300</div>
+<div class="klav" style="left:1350px">1350</div>
+<!-- <div class="klav" style="left:1400px">1400</div> -->
+<!-- <div class="klav" style="left:1450px">1450</div> -->
+<!-- <div class="klav" style="left:1500px">1500</div> -->
+<!-- <div class="klav" style="left:1550px">1550</div> -->
+<!-- <div class="klav" style="left:1600px">1600</div> -->
+<div class="klav" style="left:1650px">1650</div>
+<!-- <div class="klav" style="left:1700px">1700</div> -->
+<div class="klav" style="left:1750px">1750</div>
+<!-- <div class="klav" style="left:1800px">1800</div>
+<div class="klav" style="left:1850px">1850</div> -->
+<div class="klav" style="left:1900px">1900</div>
+<!-- <div class="klav" style="left:1950px">1950</div>
+<div class="klav" style="left:2000px">2000</div> -->
+<div class="klav" style="left:2050px">2050</div>
+<!-- <div class="klav" style="left:2100px">2100</div> -->
+<div class="klav" style="left:2150px">2150</div>
+<div class="klav" style="left:2200px">2200</div>
+<!-- <div class="klav" style="left:2250px">2250</div> -->
+<div class="klav" style="left:2300px">2300</div>
+<!-- <div class="klav" style="left:2350px">2350</div> -->
+<!-- <div class="klav" style="left:2400px">2400</div> -->
+<div class="klav" style="left:2450px">2450</div>
+<!-- <div class="klav" style="left:2500px">2500</div> -->
+<!-- <div class="klav" style="left:2550px">2550</div> -->
+<div class="klav" style="left:2600px">2600</div>
+<!-- <div class="klav" style="left:2650px">2650</div> -->
+<div class="klav" style="left:2700px">2700</div>
+<div class="klav" style="left:2750px">2750</div>
+<!-- <div class="klav" style="left:2800px">2800</div> -->
+<div class="klav" style="left:2850px">2850</div>
+<!-- <div class="klav" style="left:2900px">2900</div> -->
+<!-- <div class="klav" style="left:2950px">2950</div> -->
+<div class="klav" style="left:3000px">3000</div>
+<!-- <div class="klav" style="left:3050px">3050</div> -->
+<!-- <div class="klav" style="left:3100px">3100</div> -->
+<div class="klav" style="left:3150px">3150</div>
+<div class="klav" style="left:3200px">3200</div>
+<!-- <div class="klav" style="left:3250px">3250</div> -->
+<div class="klav" style="left:3300px">3300</div>
+<div class="klav" style="left:3350px">3350</div>
+<div class="klav" style="left:3400px">3400</div>
+<!-- <div class="klav" style="left:3450px">3450</div> -->
+<!-- <div class="klav" style="left:3500px">3500</div> -->
+<div class="klav" style="left:3550px">3550</div>
+<!-- <div class="klav" style="left:3600px">3600</div> -->
+<!-- <div class="klav" style="left:3650px">3650</div> -->
+<div class="klav" style="left:3700px">3700</div>
+<!-- <div class="klav" style="left:3750px">3750</div> -->
+<div class="klav" style="left:3800px">3800</div>
+<div class="klav" style="left:3850px">3850</div>
+<!-- <div class="klav" style="left:3900px">3900</div> -->
+<div class="klav" style="left:3950px">3950</div>
+<div class="klav" style="left:4000px">4000</div>
+<!-- <div class="klav" style="left:4050px">4050</div> -->
+<!-- <div class="klav" style="left:4100px">4100</div> -->
+<!-- <div class="klav" style="left:4150px">4150</div> -->
+<!-- <div class="klav" style="left:4200px">4200</div> -->
+<div class="klav" style="left:4250px">4250</div>
+<!-- <div class="klav" style="left:4300px">4300</div> -->
+<div class="klav" style="left:4350px">4350</div>
+<div class="klav" style="left:4400px">4400</div>
+<!-- <div class="klav" style="left:4450px">4450</div> -->
+<div class="klav" style="left:4500px">4500</div>
+<!-- <div class="klav" style="left:4550px">4550</div> -->
+<!-- <div class="klav" style="left:4600px">4600</div> -->
+<div class="klav" style="left:4650px">4650</div>
+<!-- <div class="klav" style="left:4700px">4700</div> -->
+<!-- <div class="klav" style="left:4750px">4750</div> -->
+<div class="klav" style="left:4800px">4800</div>
+<!-- <div class="klav" style="left:4850px">4850</div> -->
+<!-- <div class="klav" style="left:4900px">4900</div> -->
+<div class="klav" style="left:4950px">4950</div>
+<!-- <div class="klav" style="left:5000px">5000</div> -->
+<div class="klav" style="left:5050px">5050</div>
+<!-- <div class="klav" style="left:5100px">5100</div> -->
+<!-- <div class="klav" style="left:5150px">5150</div> -->
+<div class="klav" style="left:5200px">5200</div>
+<!-- <div class="klav" style="left:5250px">5250</div> -->
+<!-- <div class="klav" style="left:5300px">5300</div> -->
+<div class="klav" style="left:5350px">5350</div>
+<!-- <div class="klav" style="left:5400px">5400</div> -->
+<div class="klav" style="left:5450px">5450</div>
+<!-- <div class="klav" style="left:5500px">5500</div> -->
+<!-- <div class="klav" style="left:5550px">5550</div> -->
+<div class="klav" style="left:5600px">5600</div>
+<!-- <div class="klav" style="left:5650px">5650</div> -->
+<!-- <div class="klav" style="left:5700px">5700</div> -->
+<div class="klav" style="left:5750px">5750</div>
+<!-- <div class="klav" style="left:5800px">5800</div> -->
+<!-- <div class="klav" style="left:5850px">5850</div> -->
+<div class="klav" style="left:5900px">5900</div>
+<!-- <div class="klav" style="left:5950px">5950</div> -->
+<div class="klav" style="left:6000px">6000</div>
+<div class="klav" style="left:6050px">6050</div>
+<!-- <div class="klav" style="left:6100px">6100</div> -->
+<div class="klav" style="left:6150px">6150</div>
+<div class="klav" style="left:6200px">6200</div>
+<div class="klav" style="left:6250px">6250</div>
+<div class="klav" style="left:6300px">6300</div>
+<div class="klav" style="left:6350px">6350</div>
+<div class="klav" style="left:6400px">6400</div>
+<div class="klav" style="left:6450px">6450</div>
+<div class="klav" style="left:6500px">6500</div>
+<div class="klav" style="left:6550px">6550</div>
+<div class="klav" style="left:6600px">6600</div>
+<div class="klav" style="left:6650px">6650</div>
+<div class="klav" style="left:6700px">6700</div>
+<div class="klav" style="left:6750px">6750</div>
+<div class="klav" style="left:6800px">6800</div>
+<div class="klav" style="left:6850px">6850</div>
+<div class="klav" style="left:6900px">6900</div>
+<div class="klav" style="left:6950px">6950</div>
+<div class="klav" style="left:7000px">7000</div>
+<div class="klav" style="left:7050px">7050</div>
+<div class="klav" style="left:7100px">7100</div>
+<div class="klav" style="left:7150px">7150</div>
+<div class="klav" style="left:7200px">7200</div>
+<div class="klav" style="left:7250px">7250</div>
+<div class="klav" style="left:7300px">7300</div>
+<div class="klav" style="left:7350px">7350</div>
+<div class="klav" style="left:7400px">7400</div>
+<div class="klav" style="left:7450px">7450</div>
+<div class="klav" style="left:7500px">7500</div>
+<div class="klav" style="left:7550px">7550</div>
+<div class="klav" style="left:7600px">7600</div>
+<div class="klav" style="left:7650px">7650</div>
+<div class="klav" style="left:7700px">7700</div>
+<div class="klav" style="left:7750px">7750</div>
+<div class="klav" style="left:7800px">7800</div>
+<div class="klav" style="left:7850px">7850</div>
+<div class="klav" style="left:7900px">7900</div>
+<div class="klav" style="left:7950px">7950</div>
+<div class="klav" style="left:8000px">8000</div>
+<div class="klav" style="left:8050px">8050</div>
+<div class="klav" style="left:8100px">8100</div>
+<div class="klav" style="left:8150px">8150</div>
+<div class="klav" style="left:8200px">8200</div>
+<div class="klav" style="left:8250px">8250</div>
+<div class="klav" style="left:8300px">8300</div>
+<div class="klav" style="left:8350px">8350</div>
+<div class="klav" style="left:8400px">8400</div>
+<div class="klav" style="left:8450px">8450</div>
+<div class="klav" style="left:8500px">8500</div>
+<div class="klav" style="left:8550px">8550</div>
+<div class="klav" style="left:8600px">8600</div>
+<div class="klav" style="left:8650px">8650</div>
+<div class="klav" style="left:8700px">8700</div>
+<div class="klav" style="left:8750px">8750</div>
+<div class="klav" style="left:8800px">8800</div>
+<div class="klav" style="left:8850px">8850</div>
+<div class="klav" style="left:8900px">8900</div>
+<div class="klav" style="left:8950px">8950</div>
+<div class="klav" style="left:9000px">9000</div>
+<div class="klav" style="left:9050px">9050</div>
+<div class="klav" style="left:9100px">9100</div>
+<div class="klav" style="left:9150px">9150</div>
+<div class="klav" style="left:9200px">9200</div>
+<div class="klav" style="left:9250px">9250</div>
+<div class="klav" style="left:9300px">9300</div>
+<div class="klav" style="left:9350px">9350</div>
+<div class="klav" style="left:9400px">9400</div>
+<div class="klav" style="left:9450px">9450</div>
+<div class="klav" style="left:9500px">9500</div>
+<div class="klav" style="left:9550px">9550</div>
+<div class="klav" style="left:9600px">9600</div>
+<div class="klav" style="left:9650px">9650</div>
+<div class="klav" style="left:9700px">9700</div>
+<div class="klav" style="left:9750px">9750</div>
+<div class="klav" style="left:9800px">9800</div>
+<div class="klav" style="left:9850px">9850</div>
+<div class="klav" style="left:9900px">9900</div>
+
+
+    <button onclick="plays()">play</button><br><br><br><br><br><br><br><br>
+    <button onclick="stop()">stop</button>
+    <audio id="audio" src="/gamemusic.mp3"></audio>
+  </div>
+
+  <script>
+    const play = document.getElementById("play1");
+    let playX = 100;
+    const audio = document.getElementById("audio");
+
+
+    const div = document.createElement("div");
+    div.className = "klav";
+    const divMar = 50;
+    let divMar2 = 0;
+    let divMar3;
+
+    let timer;
+
+    const arrBox = document.getElementsByClassName("klav");
+
+
+
+    // for(let i = 0; i <50; i++) {
+    //   const div = document.createElement("div");
+    //   div.className = "klav";
+    //   divMar2 += divMar;
+    //   divMar3 = divMar2+"px";
+    //   div.style.left = divMar3;
+    //   // console.log(divMar3);
+    //   box.appendChild(div);
+    // }
+
+    function plays () {
+      audio.play();
+      timer=setInterval(moveUp,30);
+      function moveUp () {
+        const klavArr = document.getElementsByClassName("klav");
+        for (let i =0; i< klavArr.length; i++) {
+          klavArr[i].style.left = klavArr[i].style.left.split("px").join("") -3 +"px";
+        }
+        // playX -= 2;
+        // play.style.left = playX+"px";
+      }
+    }
+
+    function stop() {
+      audio.pause();
+      clearInterval(timer);
+    }
+
+    window.addEventListener("keydown", e => {
+
+      switch (e.keyCode) {
+        case 37: 
+        const arrBox = document.getElementsByClassName("klav");
+        for (let i =0; i< arrBox.length; i++) {
+          if ( (+arrBox[i].style.left.split("px").join("") ) > 20 && (+arrBox[i].style.left.split("px").join("") ) < 80 ) {
+            
+            console.log("done");
+            arrBox[i].style.backgroundColor = "green";
+          }
+        }
+            ; break;
+      }
+
+    } );
+  </script>
+
+</body>
+</html>

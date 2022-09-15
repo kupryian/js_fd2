@@ -1,0 +1,74 @@
+#field {
+    width:320px;
+    height: 600px; 
+    // background-color: red;
+    margin: 0 auto;
+    position: relative;
+    background: url(../source/img/field.jpg);
+    overflow: hidden;
+
+    .tapBoxleft {
+        background-color:brown;
+        width: 90px;
+        // height: 10px;
+        height: 60px;
+        position: absolute;
+        left: 10px;
+        z-index: 10;
+        top: 10px;
+    }
+    .tapBoxCenter{
+        background-color:brown;
+        width: 90px;
+        // height: 10px;
+        height: 60px;
+        position: absolute;
+        left: 115px;
+        z-index: 10;
+        top: 10px;
+    }
+    .tapBoxRight {
+        background-color:brown;
+        width: 90px;
+        // height: 10px;
+        height: 60px;
+        position: absolute;
+        left: 220px;
+        z-index: 10;
+        top: 10px;
+    }
+    
+    .zone {
+        background-color:rgba(146, 255, 127, 0.499);
+        position: absolute;
+        width: 320px;
+        height: 80px;
+        top: 450px;
+    }
+}
+    // ДЛЯ ОБУЧЕНИЯ
+    #left {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 0;
+        display: none;
+        background-color:antiquewhite;
+    }
+    #center {
+        position: absolute;
+        top: 40px;
+        left: 20px;
+        z-index: 0;
+        display: none;
+        background-color:antiquewhite;
+    }
+    #right {
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        z-index: 0;
+        display: none;
+        background-color:antiquewhite;
+    }
+    
