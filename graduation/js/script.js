@@ -10,9 +10,9 @@
     const radioCalibr = document.getElementsByName("radioCalibr");
     let checkedRadio;
 
-    const btnLeft = document.getElementById("btnLeft");
-    const btnCenter = document.getElementById("btnCenter");
-    const btnRigth = document.getElementById("btnRigth");
+    const btnLeft = document.querySelector('[class="btnLeft"]');
+    const btnCenter = document.querySelector('[class="btnCenter"]');
+    const btnRigth = document.querySelector('[class="btnRigth"]');
 
     let score = 0;
     let comboScore = 0;

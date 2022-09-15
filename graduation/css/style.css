@@ -35,21 +35,21 @@
     width: 320px;
     height: 80px;
     top: 450px; }
-  #field #btnLeft {
+  #field .btnLeft {
     position: absolute;
     width: 106px;
     height: 80px;
     top: 450px;
     left: 0px;
     z-index: 20; }
-  #field #btnCenter {
+  #field .btnCenter {
     position: absolute;
     width: 106px;
     height: 80px;
     top: 450px;
     left: 107px;
     z-index: 20; }
-  #field #btnRigth {
+  #field .btnRigth {
     position: absolute;
     width: 106px;
     height: 80px;
