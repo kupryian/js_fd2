@@ -41,7 +41,6 @@
             tapBoxSide[i].style.top = parseInt(tapBoxSide[i].style.top.split("px").join("")) +3 +"px";
             //== если бокс набрал координату 540 (после поля нажатия) и он не зеленый (не нажат правильно) снимаем балл и комбо 0
             if ((+tapBoxSide[i].style.top.split("px").join("") ) >= 540 && (+tapBoxSide[i].style.top.split("px").join("") ) <= 542 && tapBoxSide[i].style.backgroundColor !== "rgb(83, 216, 132)"  ) {
-                console.log(tapBoxSide[i]+" "+tapBoxSide[i].style.top);
                 score -= 1;
                 animateScore(minus1);
                 comboScore = 0;
