@@ -182,22 +182,22 @@
     } );
     btnRigth.addEventListener("pointerdown", e => {
        keyPres(tapBoxRight);
-    //    btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+       btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
     } );
     btnCenter.addEventListener("pointerdown", e => {
         keyPres(tapBoxCenter);
-        // btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
      } );
      btnLeft.addEventListener("pointerdown", e => {
         keyPres(tapBoxLeft);
-        // btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
      } );
-    //  btnRigth.addEventListener("pointerup", e => {
-    //     btnRigth.style.backgroundColor = "";
-    //  } );
-    //  btnCenter.addEventListener("pointerup", e => {
-    //     btnCenter.style.backgroundColor = "";
-    //  } );
-    //  btnLeft.addEventListener("pointerup", e => {
-    //     btnLeft.style.backgroundColor = "";
-    //  } );
+     btnRigth.addEventListener("pointerup", e => {
+        btnRigth.style.backgroundColor = "";
+     } );
+     btnCenter.addEventListener("pointerup", e => {
+        btnCenter.style.backgroundColor = "";
+     } );
+     btnLeft.addEventListener("pointerup", e => {
+        btnLeft.style.backgroundColor = "";
+     } );
