@@ -53,7 +53,7 @@
     }
 
     function calibr() {
-        let howMuchPx = +document.getElementById("howMuchPx").value;
+        let howMuchPx = +document.querySelector('input[name="howMuchPx"]').value;
         for (let k of radioCalibr) {
             if (k.checked) {
                 checkedRadio = k.value;
