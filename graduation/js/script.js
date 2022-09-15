@@ -21,8 +21,6 @@
     const plus7 = document.getElementById("plus7"); //== очки вывод на экран
     const howMuchScore = document.getElementById("howMuchScore"); //== очки вывод на экран
 
-    // const zoneScore = document.getElementById("zoneScore");
-
     let score = 0; //== очки
     let comboScore = 0; //== есть ли комбо
  
@@ -37,12 +35,11 @@
 //=====вспомогательные функции
 
     //=====функция смены координаты у бокса 
-
     function boxChangeCoor(tapBoxSide) {
         for (let i = 0; i< tapBoxSide.length; i++) {
             //== перебираем боксы опускаем вних на 3 пикселя
             tapBoxSide[i].style.top = parseInt(tapBoxSide[i].style.top.split("px").join("")) +3 +"px";
-            //== если бокс набрал координату 540 (после поля нажатия) и он не зеленый (не нажат правильно) снимаем балл
+            //== если бокс набрал координату 540 (после поля нажатия) и он не зеленый (не нажат правильно) снимаем балл и комбо 0
             if ((+tapBoxSide[i].style.top.split("px").join("") ) == 540 && tapBoxSide[i].style.backgroundColor !== "rgb(83, 216, 132)"  ) {
                 score -= 1;
                 animateScore(minus1);
@@ -120,14 +117,12 @@
     }
 
     //=== стоп игра
-
     function stop() {
         audio.pause();
         clearInterval(timer);
     }
  
 //-------начало основной программы
-
     function startGame () {
         timer=setInterval(moveBox,30);
 
@@ -147,15 +142,12 @@
         }
     }
 
-
     // логика действий по нажатию на клавишу
-
     function keyPres(tapBoxSide) {
         for (let i =0; i< tapBoxSide.length; i++) {
             //== если нажать на блок в нужных коордитанах когда он будет он загорается зеленым
             if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 450 && (+tapBoxSide[i].style.top.split("px").join("") ) <470 ) {     
                 tapBoxSide[i].style.backgroundColor = "rgb(83, 216, 132)";
-
                 //== проверка сколько очков в комбо, если по условию то увеличиваем очки на комбо
                 if (comboScore >=7 ) {
                     score += 7;
@@ -169,23 +161,16 @@
                 }
                 //== каждое успешное нажатие подряд увеличивает комбо на 1
                 comboScore += 1;
-                   
+            //== если нажать рядом с зоной не не в ней - будет минус очка и красный кубик       
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 410 && (+tapBoxSide[i].style.top.split("px").join("") ) <449 ) {     
                 badToch(tapBoxSide[i]);
-                // tapBoxSide[i].style.backgroundColor = "#FF0909";
-                // comboScore = 0;
-                // score -= 1;
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 471 && (+tapBoxSide[i].style.top.split("px").join("") ) <510 ) {     
                 badToch(tapBoxSide[i]);
-                // tapBoxSide[i].style.backgroundColor = "#FF0909";
-                // comboScore = 0;
-                // score -= 1;
             };
         };
     }
 
     //слушатель события нажатия клавиш
-
     window.addEventListener("keydown", e => {
         switch (e.keyCode) {
             //== по нажатию отправляем соответствующий массив боксов на проверку (левый, правый или центральный)
@@ -203,34 +188,24 @@
 
     //== слушатель для мобильного (когда палец нажал добавляем фон, убрали - сняли фон, 
     //массив как и у кнопок отправляем в функцию проверку)
-
     btnRigth.addEventListener("pointerdown", e => {
        keyPres(tapBoxRight);
        mobilePres(btnRigth);
-    //    btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
-    //    window.navigator.vibrate(20)
     } );
     btnCenter.addEventListener("pointerdown", e => {
         keyPres(tapBoxCenter);
         mobilePres(btnCenter);
-        // btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
-        // window.navigator.vibrate(20)
      } );
      btnLeft.addEventListener("pointerdown", e => {
         keyPres(tapBoxLeft);
         mobilePres(btnLeft);
-        // btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
-        // window.navigator.vibrate(20)
      } );
      btnRigth.addEventListener("pointerup", e => {
-        // btnRigth.style.backgroundColor = "";
         mobileUnPres(btnRigth);
      } );
      btnCenter.addEventListener("pointerup", e => {
-        // btnCenter.style.backgroundColor = "";
         mobileUnPres(btnCenter);
      } );
      btnLeft.addEventListener("pointerup", e => {
-        // btnLeft.style.backgroundColor = "";
         mobileUnPres(btnLeft);
      } );

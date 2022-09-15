@@ -70,13 +70,17 @@
         padding: 4px 20px;
         font-size: 20px; }
       #field .zoneScore .scoreZoneCombo li:first-child {
-        background-color: #FF0909; }
+        background-color: #FF0909;
+        border-radius: 8px; }
       #field .zoneScore .scoreZoneCombo li:nth-child(2) {
-        background-color: #53A8D8; }
+        background-color: #53A8D8;
+        border-radius: 8px; }
       #field .zoneScore .scoreZoneCombo li:nth-child(3) {
-        background-color: #E464E7; }
+        background-color: #E464E7;
+        border-radius: 8px; }
       #field .zoneScore .scoreZoneCombo li:last-child {
-        background-color: #8A5EE8; }
+        background-color: #8A5EE8;
+        border-radius: 8px; }
   #field .btnLeft {
     position: absolute;
     width: 106px;
