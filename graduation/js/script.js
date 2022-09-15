@@ -135,10 +135,6 @@
 
             if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 450 && (+tapBoxSide[i].style.top.split("px").join("") ) <470 ) {     
                 tapBoxSide[i].style.backgroundColor = "rgb(83, 216, 132)";
-                // const imgDone = document.createElement("div");
-                // imgDone.classList.add("done")
-                // tapBoxSide[i].innerHTML = "";
-                // tapBoxSide[i].appendChild(imgDone);
 
                 if (comboScore >=7 ) {
                     score += 7;
@@ -154,18 +150,12 @@
                 comboScore += 1;
                    
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 410 && (+tapBoxSide[i].style.top.split("px").join("") ) <449 ) {     
-                // const imgUndone = document.createElement("div");
-                // imgUndone.classList.add("undone")
-                // tapBoxSide[i].innerHTML = "";
-                // tapBoxSide[i].appendChild(imgUndone);
+
                 tapBoxSide[i].style.backgroundColor = "FF0909";
                 comboScore = 0;
                 score -= 1;
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 471 && (+tapBoxSide[i].style.top.split("px").join("") ) <510 ) {     
-                // const imgUndone = document.createElement("div");
-                // imgUndone.classList.add("undone")
-                // tapBoxSide[i].innerHTML = "";
-                // tapBoxSide[i].appendChild(imgUndone);
+
                 tapBoxSide[i].style.backgroundColor = "FF0909";
                 comboScore = 0;
                 score -= 1;
@@ -192,22 +182,22 @@
     } );
     btnRigth.addEventListener("pointerdown", e => {
        keyPres(tapBoxRight);
-       btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+    //    btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
     } );
     btnCenter.addEventListener("pointerdown", e => {
         keyPres(tapBoxCenter);
-        btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        // btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
      } );
      btnLeft.addEventListener("pointerdown", e => {
         keyPres(tapBoxLeft);
-        btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        // btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
      } );
-     btnRigth.addEventListener("pointerup", e => {
-        btnRigth.style.backgroundColor = "";
-     } );
-     btnCenter.addEventListener("pointerup", e => {
-        btnCenter.style.backgroundColor = "";
-     } );
-     btnLeft.addEventListener("pointerup", e => {
-        btnLeft.style.backgroundColor = "";
-     } );
+    //  btnRigth.addEventListener("pointerup", e => {
+    //     btnRigth.style.backgroundColor = "";
+    //  } );
+    //  btnCenter.addEventListener("pointerup", e => {
+    //     btnCenter.style.backgroundColor = "";
+    //  } );
+    //  btnLeft.addEventListener("pointerup", e => {
+    //     btnLeft.style.backgroundColor = "";
+    //  } );
