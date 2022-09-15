@@ -190,14 +190,17 @@
     btnRigth.addEventListener("pointerdown", e => {
        keyPres(tapBoxRight);
        btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+       window.navigator.vibrate(1000)
     } );
     btnCenter.addEventListener("pointerdown", e => {
         keyPres(tapBoxCenter);
         btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        window.navigator.vibrate(100)
      } );
      btnLeft.addEventListener("pointerdown", e => {
         keyPres(tapBoxLeft);
         btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+        window.navigator.vibrate(10)
      } );
      btnRigth.addEventListener("pointerup", e => {
         btnRigth.style.backgroundColor = "";
