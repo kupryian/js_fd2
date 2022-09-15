@@ -41,7 +41,7 @@
         for (let i = 0; i< tapBoxSide.length; i++) {
             tapBoxSide[i].style.top = parseInt(tapBoxSide[i].style.top.split("px").join("")) +3 +"px";
 
-            if ((+tapBoxSide[i].style.top.split("px").join("") ) == 540 && tapBoxSide[i].style.backgroundColor !== "rgb(83 216 132)"  ) {
+            if ((+tapBoxSide[i].style.top.split("px").join("") ) == 540 && tapBoxSide[i].style.backgroundColor !== "rgb(83, 216, 132)"  ) {
                 score -= 1;
                 animateScore(minus1);
                 comboScore = 0;
@@ -134,7 +134,7 @@
         for (let i =0; i< tapBoxSide.length; i++) {
 
             if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 450 && (+tapBoxSide[i].style.top.split("px").join("") ) <470 ) {     
-                tapBoxSide[i].style.backgroundColor = "rgb(83 216 132)";
+                tapBoxSide[i].style.backgroundColor = "rgb(83, 216, 132)";
                 // const imgDone = document.createElement("div");
                 // imgDone.classList.add("done")
                 // tapBoxSide[i].innerHTML = "";
