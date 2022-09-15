@@ -152,24 +152,24 @@
             break;
         }
     } );
-    btnRigth.addEventListener("mousedown", e => {
+    btnRigth.addEventListener("pointerdown", e => {
        keyPres(tapBoxRight);
        btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
     } );
-    btnCenter.addEventListener("mousedown", e => {
+    btnCenter.addEventListener("pointerdown", e => {
         keyPres(tapBoxCenter);
         btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
      } );
-     btnLeft.addEventListener("mousedown", e => {
+     btnLeft.addEventListener("pointerdown", e => {
         keyPres(tapBoxLeft);
         btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
      } );
-     btnRigth.addEventListener("mouseup", e => {
+     btnRigth.addEventListener("pointerup", e => {
         btnRigth.style.backgroundColor = "";
      } );
-     btnCenter.addEventListener("mouseup", e => {
+     btnCenter.addEventListener("pointerup", e => {
         btnCenter.style.backgroundColor = "";
      } );
-     btnLeft.addEventListener("mouseup", e => {
+     btnLeft.addEventListener("pointerup", e => {
         btnLeft.style.backgroundColor = "";
      } );
