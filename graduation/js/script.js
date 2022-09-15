@@ -10,6 +10,10 @@
     const radioCalibr = document.getElementsByName("radioCalibr");
     let checkedRadio;
 
+    const btnLeft = document.getElementById("btnLeft");
+    const btnCenter = document.getElementById("btnCenter");
+    const btnRigth = document.getElementById("btnRigth");
+
     let score = 0;
     let comboScore = 0;
 
@@ -148,3 +152,24 @@
             break;
         }
     } );
+    btnRigth.addEventListener("mousedown", e => {
+       keyPres(tapBoxRight);
+       btnRigth.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+    } );
+    btnCenter.addEventListener("mousedown", e => {
+        keyPres(tapBoxCenter);
+        btnCenter.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+     } );
+     btnLeft.addEventListener("mousedown", e => {
+        keyPres(tapBoxLeft);
+        btnLeft.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
+     } );
+     btnRigth.addEventListener("mouseup", e => {
+        btnRigth.style.backgroundColor = "";
+     } );
+     btnCenter.addEventListener("mouseup", e => {
+        btnCenter.style.backgroundColor = "";
+     } );
+     btnLeft.addEventListener("mouseup", e => {
+        btnLeft.style.backgroundColor = "";
+     } );
