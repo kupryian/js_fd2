@@ -67,6 +67,13 @@
             } else {}
         }
     }
+    //=== если игрок нажал чуть выше или ниже зоны - блок горит красным, снимается 1 очко, обнуляется комбо
+    function badToch(TapBoxSide) {
+        TapBoxSide.style.backgroundColor = "#FF0909";
+        comboScore = 0;
+        score -= 1
+    }
+
     //=== анимация очков (просто увеличиваются в размере когда изменяются)
     function animateScore(whatScore) {
         whatScore.animate([
@@ -164,15 +171,15 @@
                 comboScore += 1;
                    
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 410 && (+tapBoxSide[i].style.top.split("px").join("") ) <449 ) {     
-                //== если игрок нажал чуть выше или ниже зоны - блок горит красным, снимается 1 очко, обнуляется комбо
-                tapBoxSide[i].style.backgroundColor = "#FF0909";
-                comboScore = 0;
-                score -= 1;
+                badToch(tapBoxSide[i]);
+                // tapBoxSide[i].style.backgroundColor = "#FF0909";
+                // comboScore = 0;
+                // score -= 1;
             } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 471 && (+tapBoxSide[i].style.top.split("px").join("") ) <510 ) {     
-
-                tapBoxSide[i].style.backgroundColor = "#FF0909";
-                comboScore = 0;
-                score -= 1;
+                badToch(tapBoxSide[i]);
+                // tapBoxSide[i].style.backgroundColor = "#FF0909";
+                // comboScore = 0;
+                // score -= 1;
             };
         };
     }
