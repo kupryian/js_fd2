@@ -9,7 +9,6 @@
     const testZone = document.getElementById("testzone");
     const radioCalibr = document.getElementsByName("radioCalibr");
     let checkedRadio;
-    let howMuchPx = +document.getElementById("howMuchPx").value;
 
     let score = 0;
     let comboScore = 0;
@@ -54,6 +53,7 @@
     }
 
     function calibr() {
+        let howMuchPx = +document.getElementById("howMuchPx").value;
         for (let k of radioCalibr) {
             if (k.checked) {
                 checkedRadio = k.value;
