@@ -4,6 +4,12 @@
     const tapBoxCenter = document.getElementsByClassName("tapBoxCenter");
     const tapBoxRight = document.getElementsByClassName("tapBoxRight");
     const finalBox = document.getElementById("final_box");
+    
+    const allBoxes = document.getElementsByClassName("tapBoxes");
+    const testZone = document.getElementById("testzone");
+    const radioCalibr = document.getElementsByName("radioCalibr");
+    let checkedRadio;
+    let howMuchPx = +document.getElementById("howMuchPx").value;
 
     let score = 0;
     let comboScore = 0;
@@ -41,6 +47,28 @@
 
             } else {}
         }
+    }
+    //калибровка
+    function showCalibr() {
+        testZone.style.display = "block"
+    }
+
+    function calibr() {
+        for (let k of radioCalibr) {
+            if (k.checked) {
+                checkedRadio = k.value;
+            }
+        }
+        if (checkedRadio == "plus coordinats") {
+            for (let i = 0; i < allBoxes.length; i ++) {
+                allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
+            } 
+        } else {
+            for (let i = 0; i < allBoxes.length; i ++) {
+                allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) - howMuchPx + "px";
+            } 
+        }
+        testZone.style.display = "none";
     }
 
     //=== стоп игра
