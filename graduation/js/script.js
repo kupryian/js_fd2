@@ -124,7 +124,7 @@
  
 //-------начало основной программы
     function startGame () {
-        audio.pause();
+        // audio.pause();
         timer=setInterval(moveBox,30);
         
         function moveBox () {
