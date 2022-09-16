@@ -45,6 +45,17 @@
             z-index: 20;
             transform-origin: left;
         }
+        .electronic {
+            height: 100px;
+            position: absolute;
+            display: flex;
+        }
+        .ul {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            list-style-type: none;
+        }
     </style>
 </head>
 <body>
@@ -55,10 +66,12 @@
 
 <script>
     function go() {
-        let timer=setInterval(tick,10);
+        let timer=setInterval(tick,1000);
 
         const field = document.getElementById("field");
         const electronWatch = document.createElement("div");
+
+
         // let widthWatch = document.querySelector("input").value; //ширина большого циферблата, от нее все рассчитывается
         let widthWatch = 600;
         const ciferblat = document.createElement("div"); //большой который
@@ -76,6 +89,7 @@
             whatArrow.style.width = width+"px"; //== её длинна 45% от ширины циферблата
             field.appendChild(whatArrow); //== апендим
         }
+        getParam(electronWatch, widthWatch*0.45, "electronic"); 
         getParam(secondArrow, widthWatch*0.45, "second"); 
         getParam(minutArrow, widthWatch*0.4, "minut");
         getParam(hoursArrow, widthWatch*0.3, "hours");
@@ -89,6 +103,26 @@
             roundH +=30;
         }
         
+        //== тут подбором выбрал место куда цифровые выводить часы
+        electronWatch.style.left= (ciferblat.offsetLeft+(widthWatch/2)-( electronWatch.style.width.split("px").join("") )/2+"px");
+        electronWatch.style.top=(ciferblat.offsetTop)+(widthWatch/2)-( electronWatch.style.width.split("px").join("") )/2+'px';
+        //==создаю в них дивы для вывода часов
+        const ul = document.createElement("ul");
+        ul.classList.add("ul");
+        for (let i=0; i<5; i++) {
+            const li = document.createElement("li");
+            li.style.fontSize = widthWatch*0.05+"px";
+            const p = document.createElement("p");
+            li.appendChild(p);
+            ul.appendChild(li);
+        }
+        electronWatch.appendChild(ul);
+        const p = document.querySelectorAll("p");
+        p[1].innerHTML = ":";
+        p[3].innerHTML = ":";
+
+
+
         for (let k= 0; k<numbers.length; k++) { //== раскидываем циферблат с цифрами
             const smallRound = document.createElement("div"); //== создаем маленький зеленый круг
             getParam(smallRound, widthWatch*0.125, "green"); //== настраиваем
@@ -120,14 +154,18 @@
         let date = new Date(); 
         let seconds = date.getSeconds();
         let minutes = date.getMinutes();
-        let hours = date.getHours()
-            secondArrow.style.transform = `rotate(${seconds*60+270}deg)`; //= 1секунда = 6градусов поворота. т.к. изначально 
+        let hours = date.getHours();
+        secondArrow.style.transform = `rotate(${seconds*6+270}deg)`; //= 1секунда = 6градусов поворота. т.к. изначально 
             //у меня стралка смотрит на 3 часа (расположена горизонтально, то я прибавляю еще 270градусов, 
             //чтобы она смотрела вверх по умолчанию)
-            minutArrow.style.transform = `rotate(${minutes*6+(seconds*0.1)+270}deg)`; //1 минута = 6 градусов + 1/10 реальной
+        minutArrow.style.transform = `rotate(${minutes*6+(seconds*0.1)+270}deg)`; //1 минута = 6 градусов + 1/10 реальной
             // секунды(переведенной в градус) я хз как по другому объяснить. уверен можно попроще
-            hoursArrow.style.transform = `rotate(${hours*30+270+(minutes/2)}deg)`; // 1 час это 30 градусов. чтобы дробное получить 
+        hoursArrow.style.transform = `rotate(${hours*30+270+(minutes/2)}deg)`; // 1 час это 30 градусов. чтобы дробное получить 
             // надо еще минуту на 2 поделить и прибавить в градусах
+        //==тут для электронных 
+        p[0].innerHTML = hours;
+        p[2].innerHTML = minutes;
+        p[4].innerHTML = seconds;
         }
     }
     go();
