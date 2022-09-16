@@ -126,8 +126,9 @@
     function startGame () {
         audio.pause();
         timer=setInterval(moveBox,30);
-        audio.play();
+        
         function moveBox () {
+            audio.play();
             //== вписываем очки на страницу
             howMuchScore.innerHTML = score;
             //== гоним кубики в функцию движения
