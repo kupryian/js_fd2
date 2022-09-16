@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch html</title>
+    <style>
+        .green {
+            border-radius: 50%;
+            background-color: #48b382;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .big {
+            position: absolute; 
+            left: 100px; 
+            top: 100px; 
+            background-color: #fcca66;
+            border-radius: 50%;
+        }
+        .second {
+            background-color: black;
+            border-radius: 50%;
+            height: 2px;
+            position: absolute;
+            z-index: 20;
+            transform-origin: left;
+        }
+        .minut {
+            background-color: black;
+            border-radius: 50%;
+            height: 6px;
+            position: absolute;
+            z-index: 20;
+            transform-origin: left;
+        }
+        .hours {
+            background-color: black;
+            border-radius: 20%;
+            height: 10px;
+            position: absolute;
+            z-index: 20;
+            transform-origin: left;
+        }
+    </style>
+</head>
+<body>
+    Размер циферблата, px<input type="number" max="800" min="200">
+    <input type="button" value="построить" onclick="go()">
+    <div style ="position: relative;" id="field">
+    </div>
+
+<script>
+    function go() {
+        let timer=setInterval(tick,10);
+
+        const field = document.getElementById("field");
+        const electronWatch = document.createElement("div");
+        // let widthWatch = document.querySelector("input").value; //ширина большого циферблата, от нее все рассчитывается
+        let widthWatch = 600;
+        const ciferblat = document.createElement("div"); //большой который
+        ciferblat.classList.add("big");
+        ciferblat.style.width = widthWatch+"px"; //== эт его ширина
+        ciferblat.style.height = ciferblat.style.width;  //== она же высота
+        field.appendChild(ciferblat);
+
+        let secondArrow = document.createElement("div"); //== секундная стрелка
+        let minutArrow = document.createElement("div"); //== минутная
+        let hoursArrow = document.createElement("div"); //== часовая
+
+        function getParam (whatArrow,width,clas) { //== работа со стрелками
+            whatArrow.classList.add(clas); //== добавляем класс
+            whatArrow.style.width = width+"px"; //== её длинна 45% от ширины циферблата
+            field.appendChild(whatArrow); //== апендим
+        }
+        getParam(secondArrow, widthWatch*0.45, "second"); 
+        getParam(minutArrow, widthWatch*0.4, "minut");
+        getParam(hoursArrow, widthWatch*0.3, "hours");
+
+        const numbers = []; //== сюда будуут пушиться 12 положений маленьких циферблатов, их градусы (цикл ниже)
+        const cifry = [12,1,2,3,4,5,6,7,8,9,10,11] //== это на циферблат добавится
+        let roundH = 0;
+
+        for (let i =0; i<12; i++) { 
+            numbers.push(roundH);
+            roundH +=30;
+        }
+        
+        for (let k= 0; k<numbers.length; k++) { //== раскидываем циферблат с цифрами
+            const smallRound = document.createElement("div"); //== создаем маленький зеленый круг
+            getParam(smallRound, widthWatch*0.125, "green"); //== настраиваем
+            smallRound.style.height = smallRound.style.width; //==даем высотуу
+            const span = document.createElement("span"); //== создаем ноду, куда будем фицерку вставлять и вписывать в кружок
+            span.appendChild( document.createTextNode(cifry[k]) ) ;
+            span.style.fontSize = widthWatch*0.05+"px" //== динамический шрифт циферок
+            smallRound.appendChild(span); 
+            //==дальше пошла херня со слайда D40
+            const radius = widthWatch*0.4; //== расстояние от центра циферблата
+            const angle=parseFloat(numbers[k])/180*Math.PI; //== на какой угол раскидывать этот кружок
+            const redCenterX=ciferblat.offsetLeft+ciferblat.offsetWidth/2; //== ципо центр большого циферблата по Х
+            const redCenterY=ciferblat.offsetTop+ciferblat.offsetHeight/2; //== по У
+            const greenCenterX=redCenterX+radius*Math.sin(angle); 
+            const greenCenterY=redCenterY-radius*Math.cos(angle);
+            smallRound.style.left= Math.round(greenCenterX-smallRound.offsetWidth/2)+'px';
+            smallRound.style.top= Math.round(greenCenterY-smallRound.offsetHeight/2)+'px';
+        }
+
+        function arrowCenterPos (whatArrow) { //==ставим стрелки в центр
+            whatArrow.style.left= (ciferblat.offsetLeft+ciferblat.offsetWidth/2)+'px';
+            whatArrow.style.top=(ciferblat.offsetLeft+ciferblat.offsetWidth/2)+'px';
+        }
+        arrowCenterPos (secondArrow);
+        arrowCenterPos (minutArrow);
+        arrowCenterPos (hoursArrow);
+
+        function tick() { //тут поворачиваем стрелки
+        let date = new Date(); 
+        let seconds = date.getSeconds();
+        let minutes = date.getMinutes();
+        let hours = date.getHours()
+            secondArrow.style.transform = `rotate(${seconds*60+270}deg)`; //= 1секунда = 6градусов поворота. т.к. изначально 
+            //у меня стралка смотрит на 3 часа (расположена горизонтально, то я прибавляю еще 270градусов, 
+            //чтобы она смотрела вверх по умолчанию)
+            minutArrow.style.transform = `rotate(${minutes*6+(seconds*0.1)+270}deg)`; //1 минута = 6 градусов + 1/10 реальной
+            // секунды(переведенной в градус) я хз как по другому объяснить. уверен можно попроще
+            hoursArrow.style.transform = `rotate(${hours*30+270+(minutes/2)}deg)`; // 1 час это 30 градусов. чтобы дробное получить 
+            // надо еще минуту на 2 поделить и прибавить в градусах
+        }
+    }
+    go();
+
+</script>
+</body>
+</html>
