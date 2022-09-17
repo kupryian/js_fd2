@@ -246,6 +246,7 @@
     audio.loop = false;
     const soundCombo = document.getElementById("sound_combo");
     soundCombo.loop = false;
+  
     let y = 0;
 //=====вспомогательные функции
 
@@ -254,7 +255,6 @@
         for (let i = 0; i< tapBoxSide.length; i++) {
             //== перебираем боксы опускаем вних на 3 пикселя
             tapBoxSide[i].style.transform = `translate(0px,${y}px)`;
-            
             //== если бокс набрал координату 540 (после поля нажатия) и он не зеленый (не нажат правильно) снимаем балл и комбо 0
             if ((+tapBoxSide[i].style.top.split("px").join("") ) >= 540 && (+tapBoxSide[i].style.top.split("px").join("") ) <= 542 && tapBoxSide[i].style.backgroundColor !== "rgb(83, 216, 132)"  ) {
                 score -= 1;
@@ -340,11 +340,10 @@
  
 //-------начало основной программы
     function startGame () {
-        // timer=setInterval(moveBox,30);
+        timer=setInterval(moveBox,30);
         audio.play();
-        requestAnimationFrame(moveBox);
         function moveBox () {
-            y +=0.7;
+            y +=3;
             //== вписываем очки на страницу
             howMuchScore.innerHTML = score;
             //== гоним кубики в функцию движения
@@ -355,36 +354,35 @@
             if (finalBox.style.top.split("px").join("") > 700) {
                 stop();
             }
-            requestAnimationFrame(moveBox);
         }
     }
 
     // логика действий по нажатию на клавишу
     function keyPres(tapBoxSide) {
-        // for (let i =0; i< tapBoxSide.length; i++) {
-        //     //== если нажать на блок в нужных коордитанах когда он будет он загорается зеленым
-        //     if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 450 && (+tapBoxSide[i].style.top.split("px").join("") ) <470 ) {     
-        //         tapBoxSide[i].style.backgroundColor = "rgb(83, 216, 132)";
-        //         //== проверка сколько очков в комбо, если по условию то увеличиваем очки на комбо
-        //         if (comboScore >=7 ) {
-        //             score += 7;
-        //             animateScore(plus7);  
-        //         } else if (comboScore >= 3) {
-        //             score += 3;
-        //             animateScore(plus3);
-        //         } else {
-        //             score += 1;
-        //             animateScore(plus1);
-        //         }
-        //         //== каждое успешное нажатие подряд увеличивает комбо на 1
-        //         comboScore += 1;
-        //     //== если нажать рядом с зоной не не в ней - будет минус очка и красный кубик       
-        //     } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 410 && (+tapBoxSide[i].style.top.split("px").join("") ) <449 ) {     
-        //         badToch(tapBoxSide[i]);
-        //     } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 471 && (+tapBoxSide[i].style.top.split("px").join("") ) <510 ) {     
-        //         badToch(tapBoxSide[i]);
-        //     };
-        // };
+        for (let i =0; i< tapBoxSide.length; i++) {
+            //== если нажать на блок в нужных коордитанах когда он будет он загорается зеленым
+            if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 450 && (+tapBoxSide[i].style.top.split("px").join("") ) <470 ) {     
+                tapBoxSide[i].style.backgroundColor = "rgb(83, 216, 132)";
+                //== проверка сколько очков в комбо, если по условию то увеличиваем очки на комбо
+                if (comboScore >=7 ) {
+                    score += 7;
+                    animateScore(plus7);  
+                } else if (comboScore >= 3) {
+                    score += 3;
+                    animateScore(plus3);
+                } else {
+                    score += 1;
+                    animateScore(plus1);
+                }
+                //== каждое успешное нажатие подряд увеличивает комбо на 1
+                comboScore += 1;
+            //== если нажать рядом с зоной не не в ней - будет минус очка и красный кубик       
+            } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 410 && (+tapBoxSide[i].style.top.split("px").join("") ) <449 ) {     
+                badToch(tapBoxSide[i]);
+            } else if ( (+tapBoxSide[i].style.top.split("px").join("") ) > 471 && (+tapBoxSide[i].style.top.split("px").join("") ) <510 ) {     
+                badToch(tapBoxSide[i]);
+            };
+        };
     }
 
     //слушатель события нажатия клавиш
