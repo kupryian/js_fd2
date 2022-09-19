@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+}
+#field {
+    width:320px;
+    height: 600px; 
+    margin: 0 auto;
+    position: relative;
+    background: url(../source/img/field.png) -1px;
+    overflow: hidden;
+    .wrapBox {
+        position: absolute;
+    }
+
+    .tapBoxleft {
+        width: 90px;
+        height: 60px;
+        position: absolute;
+        left: 10px;
+        z-index: 10;
+        top: 10px;
+        border-radius: 8px;
+    }
+    .tapBoxCenter{
+        width: 90px;
+        height: 60px;
+        position: absolute;
+        left: 115px;
+        z-index: 10;
+        top: 10px;
+        
+    }
+    .tapBoxRight {
+        width: 90px;
+        height: 60px;
+        position: absolute;
+        left: 220px;
+        z-index: 10;
+        top: 10px;
+    }
+    
+    .zone {
+        background:url(../source/img/zonedone.png) -2px;
+        position: absolute;
+        width: 320px;
+        height: 80px;
+        top: 450px;
+    }
+    .zoneScore {
+        position: absolute;
+        width: 320px;
+        height: 80px;
+        background: #9ED2FF;
+        border: 2px solid #0075FF;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        ul {
+            margin: 5px 15px;
+            padding: 0px;
+            display: flex;     
+            list-style-type: none;
+            font-size: 25px;
+            li {
+                color: white;
+                span {
+                    margin-left: 10px;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 17px;
+                }
+                p {
+                    font-weight: 700;
+                    font-size: 25px;
+                    line-height: 17px;
+                    margin: 5px 0px 0px 20px;
+                }
+            }
+        }
+        .scoreZoneCombo {
+            display: flex;
+            justify-content: space-around;
+            li {
+                padding: 4px 20px;
+                font-size: 20px;
+            }
+            li:first-child {
+                background-color: #FF0909;
+                border-radius: 8px;
+            }
+            li:nth-child(2) {
+                background-color: #53A8D8;
+                border-radius: 8px;
+            }
+            li:nth-child(3) {
+                background-color: #E464E7;
+                border-radius: 8px;
+            }
+            li:last-child {
+                background-color: #8A5EE8;
+                border-radius: 8px;
+            }
+        }
+    }
+    .btnLeft {
+        position: absolute;
+        width: 106px;
+        height: 80px;
+        top: 450px;
+        left:0px;
+        z-index: 20;
+        
+    }
+    .btnCenter {
+        position: absolute;
+        width: 106px;
+        height: 80px;
+        top: 450px;
+        left:107px;
+        z-index: 20;
+    }
+    .btnRigth {
+        position: absolute;
+        width: 106px;
+        height: 80px;
+        top: 450px;
+        left:214px;
+        z-index: 20;
+    }
+    .combo0 {
+        background-color:#848282;
+        box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.54);
+        border-radius: 8px;
+    }
+    .combo3 {
+        background: #E464E7;
+        box-shadow: 0px 0px 18px 1px #E464E7;
+        border-radius: 8px;
+    }
+    .combo7 {
+        background: #8A5EE8;
+        box-shadow: 0px 0px 18px 1px #8A5EE8;
+        border-radius: 8px;
+    }
+}
+    #testzone {
+        background-color:burlywood;
+        padding: 50px 0px;
+        display:none;
+    }
