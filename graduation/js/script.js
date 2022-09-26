@@ -112,15 +112,6 @@
                 }
             }
 
-        // if (checkedRadio == "plus coordinats") {
-        //     for (let i = 0; i < allBoxes.length; i ++) {
-        //         allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
-        //     } 
-        // } else {
-        //     for (let i = 0; i < allBoxes.length; i ++) {
-        //         allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) - howMuchPx + "px";
-        //     } 
-        // }
         testZone.style.display = "none";
         window.localStorage.setItem('calibrPX', howMuchPx);
         window.localStorage.setItem('calibrSide', checkedRadio);
@@ -158,6 +149,8 @@
             //== когда финальный кубик ушел за границу - конец
             if (finalBox.style.top.split("px").join("") > 700) {
                 stop();
+                window.localStorage.setItem('Score', score);
+                
             }
         }
     }
