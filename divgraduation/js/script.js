@@ -10,7 +10,7 @@ tapZone.src = "source/img/zonedone.png";
 const done = new Image();
 done.src = "source/img/done.png";
 
-
+let timer;
 // let seconds;
 let startDate;
 // let endDate;
@@ -21,33 +21,30 @@ let arr = [{img: "source/img/done.png",coor:0},{img: "source/img/done.png",coor:
 
 function start () {
    startDate = new Date();
+    timer=setInterval(drawGame,16,6666667);
+    
     function drawGame() {
         ctx.drawImage(field, 0, 0);
         ctx.drawImage(tapZone, -2, 500);
-
 
         for (let i = 0; i < arr.length; i++) {
             let imgDone = new Image();
             endDate2 = new Date()
             imgDone.src = arr[i].img;
-            arr[i].coor += (endDate2.getTime() - startDate.getTime()) / 1000;
-            ctx.drawImage(imgDone, 20, arr[i].coor);
-            
+            arr[i].coor += 3;
+            ctx.drawImage(imgDone, 20, arr[i].coor);   
         }
         
         y +=1;
 
         console.log((endDate2.getTime() - startDate.getTime()) / 1000);
-        if (y <600) {
-            requestAnimationFrame(drawGame);
-            
+
+        if ((endDate2.getTime() - startDate.getTime()) / 1000 > 3 ) {
+            clearInterval(timer);
         } else {
             y=0;
-        }
-
-        
+        } 
     }
-requestAnimationFrame(drawGame);
 }
 start();
 
