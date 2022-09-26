@@ -10,7 +10,7 @@
     const testZone = document.getElementById("testzone"); //== окно калибровки
     const radioCalibr = document.getElementsByName("radioCalibr"); //== радиокноки
     let checkedRadio = window.localStorage.getItem('calibrSide'); //== нажатая радиокнопка
-    let howMuchPx = window.localStorage.getItem('calibrPX'); //== насколько пикселей сместить при калибровке
+    let howMuchPx = +window.localStorage.getItem('calibrPX'); //== насколько пикселей сместить при калибровке
 
     const btnLeft = document.querySelector('[class="btnLeft"]'); //== левая кнопка пуш для мобильного
     const btnCenter = document.querySelector('[class="btnCenter"]'); //== центральная кнопка пуш для мобильного
@@ -112,15 +112,15 @@
                 }
             }
 
-        if (checkedRadio == "plus coordinats") {
-            for (let i = 0; i < allBoxes.length; i ++) {
-                allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
-            } 
-        } else {
-            for (let i = 0; i < allBoxes.length; i ++) {
-                allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) - howMuchPx + "px";
-            } 
-        }
+        // if (checkedRadio == "plus coordinats") {
+        //     for (let i = 0; i < allBoxes.length; i ++) {
+        //         allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
+        //     } 
+        // } else {
+        //     for (let i = 0; i < allBoxes.length; i ++) {
+        //         allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) - howMuchPx + "px";
+        //     } 
+        // }
         testZone.style.display = "none";
         window.localStorage.setItem('calibrPX', howMuchPx);
         window.localStorage.setItem('calibrSide', checkedRadio);
@@ -134,14 +134,7 @@
  
 //-------начало основной программы
     function startGame () {
-        timer=setInterval(moveBox,30);
-
         //===калибровка
-        // if (window.localStorage.getItem('calibrPX')) {
-        //     howMuchPx = window.localStorage.getItem('calibrPX');
-        //     checkedRadio = window.localStorage.getItem('calibrSide');
-        //     document.querySelector('input[name="howMuchPx"]').value = howMuchPx;
-        // }
         if (checkedRadio == "plus coordinats") {
             for (let i = 0; i < allBoxes.length; i ++) {
                 allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
@@ -152,6 +145,7 @@
             } 
         }
         //===конец калибровки
+        timer=setInterval(moveBox,30);    
         
         function moveBox () {
             audio.play();
