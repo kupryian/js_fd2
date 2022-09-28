@@ -22,6 +22,30 @@
     const plus7 = document.getElementById("plus7"); //== очки вывод на экран
     const howMuchScore = document.getElementById("howMuchScore"); //== очки вывод на экран
 
+    let playerName; //==имя игрока
+    let objRecords = [//== тут база рекордов
+        {name: "Чувак",
+        points: 500},
+        {name: "Кто-то",
+        points: 300},
+        {name: "Иван",
+        points: 100},
+        {name: "Новичек",
+        points: 50},
+        {name: "Дровосек",
+        points: 250},
+        {name: "Страшила",
+        points: 99},
+        {name: "Петров",
+        points: 450},
+        {name: "Player3000",
+        points: 20},
+        {name: "Неизвестный",
+        points: -100}
+    ];
+    let jsonRecords; //== для перевода рекордов в локалсторедж
+    const recordUl = document.getElementById("recordUl"); //== сюда формируются строки имен победителей и их очки в рекордах
+
     let score = 0; //== очки
     let comboScore = 0; //== есть ли комбо
  
@@ -57,6 +81,13 @@
         }
 
 //=====вспомогательные функции
+
+    //== условие для начала игры - заполненый инпут с именем
+    
+    function checkName () {
+        playerName = document.querySelector('input[name="yourName"]').value;
+        if (playerName) startNewGame()
+    }
 
     //=====функция смены координаты у бокса 
     function boxChangeCoor(tapBoxSide) {
@@ -125,8 +156,6 @@
     function showCalibr() {
         testZone.style.display = "block";
         if (window.localStorage.getItem('calibrPX')) {
-            // howMuchPx = window.localStorage.getItem('calibrPX');
-            // checkedRadio = window.localStorage.getItem('calibrSide');
             document.querySelector('input[name="howMuchPx"]').value = howMuchPx;
         }
     }
@@ -153,29 +182,46 @@
     
     //== конец игры
 
-    // const newGame = document.getElementById("playAgain")
     const overDiv = document.querySelector('div[class="overDiv"]');
 
     function gameOver () {
         overDiv.style.display = "block";
-
         document.getElementById("showScoreOver").innerHTML = score;
-
-        // newGame.addEventListener("click", e => {
-        //     startNewGame();
-        // } );
     }
 
     //== показать рекорды 
     const divRecords = document.querySelector('div[class="records"]');
     function records () {
+        // localStorage.removeItem('jsonRecords')
+        objRecords = JSON.parse(window.localStorage.getItem('jsonRecords'));
+        objRecords.push({ //==добавляем свой результат
+            name: playerName,
+            points: score
+        })
+        objRecords.sort((prev, next) => next.points-prev.points); //== сортируем по очкам;
+        jsonRecords = JSON.stringify(objRecords);
+        window.localStorage.setItem('jsonRecords',jsonRecords);
         divRecords.style.display = "block"
+
+        let jsonDone = JSON.parse(window.localStorage.getItem('jsonRecords'));
+        console.log(jsonDone[0].name)
+
+        for( let i =0; i< 10; i++) {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${jsonDone[i].name} : ${jsonDone[i].points}`) )
+            console.log(li)
+            recordUl.appendChild(li)  
+        }
+
     }
 
     //перезапуск игры 
+    const startScreen = document.querySelector('div[class="start"]');
     function startNewGame() {
         overDiv.style.display = "none"
-        for (let i = 0; i < allBoxes.length; i ++) {
+        divRecords.style.display = "none"
+        startScreen.style.display = "none"
+        for (let i = 0; i < allBoxes.length; i ++) { //==сброс стилей для блоков после игры
             allBoxes[i].style.top = boxCoorArr[i];
             allBoxes[i].style.backgroundColor = "";
         }

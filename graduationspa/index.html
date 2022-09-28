@@ -143,8 +143,14 @@
     <h2 onclick="records ()">РЕКОРДЫ</h2>
 </div>
 <div class="records">
-    <h2 id="playAgainRec">ИГРАТЬ</h2>
-    <h3>Лучшие игроки?</h3>
+    <h2 onclick="startNewGame()">ИГРАТЬ ЕЩЁ</h2>
+    <h3>Лучшие игроки:</h3>
+    <ul id="recordUl"></ul>
+</div>
+<div class="start">
+    <h3>What is your name?!:</h3>
+    <input type="text" name="yourName">
+    <h2 onclick="checkName()">ИГРАТЬ</h2>
 </div>
 </div>
 

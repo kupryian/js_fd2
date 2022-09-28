@@ -232,7 +232,70 @@ body {
         }
     }
     .records {
-        display: none;
+        display:none;
+        background-color:#53A8D8;
+        padding: 50px 40px;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        height: 100%;
+        z-index: 30;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        ul {
+            padding: 0px;
+            list-style-type: none;
+            li {
+                padding-bottom: 10px;
+            }
+        }
+        h2 {
+            cursor:pointer;
+            background-color:#848282;
+            border-radius: 8px;
+            padding: 10px;
+            transition: 0.3s;
+        }
+        h2:hover{
+            box-shadow: inset 0px 0px 5px 1px white, 0px 0px 18px 1px white;
+            transform: scale(1.2);
+            transition: 0.3s;
+        }
+
+    }
+    .start {
+        display:block;
+        background-color:#53A8D8;
+        padding: 50px 40px;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        height: 100%;
+        z-index: 30;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        ul {
+            padding: 0px;
+            list-style-type: none;
+            li {
+                padding-bottom: 10px;
+            }
+        }
+        h2 {
+            cursor:pointer;
+            background-color:#848282;
+            border-radius: 8px;
+            padding: 10px;
+            transition: 0.3s;
+        }
+        h2:hover{
+            box-shadow: inset 0px 0px 5px 1px white, 0px 0px 18px 1px white;
+            transform: scale(1.2);
+            transition: 0.3s;
+        }
+
     }
     #testzone {
         background-color:#E464E7;
