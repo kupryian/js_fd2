@@ -11,6 +11,9 @@ body {
   position: relative;
   background: url(../source/img/field.png) -1px;
   overflow: hidden; }
+  @media (max-width: 600px) {
+    #field {
+      height: 90vh; } }
   #field .tapBoxleft {
     width: 90px;
     height: 60px;

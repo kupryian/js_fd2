@@ -126,7 +126,7 @@
 //-------начало основной программы
     function startGame () {
         //===калибровка
-        if (checkedRadio == "plus coordinats") {
+        if (window.localStorage.getItem('calibrSide') == "plus coordinats") {
             for (let i = 0; i < allBoxes.length; i ++) {
                 allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
             } 
