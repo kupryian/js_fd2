@@ -60,6 +60,9 @@ body {
     z-index: 20;
     display: flex;
     flex-direction: column; }
+    @media (max-width: 600px) {
+      #field .zoneScore {
+        width: 100%; } }
     #field .zoneScore ul {
       margin: 5px 15px;
       padding: 0px;
@@ -106,6 +109,9 @@ body {
     display: flex;
     flex-direction: column;
     bottom: 2px; }
+    @media (max-width: 600px) {
+      #field .zoneButton {
+        width: 100%; } }
     #field .zoneButton .setiitngButton {
       display: flex;
       list-style-type: none;

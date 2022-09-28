@@ -32,6 +32,31 @@
     audio.loop = false;
     const soundCombo = document.getElementById("sound_combo");
     soundCombo.loop = false;
+
+    let mobScreeen = window.screen.width;
+        
+
+        if (mobScreeen<600) {
+            for (let i = 0; i< tapBoxLeft.length; i++) {
+                tapBoxLeft[i].style.left = (mobScreeen/3)/10 + "px";
+                tapBoxLeft[i].style.width = (mobScreeen/3)/10*8 + "px";
+            }
+            for (let i = 0; i< tapBoxCenter.length; i++) {
+                tapBoxCenter[i].style.left = (mobScreeen/3)/10+mobScreeen/3 + "px";
+                tapBoxCenter[i].style.width = (mobScreeen/3)/10*8 + "px";
+            }
+            for (let i = 0; i< tapBoxRight.length; i++) {
+                tapBoxRight[i].style.left = (mobScreeen/3)/10+(mobScreeen/3)*2 + "px";
+                tapBoxRight[i].style.width = (mobScreeen/3)/10*8 + "px";
+            }
+            // btnLeft.style.left = (mobScreeen/3)/10 + "px";
+            btnLeft.style.width = (mobScreeen/3) + "px";
+            btnCenter.style.left = (mobScreeen/3) + "px";
+            btnCenter.style.width = (mobScreeen/3) + "px";
+            btnRigth.style.left = (mobScreeen/3)+(mobScreeen/3) + "px";
+            btnRigth.style.width = (mobScreeen/3) + "px";
+        }
+
   
 //=====вспомогательные функции
 
