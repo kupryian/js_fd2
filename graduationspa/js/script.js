@@ -33,9 +33,9 @@
     const soundCombo = document.getElementById("sound_combo");
     soundCombo.loop = false;
 
+    //== мобильная адаптация размеров блоков
     let mobScreeen = window.screen.width;
         
-
         if (mobScreeen<600) {
             for (let i = 0; i< tapBoxLeft.length; i++) {
                 tapBoxLeft[i].style.left = (mobScreeen/3)/10 + "px";
@@ -49,7 +49,6 @@
                 tapBoxRight[i].style.left = (mobScreeen/3)/10+(mobScreeen/3)*2 + "px";
                 tapBoxRight[i].style.width = (mobScreeen/3)/10*8 + "px";
             }
-            // btnLeft.style.left = (mobScreeen/3)/10 + "px";
             btnLeft.style.width = (mobScreeen/3) + "px";
             btnCenter.style.left = (mobScreeen/3) + "px";
             btnCenter.style.width = (mobScreeen/3) + "px";
@@ -57,7 +56,6 @@
             btnRigth.style.width = (mobScreeen/3) + "px";
         }
 
-  
 //=====вспомогательные функции
 
     //=====функция смены координаты у бокса 
@@ -107,7 +105,6 @@
                     iterations: 1
                   })
     }
-
     //=== нажатие на мобильном (смена стиля)
     function mobilePres(whatBtn) {
         whatBtn.style.backgroundColor = 'rgba(132, 247, 109, 0.61)';
@@ -117,6 +114,12 @@
         whatBtn.style.backgroundColor = "";
     }
 
+    //== сбор начальниых координат 
+    const boxCoorArr = [];
+    for (let i = 0; i < allBoxes.length; i ++) {
+        boxCoorArr.push(allBoxes[i].style.top)
+    } 
+    window.localStorage.setItem('boxCoorArr', boxCoorArr)
 
     //калибровка
     function showCalibr() {
@@ -147,6 +150,34 @@
         audio.pause();
         clearInterval(timer);
     }
+    
+    //== конец игры
+    let overDiv; //== создается див при конце игры
+    let newGame; //== текстовая нода
+    
+    function gameOver () {
+        overDiv = document.createElement("div");
+        overDiv.style.display = "block";
+        overDiv.classList.add("overDiv");
+        newGame = document.createElement("h2");
+        newGame.appendChild(document.createTextNode("Заново"))
+        overDiv.appendChild(newGame);
+        field.appendChild(overDiv);
+        newGame.addEventListener("click", e => {
+            startNewGame();
+        } );
+    }
+
+    //перезапуск игры 
+    function startNewGame() {
+        overDiv.style.display = "none"
+        for (let i = 0; i < allBoxes.length; i ++) {
+            allBoxes[i].style.top = boxCoorArr[i];
+        }
+        score = 0;
+        comboScore = 0;
+        startGame()
+    }
  
 //-------начало основной программы
     function startGame () {
@@ -175,7 +206,7 @@
             if (finalBox.style.top.split("px").join("") > 700) {
                 stop();
                 window.localStorage.setItem('Score', score);
-                
+                gameOver();       
             }
         }
     }
