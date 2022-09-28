@@ -157,21 +157,25 @@
         testZone.style.display = "block";
         if (window.localStorage.getItem('calibrPX')) {
             document.querySelector('input[name="howMuchPx"]').value = howMuchPx;
+        } else {
+            howMuchPx = document.querySelector('input[name="howMuchPx"]').value;
         }
     }
 
     function calibr() {
         
             howMuchPx = +document.querySelector('input[name="howMuchPx"]').value;
-            for (let k of radioCalibr) {
-                if (k.checked) {
-                    checkedRadio = k.value;
-                }
-            }
+            // for (let k of radioCalibr) {
+            //     if (k.checked) {
+            //         checkedRadio = k.value;
+            //     }
+            // }
 
         testZone.style.display = "none";
         window.localStorage.setItem('calibrPX', howMuchPx);
-        window.localStorage.setItem('calibrSide', checkedRadio);
+        // window.localStorage.setItem('calibrSide', checkedRadio);
+        stop();
+        audio.currentTime = 0;
         startNewGame();
     }
 
@@ -233,15 +237,15 @@
 //-------начало основной программы
     function startGame () {
         //===калибровка
-        if (window.localStorage.getItem('calibrSide') == "plus coordinats") {
+        // if (window.localStorage.getItem('calibrSide') == "plus coordinats") {
             for (let i = 0; i < allBoxes.length; i ++) {
                 allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
             } 
-        } else {
-            for (let i = 0; i < allBoxes.length; i ++) {
-                allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) - howMuchPx + "px";
-            } 
-        }
+        // } else {
+        //     for (let i = 0; i < allBoxes.length; i ++) {
+        //         allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) - howMuchPx + "px";
+        //     } 
+        // }
         //===конец калибровки
         timer=setInterval(moveBox,30);    
         
