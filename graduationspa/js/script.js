@@ -172,6 +172,7 @@
         testZone.style.display = "none";
         window.localStorage.setItem('calibrPX', howMuchPx);
         window.localStorage.setItem('calibrSide', checkedRadio);
+        startNewGame();
     }
 
     //=== стоп игра
@@ -204,9 +205,9 @@
         divRecords.style.display = "block"
 
         let jsonDone = JSON.parse(window.localStorage.getItem('jsonRecords'));
-        console.log(jsonDone[0].name)
-
+        recordUl.innerHTML = "";
         for( let i =0; i< 10; i++) {
+            
             const li = document.createElement("li");
             li.appendChild(document.createTextNode(`${jsonDone[i].name} : ${jsonDone[i].points}`) )
             console.log(li)
