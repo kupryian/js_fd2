@@ -10,10 +10,14 @@ body {
   margin: 0 auto;
   position: relative;
   background: url(../source/img/field.png) -1px;
-  overflow: hidden; }
+  overflow: hidden;
+  background-size: auto; }
   @media (max-width: 600px) {
     #field {
-      height: 90vh; } }
+      height: 90vh;
+      width: 100%;
+      background: url(../source/img/field.png);
+      background-size: contain; } }
   #field .tapBoxleft {
     width: 90px;
     height: 60px;
@@ -42,6 +46,11 @@ body {
     width: 320px;
     height: 80px;
     top: 450px; }
+    @media (max-width: 600px) {
+      #field .zone {
+        width: 100%;
+        background: url(../source/img/zonedone.png);
+        background-size: 100% 80px; } }
   #field .zoneScore {
     position: absolute;
     width: 320px;
