@@ -207,6 +207,7 @@ body {
     }
 }   
     .overDiv {
+        display:none;
         background-color:#8A5EE8;
         padding: 50px 40px;
         width: 100%;
@@ -218,6 +219,7 @@ body {
         font-size: 20px;
         text-align: center;
         h2 {
+            cursor:pointer;
             background-color:#848282;
             border-radius: 8px;
             padding: 10px;
@@ -228,6 +230,9 @@ body {
             transform: scale(1.2);
             transition: 0.3s;
         }
+    }
+    .records {
+        display: none;
     }
     #testzone {
         background-color:#E464E7;

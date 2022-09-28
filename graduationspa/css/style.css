@@ -173,6 +173,7 @@ body {
     border-radius: 8px; }
 
 .overDiv {
+  display: none;
   background-color: #8A5EE8;
   padding: 50px 40px;
   width: 100%;
@@ -184,6 +185,7 @@ body {
   font-size: 20px;
   text-align: center; }
   .overDiv h2 {
+    cursor: pointer;
     background-color: #848282;
     border-radius: 8px;
     padding: 10px;
@@ -192,6 +194,9 @@ body {
     box-shadow: inset 0px 0px 5px 1px white, 0px 0px 18px 1px white;
     transform: scale(1.2);
     transition: 0.3s; }
+
+.records {
+  display: none; }
 
 #testzone {
   background-color: #E464E7;

@@ -152,20 +152,24 @@
     }
     
     //== конец игры
-    let overDiv; //== создается див при конце игры
-    let newGame; //== текстовая нода
-    
+
+    // const newGame = document.getElementById("playAgain")
+    const overDiv = document.querySelector('div[class="overDiv"]');
+
     function gameOver () {
-        overDiv = document.createElement("div");
         overDiv.style.display = "block";
-        overDiv.classList.add("overDiv");
-        newGame = document.createElement("h2");
-        newGame.appendChild(document.createTextNode("Заново"))
-        overDiv.appendChild(newGame);
-        field.appendChild(overDiv);
-        newGame.addEventListener("click", e => {
-            startNewGame();
-        } );
+
+        document.getElementById("showScoreOver").innerHTML = score;
+
+        // newGame.addEventListener("click", e => {
+        //     startNewGame();
+        // } );
+    }
+
+    //== показать рекорды 
+    const divRecords = document.querySelector('div[class="records"]');
+    function records () {
+        divRecords.style.display = "block"
     }
 
     //перезапуск игры 
@@ -173,10 +177,10 @@
         overDiv.style.display = "none"
         for (let i = 0; i < allBoxes.length; i ++) {
             allBoxes[i].style.top = boxCoorArr[i];
+            allBoxes[i].style.backgroundColor = "";
         }
         score = 0;
         comboScore = 0;
-        startGame()
     }
  
 //-------начало основной программы
