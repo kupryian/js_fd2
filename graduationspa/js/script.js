@@ -198,7 +198,9 @@
     const divRecords = document.querySelector('div[class="records"]');
     function records () {
         // localStorage.removeItem('jsonRecords')
-        objRecords = JSON.parse(window.localStorage.getItem('jsonRecords'));
+        if (!JSON.parse(window.localStorage.getItem('jsonRecords') ) ) {
+            objRecords = JSON.parse(window.localStorage.getItem('jsonRecords'));
+        } 
         objRecords.push({ //==добавляем свой результат
             name: playerName,
             points: score
