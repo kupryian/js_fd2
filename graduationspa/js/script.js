@@ -115,7 +115,6 @@
                 tapBoxSide[i].classList.remove("combo7");
                 tapBoxSide[i].classList.remove("combo3");
                 tapBoxSide[i].classList.add("combo0");
-
             } else {}
         }
     }
@@ -163,17 +162,10 @@
     }
 
     function calibr() {
-        
-            howMuchPx = +document.querySelector('input[name="howMuchPx"]').value;
-            // for (let k of radioCalibr) {
-            //     if (k.checked) {
-            //         checkedRadio = k.value;
-            //     }
-            // }
+        howMuchPx = +document.querySelector('input[name="howMuchPx"]').value;
 
         testZone.style.display = "none";
         window.localStorage.setItem('calibrPX', howMuchPx);
-        // window.localStorage.setItem('calibrSide', checkedRadio);
         stop();
         audio.currentTime = 0;
         startNewGame();
@@ -198,7 +190,7 @@
     const divRecords = document.querySelector('div[class="records"]');
     function records () {
         // localStorage.removeItem('jsonRecords')
-        if (!JSON.parse(window.localStorage.getItem('jsonRecords') ) ) {
+        if (JSON.parse(window.localStorage.getItem('jsonRecords') ) ) {
             objRecords = JSON.parse(window.localStorage.getItem('jsonRecords'));
         } 
         objRecords.push({ //==добавляем свой результат
@@ -212,14 +204,13 @@
 
         let jsonDone = JSON.parse(window.localStorage.getItem('jsonRecords'));
         recordUl.innerHTML = "";
+        //==создается таблица результатов
         for( let i =0; i< 10; i++) {
-            
             const li = document.createElement("li");
             li.appendChild(document.createTextNode(`${jsonDone[i].name} : ${jsonDone[i].points}`) )
             console.log(li)
             recordUl.appendChild(li)  
         }
-
     }
 
     //перезапуск игры 
@@ -239,15 +230,9 @@
 //-------начало основной программы
     function startGame () {
         //===калибровка
-        // if (window.localStorage.getItem('calibrSide') == "plus coordinats") {
             for (let i = 0; i < allBoxes.length; i ++) {
                 allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) + howMuchPx + "px";
-            } 
-        // } else {
-        //     for (let i = 0; i < allBoxes.length; i ++) {
-        //         allBoxes[i].style.top = parseInt(allBoxes[i].style.top.split("px").join("")) - howMuchPx + "px";
-        //     } 
-        // }
+            }
         //===конец калибровки
         timer=setInterval(moveBox,30);    
         
