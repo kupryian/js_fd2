@@ -72,6 +72,14 @@
 <body>
     <div style ="position: relative;" id="field">
     </div>
+    <div>
+        <h2>цена</h2>
+        <h3 id="price"></h3>
+    </div>
+    <form id="tg">
+        <input type="text" name="phone">
+        <button type="submit">Заказать</button>
+    </form>
     <div style="width: 100%">
         <div id="dropsField" style="display: none"></div>
     </div>
@@ -80,6 +88,9 @@
     </div>
      <script src="js/drops.js"></script> <!-- подключение файла с бусинами -->
     <script>
+        const price = document.getElementById('price') //=блок вывода цены
+        let priceChek = 0;
+        price.innerHTML = priceChek;
         const field = document.getElementById("field");
         // let widthWatch = document.querySelector("input").value; //ширина большого циферблата, от нее все рассчитывается
         let widthWatch;
@@ -115,7 +126,8 @@
             smallRound.id = "id"+k //== создаем маленький зеленый круг
             getParam(smallRound, widthWatch*0.115, "green"); //== настраиваем
             smallRound.style.height = smallRound.style.width; //==даем высотуу
-    
+            smallRound.dataset.price = 0;
+            smallRound.dataset.name = 0;
             const radius = widthWatch*0.4; //== расстояние от центра циферблата
             const angle=parseFloat(numbers[k])/180*Math.PI; //== на какой угол раскидывать этот кружок
             const redCenterX=ciferblat.offsetLeft+ciferblat.offsetWidth/2; //== ципо центр большого циферблата по Х
@@ -125,20 +137,27 @@
             smallRound.style.left= Math.round(greenCenterX-smallRound.offsetWidth/2)+'px';
             smallRound.style.top= Math.round(greenCenterY-smallRound.offsetHeight/2)+'px';
         }
-        const dropsField = document.getElementById('dropsField');
-        for (let i = 0; i < drops.length; i ++) {
+        const dropsField = document.getElementById('dropsField');  
+        for (let i = 0; i < drops.length; i ++) {  //создает в полке бусины
                 const dropsIxBox = document.createElement('div');
                 dropsIxBox.style.width = widthWatch*0.2+'px';
                 dropsIxBox.style.height = widthWatch*0.2+'px';
-                // dropsIxBox.style.background = drops[i].backgroundColor;
-                dropsIxBox.style.background = 'url(https://fikiwiki.com/uploads/posts/2022-02/1645032874_1-fikiwiki-com-p-sobachki-krasivie-kartinki-1.jpg)'
+                dropsIxBox.dataset.price = drops[i].price;
+                dropsIxBox.dataset.name = drops[i].name;
+                dropsIxBox.style.background = drops[i].background;
+                dropsIxBox.style.backgroundSize = 'contain'
+                // console.log(dropsIxBox.style.background)
                 dropsIxBox.style.borderRadius = 50+'px';
                 dropsIxBox.addEventListener('click', doDrops)
                 dropsField.appendChild(dropsIxBox);
             }
-        function doDrops (event) {
+        function doDrops (event) { //==фукция когда нажал на одну бусину и она применилась на браслет
             const curDrops = document.getElementById(CurrentDropsPlaceId);
             curDrops.style.background = event.target.style.background;
+            curDrops.dataset.price = event.target.getAttribute('data-price');
+            curDrops.dataset.name = event.target.getAttribute('data-name');
+            // curDrops.setAttribute
+            getPrice()
         }
 
         let CurrentDropsPlaceId;
@@ -146,12 +165,49 @@
             for (let i = 0; i < 22; i ++) {
                 const findDrops = document.getElementById('id'+i);
                 findDrops.style.border = ''
+                // findDrops.dataset.price = event.target.getAttribute('data-price');
+                
             }
             event.target.style.border = '4px solid red';
             CurrentDropsPlaceId = event.target.id;
             dropsField.style.display = "flex";
         }
         
+
+        ///===== цена
+        function getPrice () {
+            priceChek = 0;
+            for (let i = 0; i < 22; i ++) {
+                const findBraceletPriceChange = document.getElementById('id'+i);
+                console.log(findBraceletPriceChange.getAttribute('data-price'));
+                priceChek += +(findBraceletPriceChange.getAttribute('data-price'));
+                price.innerHTML = priceChek;
+            }
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        const token =  '5900567011:AAFaVKV4bQYVVqpNKnDFaJ-t0-E23v-uuOE';
+        const chatId = '-1001876046498';
+        const URI_API = `https://api.telegram.org/bot${ token }/sendMessage`;
+
+        document.getElementById('tg').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let message = `<b>заявка с сайта</b>\n`;
+            for (let i = 0; i < 22; i ++) {
+                message += ` ${document.getElementById('id'+i).id}: ${document.getElementById('id'+i).getAttribute('data-name')}\n`
+            }
+            message += `цена браслета: ${priceChek}`
+
+            axios.post(URI_API, {
+                chat_id: chatId,
+                parse_mode: 'html',
+                text: message
+            })
+        })
+
+
     </script>
 </body>
 </html>

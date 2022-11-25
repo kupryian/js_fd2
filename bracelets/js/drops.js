@@ -1,72 +1,20 @@
 const drops = [
-    {
+    {   
+        name: 'Нефрит',
         size: 8,
         price: 2,
-        backgroundColor: 'red'
+        background: 'url(img/rose_quarz.jpg)'
     },
-    {
+    {   
+        name: 'Розовый Кварц',
         size: 8,
         price: 20,
-        backgroundColor: 'green'
+        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
     },
     {
+        name: 'Лавовый камень',
         size: 8,
         price: 100,
-        backgroundColor: 'yellow'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#8d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#8d5525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#2d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
-    },
-    {
-        size: 8,
-        price: 500,
-        backgroundColor: '#3d2525'
+        background: 'url(https://1nerudnyi.ru/wp-content/uploads/2019/01/kamen-lava2.jpg)'
     },
 ];
