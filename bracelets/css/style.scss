@@ -82,8 +82,16 @@
         flex-wrap: wrap;
         height: 230px;
         overflow-y: scroll;
-        div {
-            margin: 0 10px 5px 0px;
+        justify-content: space-between;
+        li {
+            // margin: 0 10px 5px 0px;
+            text-align: center;
+            width: 60px;
+            ul {
+                li {
+                    margin: 0;
+                }
+            }
         }
     }
     

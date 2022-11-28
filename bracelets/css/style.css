@@ -76,8 +76,12 @@
     display: flex;
     flex-wrap: wrap;
     height: 230px;
-    overflow-y: scroll; }
-    .dropsWrap #dropsField div {
-      margin: 0 10px 5px 0px; }
+    overflow-y: scroll;
+    justify-content: space-between; }
+    .dropsWrap #dropsField li {
+      text-align: center;
+      width: 60px; }
+      .dropsWrap #dropsField li ul li {
+        margin: 0; }
 
 /*# sourceMappingURL=style.css.map */

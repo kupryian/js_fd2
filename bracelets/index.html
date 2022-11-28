@@ -23,7 +23,7 @@
         <button type="submit">Заказать</button>
     </form> -->
     <div class="dropsWrap">
-        <div id="dropsField" style="display: none"></div>
+        <ul id="dropsField" style="display: none"></ul>
     </div>
     
 
@@ -81,24 +81,38 @@
             smallRound.style.left= Math.round(greenCenterX-smallRound.offsetWidth/2)+'px';
             smallRound.style.top= Math.round(greenCenterY-smallRound.offsetHeight/2)+'px';
         }
-        const dropsField = document.getElementById('dropsField');  
+        const dropsField = document.getElementById('dropsField');
+        // const dropsFieldUl = document.createElement('ul');
+        // dropsField.appendChild(dropsFieldUl);
         for (let i = 0; i < drops.length; i ++) {  //создает в полке бусины
-                const dropsIxBox = document.createElement('li');
-                dropsIxBox.style.width = widthWatch*0.15+'px';
-                dropsIxBox.style.height = widthWatch*0.15+'px';
-                dropsIxBox.classList.add('dropsIxBox');
-                dropsIxBox.dataset.price = drops[i].price;
-                dropsIxBox.dataset.name = drops[i].name;
-                dropsIxBox.style.background = drops[i].background;
-                dropsIxBox.style.backgroundSize = 'contain'
+                const dropsBoxLi = document.createElement('li');
+                const dropsBoxWrapUl = document.createElement('ul');
+                const dropsBoxImgLi = document.createElement('li');
+                const dropsBoxNameLi = document.createElement('li');
+                dropsBoxImgLi.style.width = widthWatch*0.15+'px';
+                dropsBoxImgLi.style.height = widthWatch*0.15+'px';
+                // dropsIxBox.classList.add('dropsIxBox');
+                dropsBoxImgLi.dataset.price = drops[i].price;
+                dropsBoxImgLi.dataset.name = drops[i].name;
+                dropsBoxImgLi.style.background = drops[i].background;
+                dropsBoxImgLi.style.backgroundSize = 'contain'
                 // console.log(dropsIxBox.style.background)
-                dropsIxBox.style.borderRadius = 50+'px';
-                dropsIxBox.addEventListener('click', doDrops);
-                // const dropsName = document.createElement('div');
-                // dropsField.appendChild(dropsName);
-                dropsField.appendChild(
-                    document.createElement('ul').appendChild(dropsIxBox)
-                    );
+                dropsBoxImgLi.style.borderRadius = 50+'px';
+                dropsBoxImgLi.addEventListener('click', doDrops);
+
+                dropsBoxNameLi.appendChild(document.createTextNode(drops[i].name));
+                dropsBoxWrapUl.appendChild(dropsBoxImgLi);
+                dropsBoxWrapUl.appendChild(dropsBoxNameLi);
+
+                dropsBoxLi.appendChild(dropsBoxWrapUl);
+                dropsField.appendChild(dropsBoxLi);
+
+
+
+                // const dropsName = document.createElement('li');
+                
+
+                // dropsField.appendChild(dropsIxBox);
                 
 
             }
