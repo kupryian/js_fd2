@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/normolize.css">
+    <link rel="stylesheet" href="css/style.css">
+    
     
 
     <title>Document</title>
-    <style>
+    <!-- <style>
         .shadawOn {
             box-shadow: 0px 0px 32px rgb(216 14 215)!important;
             transition: 0.5s;
@@ -76,19 +78,20 @@
             height: 230px;
             overflow-y: scroll;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <div style ="position: relative;" id="field">
     </div>
-    <div>
-        <h2>цена</h2>
-        <h3 id="price"></h3>
-    </div>
-    <form id="tg">
+    <ul id="priceBox">
+        <li id="price"></li>
+        <!-- <li> руб.</li> -->
+        <li id="PriceBtn">Заказать</li>
+    </ul>
+    <!-- <form id="tg">
         <input type="text" name="phone">
         <button type="submit">Заказать</button>
-    </form>
+    </form> -->
     <div style="width: 100%">
         <div id="dropsField" style="display: none"></div>
     </div>
@@ -97,14 +100,16 @@
     </div>
      <script src="js/drops.js"></script> <!-- подключение файла с бусинами -->
     <script>
+        const priceBox = document.getElementById('priceBox') //== для размера букв
         const price = document.getElementById('price') //=блок вывода цены
-        let priceChek = 0;
+        let priceChek = 0+' руб.';
         price.innerHTML = priceChek;
         const field = document.getElementById("field");
         // let widthWatch = document.querySelector("input").value; //ширина большого циферблата, от нее все рассчитывается
         let widthWatch;
         if (window.screen.width < 600) {
-            widthWatch = window.screen.width; 
+            widthWatch = window.screen.width;
+            document.getElementById('priceBox').style.fontSize = window.screen.width/100*6+'px';
         } else {
             widthWatch = 600;
         }//ширина большого циферблата, от нее все рассчитывается
@@ -190,7 +195,10 @@
                 const findBraceletPriceChange = document.getElementById('id'+i);
                 console.log(findBraceletPriceChange.getAttribute('data-price'));
                 priceChek += +(findBraceletPriceChange.getAttribute('data-price'));
-                price.innerHTML = priceChek;
+                price.innerHTML = priceChek+' руб.';
+            }
+            if (priceChek > 0) {
+                document.getElementById('PriceBtn').classList.toggle('active_btn')
             }
         }
 

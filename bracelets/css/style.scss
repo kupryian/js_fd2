@@ -1,0 +1,83 @@
+#priceBox {
+    display: flex;
+    padding: 0 20px;
+    li {
+        padding: 10px 5px 0 0;
+    }
+    .active_btn {
+        color: white!important;
+        background: rgb(230, 8, 230)!important;
+        box-shadow: 0px 0px 32px rgb(230, 8, 230)!important;
+        border: 2px solid rgb(230, 8, 230)!important;
+        // transform: translateY(-7px);
+        transition: all 0.3s ease 0s;
+    }
+    li:last-child {
+        border: 2px solid #939393;
+        margin-left: 50px;
+        padding: 10px;
+        border-radius: 15px;
+        color: #939393;
+    }
+}
+.shadawOn {
+    box-shadow: 0px 0px 32px rgb(230, 8, 230)!important;
+    transition: all 0.3s ease 0s;
+}
+.shadowOff {
+    box-shadow: none;
+    // transition: 0.5s;
+}
+.green {
+    border-radius: 50%;
+    background: url(../img/emty_drops.png);
+    background-size: cover;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.big {
+    border-radius: 50%;
+}
+.second {
+    background-color: black;
+    border-radius: 50%;
+    height: 2px;
+    position: absolute;
+    z-index: 20;
+    transform-origin: left;
+}
+.minut {
+    background-color: black;
+    border-radius: 50%;
+    height: 6px;
+    position: absolute;
+    z-index: 20;
+    transform-origin: left;
+}
+.hours {
+    background-color: black;
+    border-radius: 20%;
+    height: 10px;
+    position: absolute;
+    z-index: 20;
+    transform-origin: left;
+}
+.electronic {
+    height: 100px;
+    position: absolute;
+    display: flex;
+}
+.ul {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    list-style-type: none;
+}
+#dropsField {
+    display: flex;
+    flex-wrap: wrap;
+    height: 230px;
+    overflow-y: scroll;
+}
