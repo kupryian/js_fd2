@@ -8,77 +8,7 @@
     <link rel="stylesheet" href="css/normolize.css">
     <link rel="stylesheet" href="css/style.css">
     
-    
-
     <title>Document</title>
-    <!-- <style>
-        .shadawOn {
-            box-shadow: 0px 0px 32px rgb(216 14 215)!important;
-            transition: 0.5s;
-        }
-        .shadowOff {
-            box-shadow: none;
-            transition: 0.5s;
-        }
-        .green {
-            border-radius: 50%;
-            background: url(img/emty_drops.png);
-            background-size: cover;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .big {
-            /* position: relative;  */
-            /* left: 100px; 
-            top: 100px;  */
-            /* background-color: #fcca66; */
-            /* background: url(https://fikiwiki.com/uploads/posts/2022-02/1645032874_1-fikiwiki-com-p-sobachki-krasivie-kartinki-1.jpg); */
-            border-radius: 50%;
-        }
-        .second {
-            background-color: black;
-            border-radius: 50%;
-            height: 2px;
-            position: absolute;
-            z-index: 20;
-            transform-origin: left;
-        }
-        .minut {
-            background-color: black;
-            border-radius: 50%;
-            height: 6px;
-            position: absolute;
-            z-index: 20;
-            transform-origin: left;
-        }
-        .hours {
-            background-color: black;
-            border-radius: 20%;
-            height: 10px;
-            position: absolute;
-            z-index: 20;
-            transform-origin: left;
-        }
-        .electronic {
-            height: 100px;
-            position: absolute;
-            display: flex;
-        }
-        .ul {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            list-style-type: none;
-        }
-        #dropsField {
-            display: flex;
-            flex-wrap: wrap;
-            height: 230px;
-            overflow-y: scroll;
-        }
-    </style> -->
 </head>
 <body>
     <div style ="position: relative;" id="field">
@@ -92,13 +22,13 @@
         <input type="text" name="phone">
         <button type="submit">Заказать</button>
     </form> -->
-    <div style="width: 100%">
+    <div class="dropsWrap">
         <div id="dropsField" style="display: none"></div>
     </div>
     
 
     </div>
-     <script src="js/drops.js"></script> <!-- подключение файла с бусинами -->
+      <script src="js/drops.js"></script> <!-- подключение файла с бусинами -->
     <script>
         const priceBox = document.getElementById('priceBox') //== для размера букв
         const price = document.getElementById('price') //=блок вывода цены
@@ -153,17 +83,24 @@
         }
         const dropsField = document.getElementById('dropsField');  
         for (let i = 0; i < drops.length; i ++) {  //создает в полке бусины
-                const dropsIxBox = document.createElement('div');
-                dropsIxBox.style.width = widthWatch*0.2+'px';
-                dropsIxBox.style.height = widthWatch*0.2+'px';
+                const dropsIxBox = document.createElement('li');
+                dropsIxBox.style.width = widthWatch*0.15+'px';
+                dropsIxBox.style.height = widthWatch*0.15+'px';
+                dropsIxBox.classList.add('dropsIxBox');
                 dropsIxBox.dataset.price = drops[i].price;
                 dropsIxBox.dataset.name = drops[i].name;
                 dropsIxBox.style.background = drops[i].background;
                 dropsIxBox.style.backgroundSize = 'contain'
                 // console.log(dropsIxBox.style.background)
                 dropsIxBox.style.borderRadius = 50+'px';
-                dropsIxBox.addEventListener('click', doDrops)
-                dropsField.appendChild(dropsIxBox);
+                dropsIxBox.addEventListener('click', doDrops);
+                // const dropsName = document.createElement('div');
+                // dropsField.appendChild(dropsName);
+                dropsField.appendChild(
+                    document.createElement('ul').appendChild(dropsIxBox)
+                    );
+                
+
             }
         function doDrops (event) { //==фукция когда нажал на одну бусину и она применилась на браслет
             const curDrops = document.getElementById(CurrentDropsPlaceId);

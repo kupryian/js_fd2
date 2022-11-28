@@ -70,10 +70,14 @@
   flex-direction: row;
   list-style-type: none; }
 
-#dropsField {
-  display: flex;
-  flex-wrap: wrap;
-  height: 230px;
-  overflow-y: scroll; }
+.dropsWrap {
+  padding: 20px; }
+  .dropsWrap #dropsField {
+    display: flex;
+    flex-wrap: wrap;
+    height: 230px;
+    overflow-y: scroll; }
+    .dropsWrap #dropsField div {
+      margin: 0 10px 5px 0px; }
 
 /*# sourceMappingURL=style.css.map */

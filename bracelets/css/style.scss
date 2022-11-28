@@ -75,9 +75,16 @@
     flex-direction: row;
     list-style-type: none;
 }
-#dropsField {
-    display: flex;
-    flex-wrap: wrap;
-    height: 230px;
-    overflow-y: scroll;
+.dropsWrap {
+    padding: 20px;
+    #dropsField {
+        display: flex;
+        flex-wrap: wrap;
+        height: 230px;
+        overflow-y: scroll;
+        div {
+            margin: 0 10px 5px 0px;
+        }
+    }
+    
 }
