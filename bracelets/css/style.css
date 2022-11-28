@@ -80,8 +80,11 @@
     justify-content: space-between; }
     .dropsWrap #dropsField li {
       text-align: center;
-      width: 60px; }
+      width: 60px;
+      font-size: 14px;
+      margin: 0 7px 10px 0px; }
       .dropsWrap #dropsField li ul li {
-        margin: 0; }
+        margin: 0;
+        padding-top: 5px; }
 
 /*# sourceMappingURL=style.css.map */
