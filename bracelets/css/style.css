@@ -30,7 +30,7 @@
 .shadowOff {
   box-shadow: none; }
 
-.green {
+.emtyDropsStyle {
   border-radius: 50%;
   background: url(../img/emty_drops.png);
   background-size: cover;
