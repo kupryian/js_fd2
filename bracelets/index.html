@@ -28,7 +28,6 @@
     </div>
     <ul id="priceBox">
         <li id="price"></li>
-        <!-- <li> руб.</li> -->
         <li id="PriceBtn">Заказать</li>
     </ul>
     <!-- <form id="tg">
@@ -43,10 +42,11 @@
     </div>
       <script src="js/drops.js"></script> <!-- подключение файла с бусинами -->
     <script>
-        let braceletSize = 20;
-        let beadsGrad = 18;
-        let beadsSize = 0.127;
-        document.getElementById('sizeBracelet').addEventListener('change', event => {
+        let braceletSize = 20; // начальное число бусин в браслете
+        let beadsGrad = 18; // начальное константа по градусу гла бусин в браслете
+        let beadsSize = 0.127; // начальный коэфициент размера бусины в браслете
+//========== выбор размера браслета и установка новых констант для отрисовки
+        document.getElementById('sizeBracelet').addEventListener('change', event => { 
             console.log('ok');
             braceletSize = +event.target.value;
             switch (braceletSize) {
@@ -77,66 +77,52 @@
             }
             buildBracelet ();
         })
-
+//========== переменные
         const priceBox = document.getElementById('priceBox') //== для размера букв
         const price = document.getElementById('price') //=блок вывода цены
         let priceChek = 0+' руб.';
         price.innerHTML = priceChek;
+
         const field = document.getElementById("field");
-        // let widthWatch = document.querySelector("input").value; //ширина большого циферблата, от нее все рассчитывается
-        let widthWatch;
+        let widthBracelet;
         if (window.screen.width < 600) {
-            widthWatch = window.screen.width;
+            widthBracelet = window.screen.width;
             document.getElementById('priceBox').style.fontSize = window.screen.width/100*6+'px';
             document.getElementById('braceletSizeWrap').style.fontSize = window.screen.width/100*6+'px';
 
         } else {
-            widthWatch = 600;
-        }//ширина большого циферблата, от нее все рассчитывается
-        // const ciferblat = document.createElement("div"); //большой который
-        // ciferblat.classList.add("big");
-        // ciferblat.style.width = widthWatch+'px'; //== эт его ширина
-        // ciferblat.style.height = ciferblat.style.width;  //== она же высота
-        // field.classList.add("big");
-        field.style.width = widthWatch+'px'; //== эт его ширина
-        field.style.height = field.style.width;  //== она же высота
-        // field.appendChild(ciferblat);
-
-        function getParam (whatArrow,width,clas) { //== работа со стрелками (не только, раскидывает круги)
-            whatArrow.classList.add(clas); //== добавляем класс
-            whatArrow.style.width = width+"px"; //== её длинна 45% от ширины циферблата
-            field.appendChild(whatArrow); //== апендим
+            widthBracelet = 600;
         }
+        field.style.width = widthBracelet+'px'; //== эт его ширина
+        field.style.height = field.style.width;  //== она же высота
 
-
+//==========функция построения браслета
         function buildBracelet () {
-            const numbers = []; //== сюда будуут пушиться 12 положений маленьких циферблатов, их градусы (цикл ниже)
-        // const cifry = [12,1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22] //== это на циферблат добавится
+            const numbers = []; //== сюда будуут пушиться углы, по которым разместятся бусины
         
-            let roundH = 0;
+            let roundH = 0; //==первый угол
+            //==высчитываются все углы для бусин на браслете
             for (let i =0; i<braceletSize; i++) { 
                 numbers.push(roundH);
                 roundH += beadsGrad;
             }
-
+            //==удаляется предыдущий браслет со страницы
             const elementCount = field.childElementCount
             for (let v= 0; v<elementCount; v++) {
                 document.getElementById('id'+v).remove();
             }
-
+            //==строим новые бусины
             for (let k= 0; k<braceletSize; k++) {
-                 //== раскидываем циферблат с цифрами
                 const smallRound = document.createElement("div");
-                smallRound.addEventListener('click', openPolka)
-                smallRound.id = "id"+k //== создаем маленький зеленый круг
-                getParam(smallRound, widthWatch*beadsSize, "green"); //== настраиваем
-                smallRound.style.height = smallRound.style.width; //==даем высотуу
-                smallRound.dataset.price = 0;
-                smallRound.dataset.name = 0;
-                const radius = widthWatch*0.4; //== расстояние от центра циферблата
-                const angle=parseFloat(numbers[k])/180*Math.PI; //== на какой угол раскидывать этот кружок
-                const redCenterX=field.offsetLeft+field.offsetWidth/2; //== ципо центр большого циферблата по Х
-                const redCenterY=0+field.offsetHeight/2; //== по У
+                smallRound.addEventListener('click', openPolka); // бусина на браслете получает событие клика
+                smallRound.id = "id"+k //== получает уникальный id 
+                getParam(smallRound, widthBracelet*beadsSize, "emtyDropsStyle"); //== настраиваем стили бусин
+                smallRound.dataset.price = 0; //собственный атрибут цены по умолчанию
+                smallRound.dataset.name = 0; //имя по умолчанию
+                const radius = widthBracelet*0.4; //== расстояние  бусины от центра 
+                const angle=parseFloat(numbers[k])/180*Math.PI; //== угол бусины
+                const redCenterX=field.offsetLeft+field.offsetWidth/2;
+                const redCenterY=0+field.offsetHeight/2;
                 const greenCenterX=redCenterX+radius*Math.sin(angle); 
                 const greenCenterY=redCenterY-radius*Math.cos(angle);
                 smallRound.style.left= Math.round(greenCenterX-smallRound.offsetWidth/2)+'px';
@@ -144,79 +130,76 @@
             }
         }
         buildBracelet ();
-        
+        //==== стиль для бусин
+        function getParam (beads,width,clas) {
+            beads.classList.add(clas); //== добавляем класс
+            beads.style.width = width+"px";
+            beads.style.height = beads.style.width;
+            field.appendChild(beads); 
+        }
+//===== полка с бусинами      
         const dropsField = document.getElementById('dropsField');
-        // const dropsFieldUl = document.createElement('ul');
-        // dropsField.appendChild(dropsFieldUl);
-        for (let i = 0; i < drops.length; i ++) {  //создает в полке бусины
+        //==наполняем полку бусинами из базы
+        for (let i = 0; i < drops.length; i ++) {
                 const dropsBoxLi = document.createElement('li');
                 const dropsBoxWrapUl = document.createElement('ul');
                 const dropsBoxImgLi = document.createElement('li');
                 const dropsBoxNameLi = document.createElement('li');
-                dropsBoxImgLi.style.width = widthWatch*0.15+'px';
-                dropsBoxImgLi.style.height = widthWatch*0.15+'px';
-                // dropsIxBox.classList.add('dropsIxBox');
+                dropsBoxImgLi.style.width = widthBracelet*0.15+'px';
+                dropsBoxImgLi.style.height = widthBracelet*0.15+'px';
                 dropsBoxImgLi.dataset.price = drops[i].price;
                 dropsBoxImgLi.dataset.name = drops[i].name;
                 dropsBoxImgLi.style.background = drops[i].background;
                 dropsBoxImgLi.style.backgroundSize = 'contain'
-                // console.log(dropsIxBox.style.background)
                 dropsBoxImgLi.style.borderRadius = 50+'px';
-                dropsBoxImgLi.addEventListener('click', doDrops);
-
+                dropsBoxImgLi.addEventListener('click', doDrops); //событие для применения бусины на браслет
                 dropsBoxNameLi.appendChild(document.createTextNode(drops[i].name));
                 dropsBoxWrapUl.appendChild(dropsBoxImgLi);
                 dropsBoxWrapUl.appendChild(dropsBoxNameLi);
-
                 dropsBoxLi.appendChild(dropsBoxWrapUl);
                 dropsField.appendChild(dropsBoxLi);
-
-
-
-                // const dropsName = document.createElement('li');
-                
-
-                // dropsField.appendChild(dropsIxBox);
-                
-
-            }
+        }
+//=== применение выбранной из полки бусины на браслет        
         function doDrops (event) { //==фукция когда нажал на одну бусину и она применилась на браслет
             const curDrops = document.getElementById(CurrentDropsPlaceId);
             curDrops.style.background = event.target.style.background;
             curDrops.dataset.price = event.target.getAttribute('data-price');
             curDrops.dataset.name = event.target.getAttribute('data-name');
-            // curDrops.setAttribute
             getPrice()
         }
 
-        let CurrentDropsPlaceId;
-        function openPolka (event) { //===тень на активном
+        let CurrentDropsPlaceId; 
+        //==функция набрасывает тень на выбраную на браслете бусину
+        function openPolka (event) {
             for (let i = 0; i < braceletSize; i ++) {
                 const findDrops = document.getElementById('id'+i);
                 findDrops.classList.remove('shadawOn');
                 findDrops.classList.add('shadowOff');
-                // findDrops.dataset.price = event.target.getAttribute('data-price');
             }
             event.target.classList.add('shadawOn');
             CurrentDropsPlaceId = event.target.id;
             dropsField.style.display = "flex";
         }
-        
-
-        ///===== цена
+//===== обновление стоимости браслета
         function getPrice () {
             priceChek = 0;
             for (let i = 0; i < braceletSize; i ++) {
                 const findBraceletPriceChange = document.getElementById('id'+i);
-                console.log(findBraceletPriceChange.getAttribute('data-price'));
                 priceChek += +(findBraceletPriceChange.getAttribute('data-price'));
                 price.innerHTML = priceChek+' руб.';
             }
-            if (priceChek > 0) {
-                document.getElementById('PriceBtn').classList.toggle('active_btn')
-            }
+            //==проверяем чтобы были все бусины выбраны - включаем кнопку заказать
+            let elementCountPrice = true;
+            field.querySelectorAll('div').forEach(x => {
+                if(+x.getAttribute('data-price') == 0) {
+                    elementCountPrice = false;
+            }})
+            if (elementCountPrice) {
+                document.getElementById('PriceBtn').classList.add('active_btn');
+            } else {
+                    document.getElementById('PriceBtn').classList.remove('active_btn')
+            };
         }
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <!-- <script>
@@ -238,8 +221,6 @@
                 text: message
             })
         })
-
-
     </script> -->
 </body>
 </html>
