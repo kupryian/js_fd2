@@ -134,6 +134,7 @@
                 smallRound.style.left= Math.round(greenCenterX-smallRound.offsetWidth/2)+'px';
                 smallRound.style.top= Math.round(greenCenterY-smallRound.offsetHeight/2)+'px';
             }
+            document.getElementById('id8').classList.add('blitz');
         }
         buildBracelet ();
         //==== стиль для бусин
@@ -182,6 +183,7 @@
                 findDrops.classList.add('shadowOff');
             }
             event.target.classList.add('shadawOn');
+            document.getElementById('id8').classList.remove('blitz')
             CurrentDropsPlaceId = event.target.id;
             dropsField.style.display = "flex";
         }
