@@ -11,6 +11,19 @@
     <title>Document</title>
 </head>
 <body>
+    <ul id="braceletSizeWrap">
+        <li><h3>Размер браслета</h3></li>
+        <li id="sizeRadio">
+            <select name="sizeBracelet" id="sizeBracelet">
+                <option value="20">14см</option>
+                <option value="22">15см</option>
+                <option value="23">16см</option>
+                <option value="24">17см</option>
+                <option value="25">18см</option>
+                <option value="26">19см</option>
+            </select>
+        </li>
+    </ul>
     <div style ="position: relative;" id="field">
     </div>
     <ul id="priceBox">
@@ -30,6 +43,41 @@
     </div>
       <script src="js/drops.js"></script> <!-- подключение файла с бусинами -->
     <script>
+        let braceletSize = 20;
+        let beadsGrad = 18;
+        let beadsSize = 0.127;
+        document.getElementById('sizeBracelet').addEventListener('change', event => {
+            console.log('ok');
+            braceletSize = +event.target.value;
+            switch (braceletSize) {
+                case 20:
+                beadsGrad =18;
+                beadsSize = 0.127;
+                break;
+                case 22:
+                beadsGrad =16.363636;
+                beadsSize = 0.115;
+                break;
+                case 23:
+                beadsGrad =15.652174;
+                beadsSize = 0.112;
+                break;
+                case 24:
+                beadsGrad =15;
+                beadsSize = 0.105;
+                break;
+                case 25:
+                beadsGrad =14.4;
+                beadsSize = 0.103;
+                break;
+                case 26:
+                beadsGrad =13.846154;
+                beadsSize = 0.097;
+                break;
+            }
+            buildBracelet ();
+        })
+
         const priceBox = document.getElementById('priceBox') //== для размера букв
         const price = document.getElementById('price') //=блок вывода цены
         let priceChek = 0+' руб.';
@@ -40,14 +88,19 @@
         if (window.screen.width < 600) {
             widthWatch = window.screen.width;
             document.getElementById('priceBox').style.fontSize = window.screen.width/100*6+'px';
+            document.getElementById('braceletSizeWrap').style.fontSize = window.screen.width/100*6+'px';
+
         } else {
             widthWatch = 600;
         }//ширина большого циферблата, от нее все рассчитывается
-        const ciferblat = document.createElement("div"); //большой который
-        ciferblat.classList.add("big");
-        ciferblat.style.width = widthWatch+'px'; //== эт его ширина
-        ciferblat.style.height = ciferblat.style.width;  //== она же высота
-        field.appendChild(ciferblat);
+        // const ciferblat = document.createElement("div"); //большой который
+        // ciferblat.classList.add("big");
+        // ciferblat.style.width = widthWatch+'px'; //== эт его ширина
+        // ciferblat.style.height = ciferblat.style.width;  //== она же высота
+        // field.classList.add("big");
+        field.style.width = widthWatch+'px'; //== эт его ширина
+        field.style.height = field.style.width;  //== она же высота
+        // field.appendChild(ciferblat);
 
         function getParam (whatArrow,width,clas) { //== работа со стрелками (не только, раскидывает круги)
             whatArrow.classList.add(clas); //== добавляем класс
@@ -55,32 +108,43 @@
             field.appendChild(whatArrow); //== апендим
         }
 
-        const numbers = []; //== сюда будуут пушиться 12 положений маленьких циферблатов, их градусы (цикл ниже)
-        const cifry = [12,1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22] //== это на циферблат добавится
-        let roundH = 0;
 
-        for (let i =0; i<22; i++) { 
-            numbers.push(roundH);
-            roundH +=16.363636;
-        }
+        function buildBracelet () {
+            const numbers = []; //== сюда будуут пушиться 12 положений маленьких циферблатов, их градусы (цикл ниже)
+        // const cifry = [12,1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22] //== это на циферблат добавится
+        
+            let roundH = 0;
+            for (let i =0; i<braceletSize; i++) { 
+                numbers.push(roundH);
+                roundH += beadsGrad;
+            }
 
-        for (let k= 0; k<22; k++) { //== раскидываем циферблат с цифрами
-            const smallRound = document.createElement("div");
-            smallRound.addEventListener('click', openPolka)
-            smallRound.id = "id"+k //== создаем маленький зеленый круг
-            getParam(smallRound, widthWatch*0.115, "green"); //== настраиваем
-            smallRound.style.height = smallRound.style.width; //==даем высотуу
-            smallRound.dataset.price = 0;
-            smallRound.dataset.name = 0;
-            const radius = widthWatch*0.4; //== расстояние от центра циферблата
-            const angle=parseFloat(numbers[k])/180*Math.PI; //== на какой угол раскидывать этот кружок
-            const redCenterX=ciferblat.offsetLeft+ciferblat.offsetWidth/2; //== ципо центр большого циферблата по Х
-            const redCenterY=ciferblat.offsetTop+ciferblat.offsetHeight/2; //== по У
-            const greenCenterX=redCenterX+radius*Math.sin(angle); 
-            const greenCenterY=redCenterY-radius*Math.cos(angle);
-            smallRound.style.left= Math.round(greenCenterX-smallRound.offsetWidth/2)+'px';
-            smallRound.style.top= Math.round(greenCenterY-smallRound.offsetHeight/2)+'px';
+            const elementCount = field.childElementCount
+            for (let v= 0; v<elementCount; v++) {
+                document.getElementById('id'+v).remove();
+            }
+
+            for (let k= 0; k<braceletSize; k++) {
+                 //== раскидываем циферблат с цифрами
+                const smallRound = document.createElement("div");
+                smallRound.addEventListener('click', openPolka)
+                smallRound.id = "id"+k //== создаем маленький зеленый круг
+                getParam(smallRound, widthWatch*beadsSize, "green"); //== настраиваем
+                smallRound.style.height = smallRound.style.width; //==даем высотуу
+                smallRound.dataset.price = 0;
+                smallRound.dataset.name = 0;
+                const radius = widthWatch*0.4; //== расстояние от центра циферблата
+                const angle=parseFloat(numbers[k])/180*Math.PI; //== на какой угол раскидывать этот кружок
+                const redCenterX=field.offsetLeft+field.offsetWidth/2; //== ципо центр большого циферблата по Х
+                const redCenterY=0+field.offsetHeight/2; //== по У
+                const greenCenterX=redCenterX+radius*Math.sin(angle); 
+                const greenCenterY=redCenterY-radius*Math.cos(angle);
+                smallRound.style.left= Math.round(greenCenterX-smallRound.offsetWidth/2)+'px';
+                smallRound.style.top= Math.round(greenCenterY-smallRound.offsetHeight/2)+'px';
+            }
         }
+        buildBracelet ();
+        
         const dropsField = document.getElementById('dropsField');
         // const dropsFieldUl = document.createElement('ul');
         // dropsField.appendChild(dropsFieldUl);
@@ -127,7 +191,7 @@
 
         let CurrentDropsPlaceId;
         function openPolka (event) { //===тень на активном
-            for (let i = 0; i < 22; i ++) {
+            for (let i = 0; i < braceletSize; i ++) {
                 const findDrops = document.getElementById('id'+i);
                 findDrops.classList.remove('shadawOn');
                 findDrops.classList.add('shadowOff');
@@ -142,7 +206,7 @@
         ///===== цена
         function getPrice () {
             priceChek = 0;
-            for (let i = 0; i < 22; i ++) {
+            for (let i = 0; i < braceletSize; i ++) {
                 const findBraceletPriceChange = document.getElementById('id'+i);
                 console.log(findBraceletPriceChange.getAttribute('data-price'));
                 priceChek += +(findBraceletPriceChange.getAttribute('data-price'));
