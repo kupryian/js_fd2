@@ -12,7 +12,7 @@
 </head>
 <body>
     <ul id="braceletSizeWrap">
-        <li><h3>Размер браслета</h3></li>
+        <li><h3>Обхват запястья</h3></li>
         <li id="sizeRadio">
             <select name="sizeBracelet" id="sizeBracelet">
                 <option value="20">14см</option>
@@ -28,17 +28,25 @@
     </div>
     <ul id="priceBox">
         <li id="price"></li>
-        <li id="PriceBtn">Заказать</li>
+        <li><button id="PriceBtn">Заказать</button></li>
     </ul>
-    <!-- <form id="tg">
-        <input type="text" name="phone">
-        <button type="submit">Заказать</button>
-    </form> -->
     <div class="dropsWrap">
         <ul id="dropsField" style="display: none"></ul>
     </div>
-    
-
+    <div id="popup">
+            <form id="tg">
+                <h1>Стоимость браслета: <span id="popupPrice"></span></h1>
+                <h2>Мне удобнее общаться:</h2>
+                <div id="popupCheckbox">
+                    <input type="checkbox" name="telegram">Telegram<br>
+                    <input type="checkbox" name="viber">Viber<br>
+                    <input type="checkbox" name="mobile">Телефон<br>
+                </div>
+                <input type="tel" name="phone" value="+375" maxlength="13">
+                <button type="submit">Заказать</button>
+            </form>
+            <p id="errorMessage"></p>
+            <button id="popupClose">Закрыть</button>
     </div>
       <script src="js/drops.js"></script> <!-- подключение файла с бусинами -->
     <script>
@@ -47,7 +55,6 @@
         let beadsSize = 0.127; // начальный коэфициент размера бусины в браслете
 //========== выбор размера браслета и установка новых констант для отрисовки
         document.getElementById('sizeBracelet').addEventListener('change', event => { 
-            console.log('ok');
             braceletSize = +event.target.value;
             switch (braceletSize) {
                 case 20:
@@ -82,7 +89,6 @@
         const price = document.getElementById('price') //=блок вывода цены
         let priceChek = 0+' руб.';
         price.innerHTML = priceChek;
-
         const field = document.getElementById("field");
         let widthBracelet;
         if (window.screen.width < 600) {
@@ -99,7 +105,6 @@
 //==========функция построения браслета
         function buildBracelet () {
             const numbers = []; //== сюда будуут пушиться углы, по которым разместятся бусины
-        
             let roundH = 0; //==первый угол
             //==высчитываются все углы для бусин на браслете
             for (let i =0; i<braceletSize; i++) { 
@@ -167,7 +172,6 @@
             curDrops.dataset.name = event.target.getAttribute('data-name');
             getPrice()
         }
-
         let CurrentDropsPlaceId; 
         //==функция набрасывает тень на выбраную на браслете бусину
         function openPolka (event) {
@@ -187,40 +191,75 @@
                 const findBraceletPriceChange = document.getElementById('id'+i);
                 priceChek += +(findBraceletPriceChange.getAttribute('data-price'));
                 price.innerHTML = priceChek+' руб.';
+                document.getElementById('popupPrice').innerHTML = priceChek+' руб.'
             }
             //==проверяем чтобы были все бусины выбраны - включаем кнопку заказать
             let elementCountPrice = true;
             field.querySelectorAll('div').forEach(x => {
                 if(+x.getAttribute('data-price') == 0) {
-                    elementCountPrice = false;
-            }})
+                    elementCountPrice = false; 
+                };
+            })
+            //==== заказ попап
             if (elementCountPrice) {
                 document.getElementById('PriceBtn').classList.add('active_btn');
-            } else {
-                    document.getElementById('PriceBtn').classList.remove('active_btn')
-            };
+                document.querySelector('.active_btn').addEventListener('click', event => {
+                    document.getElementById('popup').classList.add('popupOn');
+                })
+            }
         }
+//==закрыть попап с заказом
+        document.getElementById('popupClose').addEventListener('click', event => {
+            document.getElementById('popup').classList.remove('popupOn')
+            document.getElementById('errorMessage').innerHTML = '';
+        })
+//==проверка формы
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <!-- <script>
+    <script>
         const token =  '5900567011:AAFaVKV4bQYVVqpNKnDFaJ-t0-E23v-uuOE';
         const chatId = '-1001876046498';
         const URI_API = `https://api.telegram.org/bot${ token }/sendMessage`;
 
         document.getElementById('tg').addEventListener('submit', function(e) {
             e.preventDefault();
-            let message = `<b>заявка с сайта</b>\n`;
-            for (let i = 0; i < 22; i ++) {
+            //валидация телефона
+            document.querySelector('input[type=tel]').value.length < 13 ?
+            document.querySelector('input[type=tel]').style.border = '2px red solid' :
+            document.querySelector('input[type=tel]').style.border = 'none'
+            //валидация чекбокса
+            // document.querySelectorAll('input[type=checkbox]').forEach(x => {
+            //     x.checked ? x.style.outline = 'none' : x.style.outline = '2px red solid'
+            // })
+            let message = `<b>Заявка с сайта</b>\n`;
+            message += `<b>Обхват запястья: ${document.querySelector('select')[document.querySelector('select')
+                .options.selectedIndex].text}</b>\n`
+            for (let i = 0; i < braceletSize; i ++) {
                 message += ` ${document.getElementById('id'+i).id}: ${document.getElementById('id'+i).getAttribute('data-name')}\n`
             }
-            message += `цена браслета: ${priceChek}`
+            message += `<b>Цена браслета: ${priceChek} руб.</b>\n`
+            let whatConnect = ''
+            document.querySelectorAll('input[type=checkbox]').forEach(x => {
+                if(x.checked) {
+                    whatConnect += x.name+" " 
+                }
+            })
+            message +=  `<b>Свяжитесь мо мной по: ${whatConnect}</b>\n`
+            message +=  `<b>Телефон: ${document.querySelector('input[type=tel]').value}</b> `
+            console.log(message)
 
+            if (document.querySelector('input[type=tel]').value.length == 13) {
             axios.post(URI_API, {
                 chat_id: chatId,
                 parse_mode: 'html',
                 text: message
             })
+                document.getElementById('errorMessage').innerHTML = 'Ваш заказ отправлен. Скоро мы свяжемся с Вами'
+            }
+
         })
-    </script> -->
+        
+    </script>
 </body>
 </html>

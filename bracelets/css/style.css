@@ -1,3 +1,39 @@
+#popup.popupOn {
+  left: 0;
+  transition: 0.3s; }
+
+#popup {
+  display: flex;
+  top: 0px;
+  flex-direction: column;
+  height: 100vh;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+  left: -2000px;
+  width: 100%;
+  background: white;
+  transition: 0.3s; }
+  #popup #tg {
+    text-align: center; }
+    #popup #tg h1 {
+      padding-bottom: 50px;
+      font-size: 25px; }
+  #popup div {
+    text-align: left;
+    width: 200px;
+    margin: 10px auto; }
+    #popup div input {
+      margin: 5px 0px; }
+  #popup #popupClose {
+    width: 100px;
+    align-self: center;
+    margin-top: 50px; }
+  #popup p {
+    margin: 20px;
+    text-align: center;
+    font-size: 20px; }
+
 #priceBox {
   display: flex;
   padding: 0 20px;
@@ -8,7 +44,7 @@
     box-shadow: 0px 0px 32px #e608e6 !important;
     border: 2px solid #e608e6 !important;
     transition: all 0.3s ease 0s; }
-  #priceBox li:last-child {
+  #priceBox button {
     border: 2px solid #939393;
     margin-left: 50px;
     padding: 10px;

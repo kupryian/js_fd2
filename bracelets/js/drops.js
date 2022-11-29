@@ -132,4 +132,3 @@ const drops = [
         background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
     },
 ];
-console.log(drops)
