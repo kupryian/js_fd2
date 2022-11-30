@@ -105,11 +105,11 @@
         }
         field.style.width = widthBracelet+'px'; //== эт его ширина
         field.style.height = field.style.width;  //== она же высота
-
+        let numbers = [];
 //==========функция построения браслета
         function buildBracelet () {
             document.getElementById('PriceBtn').classList.remove('active_btn')
-            const numbers = []; //== сюда будуут пушиться углы, по которым разместятся бусины
+            numbers = []; //== сюда будуут пушиться углы, по которым разместятся бусины
             let roundH = 0; //==первый угол
             //==высчитываются все углы для бусин на браслете
             for (let i =0; i<braceletSize; i++) { 
@@ -176,6 +176,8 @@
             curDrops.style.background = event.target.style.background;
             curDrops.dataset.price = event.target.getAttribute('data-price');
             curDrops.dataset.name = event.target.getAttribute('data-name');
+            const povorot = numbers[(curDrops.id).split('id').join('')]+180
+            curDrops.style.transform = "rotate("+povorot+"deg)"
             getPrice()
         }
         let CurrentDropsPlaceId; 

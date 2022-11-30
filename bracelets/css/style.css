@@ -106,7 +106,8 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  transition: 0.8s ease-in; }
 
 .big {
   border-radius: 50%; }
