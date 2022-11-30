@@ -131,4 +131,40 @@ const drops = [
         price: 20,
         background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
     },
+    {   
+        name: 'Розовый Кварц',
+        size: 8,
+        price: 20,
+        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
+    },
+    {   
+        name: 'Розовый Кварц',
+        size: 8,
+        price: 20,
+        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
+    },
+    {   
+        name: 'Розовый Кварц',
+        size: 8,
+        price: 20,
+        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
+    },
+    {   
+        name: 'Розовый Кварц',
+        size: 8,
+        price: 20,
+        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
+    },
+    {   
+        name: 'Розовый Кварц',
+        size: 8,
+        price: 20,
+        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
+    },
+    {   
+        name: 'Розовый Кварц',
+        size: 8,
+        price: 20,
+        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
+    },
 ];

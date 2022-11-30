@@ -1,3 +1,18 @@
+.wrap {
+  width: 800px;
+  margin: 0 auto; }
+  @media (max-width: 500px) {
+    .wrap {
+      width: 100%;
+      margin: 0; } }
+  .wrap .containWrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative; }
+    .wrap .containWrap #field {
+      order: 1; }
+
 @keyframes beat {
   from {
     scale: 0.8; }
@@ -47,7 +62,12 @@
 #priceBox {
   display: flex;
   padding: 0 20px;
-  align-items: center; }
+  align-items: center;
+  order: 3;
+  margin: 0 0 0 20%; }
+  @media (max-width: 500px) {
+    #priceBox {
+      margin: 0; } }
   #priceBox .active_btn {
     color: white !important;
     background: #e608e6 !important;
@@ -65,7 +85,10 @@
   display: flex;
   padding: 0 20px;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: space-evenly; }
+  @media (max-width: 500px) {
+    #braceletSizeWrap {
+      justify-content: space-between; } }
   #braceletSizeWrap li {
     padding: 10px 0px 0 0; }
 
@@ -124,18 +147,32 @@
   list-style-type: none; }
 
 .dropsWrap {
-  padding: 20px; }
+  padding: 20px;
+  order: 2;
+  width: 300px;
+  height: 500px; }
+  @media (max-width: 500px) {
+    .dropsWrap {
+      width: auto;
+      height: auto;
+      order: 4; } }
   .dropsWrap #dropsField {
     display: flex;
     flex-wrap: wrap;
-    height: 230px;
+    height: 500px;
     overflow-y: scroll;
     justify-content: space-between; }
+    @media (max-width: 500px) {
+      .dropsWrap #dropsField {
+        height: 230px; } }
     .dropsWrap #dropsField li {
       text-align: center;
       width: 60px;
       font-size: 14px;
-      margin: 0 7px 10px 0px; }
+      margin: 0 15px 10px 0px; }
+      @media (max-width: 500px) {
+        .dropsWrap #dropsField li {
+          margin: 0 7px 10px 0px; } }
       .dropsWrap #dropsField li ul li {
         margin: 0;
         padding-top: 5px; }

@@ -11,32 +11,36 @@
     <title>Document</title>
 </head>
 <body>
-    <ul id="braceletSizeWrap">
-        <li><h3>Обхват запястья</h3></li>
-        <li id="sizeRadio">
-            <select name="sizeBracelet" id="sizeBracelet">
-                <option value="20">14см</option>
-                <option value="22">15см</option>
-                <option value="23">16см</option>
-                <option value="24">17см</option>
-                <option value="25">18см</option>
-                <option value="26">19см</option>
-            </select>
-        </li>
-    </ul>
-    <div style ="position: relative;" id="field">
-    </div>
-    <ul id="priceBox">
-        <li id="price"></li>
-        <li><button id="PriceBtn">Заказать</button></li>
-    </ul>
-    <div class="dropsWrap">
-        <ul id="dropsField" style="display: none"></ul>
+    <div class="wrap">
+        <ul id="braceletSizeWrap">
+            <li><h3>Обхват запястья</h3></li>
+            <li id="sizeRadio">
+                <select name="sizeBracelet" id="sizeBracelet">
+                    <option value="20">14см</option>
+                    <option value="22">15см</option>
+                    <option value="23">16см</option>
+                    <option value="24">17см</option>
+                    <option value="25">18см</option>
+                    <option value="26">19см</option>
+                </select>
+            </li>
+        </ul>
+        <div class="containWrap">
+            <div style ="position: relative;" id="field">
+            </div>
+            <ul id="priceBox">
+                <li id="price"></li>
+                <li><button id="PriceBtn">Заказать</button></li>
+            </ul>
+            <div class="dropsWrap">
+                <ul id="dropsField" style="display: none"></ul>
+            </div>
+        </div>
     </div>
     <div id="popup">
             <form id="tg">
                 <h1>Стоимость браслета: <span id="popupPrice"></span></h1>
-                <h2>Мне удобнее общаться:</h2>
+                <h2>По заказу мне удобнее общаться в:</h2>
                 <div id="popupCheckbox">
                     <input type="checkbox" name="telegram">Telegram<br>
                     <input type="checkbox" name="viber">Viber<br>
@@ -91,13 +95,13 @@
         price.innerHTML = priceChek;
         const field = document.getElementById("field");
         let widthBracelet;
-        if (window.screen.width < 600) {
+        if (window.screen.width < 500) {
             widthBracelet = window.screen.width;
             document.getElementById('priceBox').style.fontSize = window.screen.width/100*6+'px';
             document.getElementById('braceletSizeWrap').style.fontSize = window.screen.width/100*6+'px';
 
         } else {
-            widthBracelet = 600;
+            widthBracelet = 500;
         }
         field.style.width = widthBracelet+'px'; //== эт его ширина
         field.style.height = field.style.width;  //== она же высота
@@ -217,7 +221,6 @@
             document.getElementById('errorMessage').innerHTML = '';
         })
 //==проверка формы
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script>
