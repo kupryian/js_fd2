@@ -39,7 +39,7 @@ const drops = [
         name: 'Нефрит',
         size: 8,
         price: 2,
-        background: 'url(img/rose_quarz.jpg)'
+        background: 'url(img/desert_dust_fake2.jpg)'
     },
     {   
         name: 'Розовый Кварц',
