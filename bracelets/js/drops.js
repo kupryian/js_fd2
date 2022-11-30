@@ -1,9 +1,9 @@
 const drops = [
     {   
-        name: 'Нефрит',
+        name: 'Лавовый камень',
         size: 8,
         price: 2,
-        background: 'url(img/rose_quarz.jpg)'
+        background: 'url(img/lava_black.jpg)'
     },
     {   
         name: 'Розовый Кварц',
@@ -12,28 +12,28 @@ const drops = [
         background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
     },
     {
-        name: 'Лавовый камень',
+        name: 'Лавовый камень(gr)',
         size: 8,
         price: 100,
-        background: 'url(https://1nerudnyi.ru/wp-content/uploads/2019/01/kamen-lava2.jpg)'
+        background: 'url(img/lava_green.jpg)'
     },
     {   
-        name: 'Нефрит2',
+        name: 'Матовый Оникс',
         size: 8,
         price: 2,
-        background: 'url(img/rose_quarz.jpg)'
+        background: 'url(img/onyx_math.jpg)'
     },
     {   
-        name: 'Розовый Кварц',
+        name: 'Песок Пустыни(им.)',
         size: 8,
         price: 20,
-        background: 'url(https://vashobereg.ru/wp-content/uploads/2019/09/Rozoviy-quartz.jpg)'
+        background: 'url(img/desert_dust_fake.jpg)'
     },
     {
-        name: 'Лавовый камень',
+        name: 'Золотой леопард(им.)',
         size: 8,
         price: 100,
-        background: 'url(https://1nerudnyi.ru/wp-content/uploads/2019/01/kamen-lava2.jpg)'
+        background: 'url(img/golden_leopard.png)'
     },
     {   
         name: 'Нефрит',
