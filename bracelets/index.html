@@ -63,7 +63,7 @@
         let zapros;
         zapros = fetch('https://script.googleusercontent.com/macros/echo?user_content_key=frsMRyTiR9Q0LQO57escC2tY0S_iyLA4tEN0Bdi2-QSTsr4SXn9fusiL0Sz_xKY5TcZqWOhCPxZGGnZgDXzgt0-njiEL-490m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnK9XDwc0PdgKaL4Fjbk5a_ytxt2dnydKsMqAF4JQfNEb34lwjEPCvLBb39Uu8YzVXsjO1jkDSpHO1b7RyPtn7tXiKlrA50qxHQ&lib=MfebM8PAb_HUjCtc1SRdR_MwusXTSpi02')
             .then((response) => response.json())
-            .then((data) =>foo(data.users))
+            .then((data) =>foo(data.users));
         const foo = (drops) => {        
                 //==наполняем полку бусинами из базы
                 for (let i = 0; i < drops.length; i ++) {
