@@ -55,6 +55,11 @@
             margin: 5px 0px;
         }
     }
+    textarea {
+        width: 200px;
+        margin: 25px auto;
+        display: block; 
+    }
     #popupClose {
         width: 100px;
         align-self: center;
@@ -186,6 +191,9 @@
         height: auto;
         order: 4;
     }
+    label {
+        font-size: 18px;
+    }
     #dropsField {
         display: flex;
         flex-wrap: wrap;
@@ -196,7 +204,6 @@
             height: 230px;
         }
         li {
-            // margin: 0 10px 5px 0px;
             text-align: center;
             width: 60px;
             font-size: 14px;

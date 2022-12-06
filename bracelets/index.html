@@ -34,6 +34,7 @@
             </ul>
             <div class="dropsWrap">
                 <ul id="dropsField" style="display: none"></ul>
+                <label><input type="checkbox" id="allBracelet">Применить на весь браслет</label>
             </div>
         </div>
     </div>
@@ -47,18 +48,12 @@
                     <input type="checkbox" name="mobile">Телефон<br>
                 </div>
                 <input type="tel" name="phone" value="+375" maxlength="13">
+                <textarea id="comment" cols="30" rows="10" placeholder="Комментарий к заказу (необязательно)"></textarea>
                 <button type="submit">Заказать</button>
             </form>
             <p id="errorMessage"></p>
             <button id="popupClose">Закрыть</button>
     </div>
-    <!-- <script>   
-        let drops;
-        let otvet;
-        fetch('https://script.googleusercontent.com/macros/echo?user_content_key=frsMRyTiR9Q0LQO57escC2tY0S_iyLA4tEN0Bdi2-QSTsr4SXn9fusiL0Sz_xKY5TcZqWOhCPxZGGnZgDXzgt0-njiEL-490m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnK9XDwc0PdgKaL4Fjbk5a_ytxt2dnydKsMqAF4JQfNEb34lwjEPCvLBb39Uu8YzVXsjO1jkDSpHO1b7RyPtn7tXiKlrA50qxHQ&lib=MfebM8PAb_HUjCtc1SRdR_MwusXTSpi02')
-        .then((response) => response.json())
-        .then((data) => drops = data.users)
-     </script> -->
     <script>    
         let zapros;
         zapros = fetch('https://script.googleusercontent.com/macros/echo?user_content_key=frsMRyTiR9Q0LQO57escC2tY0S_iyLA4tEN0Bdi2-QSTsr4SXn9fusiL0Sz_xKY5TcZqWOhCPxZGGnZgDXzgt0-njiEL-490m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnK9XDwc0PdgKaL4Fjbk5a_ytxt2dnydKsMqAF4JQfNEb34lwjEPCvLBb39Uu8YzVXsjO1jkDSpHO1b7RyPtn7tXiKlrA50qxHQ&lib=MfebM8PAb_HUjCtc1SRdR_MwusXTSpi02')
@@ -86,7 +81,6 @@
                 dropsField.appendChild(dropsBoxLi);
         }}
     </script>
-    <!-- <script src="js/drops.js"></script>  -->
     <script>
         console.log('test');
         let braceletSize = 20; // начальное число бусин в браслете
@@ -143,6 +137,8 @@
         let numbers = [];
 //==========функция построения браслета
         function buildBracelet () {
+            priceChek = 0;
+            price.innerHTML = priceChek+' руб.';
             document.getElementById('PriceBtn').classList.remove('active_btn')
             numbers = []; //== сюда будуут пушиться углы, по которым разместятся бусины
             let roundH = 0; //==первый угол
@@ -185,35 +181,27 @@
         }
 //===== полка с бусинами      
         const dropsField = document.getElementById('dropsField');
-        // //==наполняем полку бусинами из базы
-        // for (let i = 0; i < drops.length; i ++) {
-        //         const dropsBoxLi = document.createElement('li');
-        //         const dropsBoxWrapUl = document.createElement('ul');
-        //         const dropsBoxImgLi = document.createElement('li');
-        //         const dropsBoxNameLi = document.createElement('li');
-        //         dropsBoxImgLi.style.width = widthBracelet*0.15+'px';
-        //         dropsBoxImgLi.style.height = widthBracelet*0.15+'px';
-        //         dropsBoxImgLi.dataset.price = drops[i].price;
-        //         dropsBoxImgLi.dataset.name = drops[i].name;
-        //         dropsBoxImgLi.style.background = drops[i].background;
-        //         dropsBoxImgLi.style.backgroundSize = 'contain'
-        //         dropsBoxImgLi.style.borderRadius = 50+'px';
-        //         dropsBoxImgLi.addEventListener('click', doDrops); //событие для применения бусины на браслет
-        //         dropsBoxNameLi.appendChild(document.createTextNode(drops[i].name));
-        //         dropsBoxWrapUl.appendChild(dropsBoxImgLi);
-        //         dropsBoxWrapUl.appendChild(dropsBoxNameLi);
-        //         dropsBoxLi.appendChild(dropsBoxWrapUl);
-        //         dropsField.appendChild(dropsBoxLi);
-        // }
 //=== применение выбранной из полки бусины на браслет        
         function doDrops (event) { //==фукция когда нажал на одну бусину и она применилась на браслет
-            const curDrops = document.getElementById(CurrentDropsPlaceId);
-            curDrops.style.background = event.target.style.background;
-            curDrops.dataset.price = event.target.getAttribute('data-price');
-            curDrops.dataset.name = event.target.getAttribute('data-name');
-            const povorot = numbers[(curDrops.id).split('id').join('')]+180
-            curDrops.style.transform = "rotate("+povorot+"deg)"
-            getPrice()
+            if (document.getElementById('allBracelet').checked) {
+                for (let i = 0; i < braceletSize; i ++) {
+                const findDrops = document.getElementById('id'+i);
+                findDrops.style.background = event.target.style.background;
+                findDrops.dataset.price = event.target.getAttribute('data-price');
+                findDrops.dataset.name = event.target.getAttribute('data-name');
+                const povorot = numbers[(findDrops.id).split('id').join('')]+180;
+                findDrops.style.transform = "rotate("+povorot+"deg)";
+                }
+                getPrice();
+            } else {
+                const curDrops = document.getElementById(CurrentDropsPlaceId);
+                curDrops.style.background = event.target.style.background;
+                curDrops.dataset.price = event.target.getAttribute('data-price');
+                curDrops.dataset.name = event.target.getAttribute('data-name');
+                const povorot = numbers[(curDrops.id).split('id').join('')]+180
+                curDrops.style.transform = "rotate("+povorot+"deg)"
+                getPrice();
+            }
         }
         let CurrentDropsPlaceId; 
         //==функция набрасывает тень на выбраную на браслете бусину
@@ -249,7 +237,10 @@
                 document.getElementById('PriceBtn').classList.add('active_btn');
                 document.querySelector('.active_btn').addEventListener('click', event => {
                     document.getElementById('popup').classList.add('popupOn');
+                    getPrice ();
                 })
+            } else {
+                document.getElementById('PriceBtn').classList.remove('active_btn');
             }
         }
 //==закрыть попап с заказом
@@ -288,7 +279,8 @@
                 }
             })
             message +=  `<b>Свяжитесь мо мной по: ${whatConnect}</b>\n`
-            message +=  `<b>Телефон: ${document.querySelector('input[type=tel]').value}</b> `
+            message +=  `<b>Телефон: ${document.querySelector('input[type=tel]').value}</b>\n`
+            message +=  `<b>Комментарий к заказу: ${document.getElementById('comment').value}</b> `
             console.log(message)
 
             if (document.querySelector('input[type=tel]').value.length == 13) {

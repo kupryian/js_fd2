@@ -50,6 +50,10 @@
     margin: 10px auto; }
     #popup div input {
       margin: 5px 0px; }
+  #popup textarea {
+    width: 200px;
+    margin: 25px auto;
+    display: block; }
   #popup #popupClose {
     width: 100px;
     align-self: center;
@@ -157,6 +161,8 @@
       width: auto;
       height: auto;
       order: 4; } }
+  .dropsWrap label {
+    font-size: 18px; }
   .dropsWrap #dropsField {
     display: flex;
     flex-wrap: wrap;
