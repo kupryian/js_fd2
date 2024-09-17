@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DYN_FORM</title>
+</head>
+<body>
+   <div id="outputForm"></div>  <!-- сюда будет выдодиться формы-->
+
+  <script>
+    const formDef1 = //это условия
+    [
+      {label: 'Название сайта:', kind: 'longtext', name: 'sitename'},
+      {label: 'URL сайта:', kind: 'longtext', name: 'siteurl'},
+      {label: 'Посетителей в сутки:', kind: 'number', name: 'visistors'},
+      {label: 'E-mail для связи:', kind: 'shorttext', name: 'email'},
+      {label: 'Рубрика каталога:', kind: 'combo', name: 'division',
+        variants: [{text: 'здоровье', value: 1}, {text: 'домашний уют', value: 2}, {text: 'бытовая техника', value: 3}]},
+      {label: 'Размещение:', kind: 'radio', name: 'payment',
+        variants: [{text: 'бесплатное', value: 1}, {text: 'платное', value: 2}, {text: 'VIP', value: 3}]},  
+      {label: 'Разрешить отзывы:', kind: 'check', name: 'votes'},
+      {label: 'Описание сайта:', kind: 'memo', name: 'description'},
+      {caption: 'Опубликовать', kind: 'submit'},
+    ];
+
+    const formDef2 = 
+    [
+      {label: 'Фамилия:', kind: 'longtext', name: 'lastname'},
+      {label: 'Имя:', kind: 'longtext', name: 'firstname'},
+      {label: 'Отчество:', kind: 'longtext', name: 'secondname'},
+      {label: 'Возраст:', kind: 'number', name: 'age'},
+      {caption: 'Зарегистрироваться', kind: 'submit'},
+    ]
+
+    let newForm = (formName) => { // хрень, которая колбеком делает функцию, которая выводит форму на страницу
+        let form = document.createElement("form"); 
+        document.getElementById("outputForm").appendChild(form); //запихиваем созданный элемент форма в див
+
+        form.action = "https://fe.it-academy.by/TestForm.php"; //я так понимаю это атрибут, который обрабатывает форму
+        // form.id = 
+
+        createInput = (value,typeOfField, textNode, typeOfInput,typeName,longtext,options) => { //функция которая конструирует все поля, в неё передаем условия из свитч
+            let field = document.createElement(typeOfField);  
+            let titleTag = document.createElement("span");
+            let title = document.createTextNode(textNode);
+            let element = document.createElement(value);
+            let perenos = document.createElement("br");
+            titleTag.style.width = "150px";
+            titleTag.style.display = "inline-block"
+            element.type = typeOfInput;
+            element.name = typeName;
+            
+            if (longtext) // это смотрит если в функциюэту (createInput) пришел параметр лонгтекст: тру
+                element.maxLength = "10";
+
+            if (options && value == "select") { // если в эту функцию передалось опцци и название селект
+                for(let key of options) {
+                    // console.log(key);
+                    let createTextOptionsNode = document.createTextNode(key.text);
+                    let createOption = document.createElement("option");
+                    createOption.value = key.value;
+                    
+                    createOption.appendChild(createTextOptionsNode);
+                    element.appendChild(createOption);
+
+                }
+            }
+
+            if (options && value == "span") {  // по аналошии с 58 строкой
+                for(let key of options) {
+                    let createTextOptionsNode = document.createTextNode(key.text);
+                    let createOption = document.createElement("option");
+                    let radioBtn = document.createElement("input");
+                    let radioSpan = document.createElement("span");
+
+                    radioBtn.type = "radio";
+                    radioBtn.value = key.value;
+                    radioBtn.name = typeName;
+                    
+                    radioSpan.appendChild(createTextOptionsNode);
+                    element.appendChild(radioBtn);
+                    element.appendChild(radioSpan);
+            
+                }
+            }
+           
+            titleTag.appendChild(title);
+            field.appendChild(titleTag);
+            field.appendChild(element);
+            field.appendChild(perenos);
+            form.appendChild(field);
+        }
+
+        for (let field of formName) { //перебираем массив что пришел
+
+            switch (field.kind) { //устанавливаем условие по параметру кинд
+
+                case "longtext" : 
+                createInput("input", "label", field.label, "text",field.name,false,field.variants); //передаем в функцию кучу параметров (1.тег создаваемого,2.тег обертки 3.текст слева перед вводом 4.тип ввода 5.имя поля ввода 6.проверка если нужно ограничение символов 6. дополнительныеатрибуты для радиокнопок)
+                break;
+
+                case "number" : 
+                createInput("input", "label", field.label, "number",field.name,false,field.variants);
+                break;
+
+                case "shorttext" : 
+                createInput("input", "label", field.label, "text",field.name,true,field.variants);
+                break;
+
+                case "combo" : 
+                createInput("select", "label", field.label, "select",field.name,false,field.variants);
+                break;
+
+                case "radio" : 
+                createInput("span", "label", field.label, "radio",field.name,false,field.variants);
+                break;
+
+                case "check" : 
+                createInput("input", "label", field.label, "checkbox",field.name,false,field.variants);
+                break;
+
+                case "memo" : 
+                createInput("textarea", "label", field.label, "",field.name,false,field.variants);
+                break;
+
+                case "submit" : 
+                createInput("input", "label", field.caption, "submit",field.name,false,field.variants);
+                break;
+            }
+        }
+    }
+
+    newForm(formDef1);
+    // newForm(formDef2);
+    
+
+
+  </script>
+</body>
+</html>
